@@ -15,6 +15,8 @@ const JSCCommon = {
 			autoFocus: false,
 			groupAll: false,
 			groupAttr: false,
+			// showClass: "fancybox-throwOutUp",
+			// hideClass: "fancybox-throwOutDown",
 			l10n: {
 				Escape: "Закрыть",
 				NEXT: "Вперед",
@@ -289,7 +291,7 @@ function eventHandler() {
 	JSCCommon.modalCall();
 	// JSCCommon.tabscostume('tabs');
 	JSCCommon.mobileMenu();
-	// JSCCommon.inputMask();
+	JSCCommon.inputMask();
 	// JSCCommon.sendForm();
 	JSCCommon.heightwindow();
 	JSCCommon.makeDDGroup();

@@ -146,3 +146,31 @@ a {
 }
 
 
+
+.fancybox-throwOutUp {
+  animation: 0.25s ease both fancybox-throwOutUp;
+}
+
+.fancybox-throwOutDown {
+  animation: 0.25s ease both fancybox-throwOutDown;
+}
+
+@keyframes fancybox-throwOutUp {
+  from {
+    transform: translate3d(0, -5%, 0);
+    opacity: 0;
+  }
+	
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+}
+
+@keyframes fancybox-throwOutDown {
+  to {
+    transform: translate3d(0, 10%, 0);
+    opacity: 0;
+  }
+}
