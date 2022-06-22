@@ -15,6 +15,8 @@ const JSCCommon = {
 			autoFocus: false,
 			groupAll: false,
 			groupAttr: false,
+			// showClass: "fancybox-throwOutUp",
+			// hideClass: "fancybox-throwOutDown",
 			l10n: {
 				Escape: "Закрыть",
 				NEXT: "Вперед",

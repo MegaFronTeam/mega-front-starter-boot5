@@ -1,4 +1,4 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import React, { useRef, useState, forwardRef } from 'react';
 import { uniqueClasses } from './utils.js';
@@ -48,7 +48,7 @@ const SwiperSlide = /*#__PURE__*/forwardRef(function (_temp, externalRef) {
     };
   });
   useIsomorphicLayoutEffect(() => {
-    if (swiper && slideElRef.current) {
+    if (swiper && slideElRef.current && !swiper.destroyed) {
       setSlideClasses(swiper.getSlideClasses(slideElRef.current));
     }
   }, [swiper]);

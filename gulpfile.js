@@ -136,7 +136,7 @@ function styles() {
         gcmq(),
     ];
     return src(sourse + '/sass/main.scss')
-        // .pipe(sassGlob())
+        .pipe(sassGlob())
         .pipe(
             sass.sync()
                 .on('error', sass.logError)

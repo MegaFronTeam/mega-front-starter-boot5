@@ -29,7 +29,7 @@ mixin input(placeholder,  t='text', label, name= t)
 				block
 		else
 			+t(t,placeholder, name)&attributes(attributes)
-		block
+			block
 	// +e.input-wrap
 mixin select(label,pl,...items)
 	+e.input-wrap.form-group

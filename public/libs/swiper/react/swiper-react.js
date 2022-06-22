@@ -1,5 +1,5 @@
 /**
- * Swiper React 8.1.3
+ * Swiper React 8.2.4
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: April 20, 2022
+ * Released on: June 13, 2022
  */
 
 import { Swiper } from './swiper.js';

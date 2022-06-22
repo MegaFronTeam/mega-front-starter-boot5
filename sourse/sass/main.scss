@@ -100,19 +100,19 @@ $output-bourbon-deprecation-warnings: false;
 @import "root";
 @import "base";
 
-@import '../pug/blocks/mixin-wrap/mixin-wrap.scss';
-@import '../pug/blocks/form-wrap/form-wrap.scss';
+@import '../pug/blocks/**/*.scss';
+// @import '../pug/blocks/form-wrap/form-wrap.scss';
 
-@import '../pug/blocks/topLine/_topLine.scss';
-@import '../pug/blocks/top-nav/_top-nav.scss';
-@import '../pug/blocks/top-nav/_navMenu.scss';
-@import '../pug/blocks/sForm/_sForm.scss';
-@import '../pug/blocks/sContent/_sContent.scss';
-@import '../pug/blocks/modal/_modal.scss';
-@import '../pug/blocks/headerBlock/_headerBlock.scss';
+// @import '../pug/blocks/topLine/_topLine.scss';
+// @import '../pug/blocks/top-nav/_top-nav.scss';
+// @import '../pug/blocks/top-nav/_navMenu.scss';
+// @import '../pug/blocks/sForm/_sForm.scss';
+// @import '../pug/blocks/sContent/_sContent.scss';
+// @import '../pug/blocks/modal/_modal.scss';
+// @import '../pug/blocks/headerBlock/_headerBlock.scss';
 
-@import '../pug/blocks/header/_header.scss';
-@import '../pug/blocks/footer/_footer.scss';
+// @import '../pug/blocks/header/_header.scss';
+// @import '../pug/blocks/footer/_footer.scss';
 
 @import "media"; // Всегда в конце
 

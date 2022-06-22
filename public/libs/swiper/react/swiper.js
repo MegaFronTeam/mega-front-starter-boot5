@@ -1,4 +1,4 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import React, { useRef, useState, useEffect, forwardRef } from 'react';
 import SwiperCore from 'swiper';
@@ -196,7 +196,9 @@ const Swiper = /*#__PURE__*/forwardRef(function (_temp, externalElRef) {
     className: uniqueClasses(`${containerClasses}${className ? ` ${className}` : ''}`)
   }, restProps), /*#__PURE__*/React.createElement(SwiperContext.Provider, {
     value: swiperRef.current
-  }, slots['container-start'], needsNavigation(swiperParams) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, slots['container-start'], /*#__PURE__*/React.createElement(WrapperTag, {
+    className: "swiper-wrapper"
+  }, slots['wrapper-start'], renderSlides(), slots['wrapper-end']), needsNavigation(swiperParams) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     ref: prevElRef,
     className: "swiper-button-prev"
   }), /*#__PURE__*/React.createElement("div", {
@@ -208,9 +210,7 @@ const Swiper = /*#__PURE__*/forwardRef(function (_temp, externalElRef) {
   }), needsPagination(swiperParams) && /*#__PURE__*/React.createElement("div", {
     ref: paginationElRef,
     className: "swiper-pagination"
-  }), /*#__PURE__*/React.createElement(WrapperTag, {
-    className: "swiper-wrapper"
-  }, slots['wrapper-start'], renderSlides(), slots['wrapper-end']), slots['container-end']));
+  }), slots['container-end']));
 });
 Swiper.displayName = 'Swiper';
 export { Swiper };
