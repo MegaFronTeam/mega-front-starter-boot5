@@ -46,7 +46,7 @@ function browsersync() {
         // ghostMode: { clicks: false },
         // notify: false,
         // online: true,
-        tunnel: 'layouts', // Attempt to use the URL https://layouts.loca.lt
+        // tunnel: 'layouts', // Attempt to use the URL https://layouts.loca.lt
     })
 }
 
