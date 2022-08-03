@@ -20,15 +20,13 @@ import sassGlob  from 'gulp-sass-glob'
 import dartSass      from 'sass'
 const  sass          = gulpSass(dartSass)
 import tabify  from 'gulp-tabify' 
-import gcmq  from 'postcss-sort-media-queries' 
-import bssi from 'browsersync-ssi'
+import gcmq  from 'postcss-sort-media-queries'  
 import browserSync  from 'browser-sync'
 import postcss  from 'gulp-postcss'
 import autoprefixer  from 'autoprefixer'
 import cssnano  from 'cssnano' 
 import nested  from 'postcss-nested'
 import pscss  from 'postcss-scss'
-import syntax  from 'postcss-syntax'
 // )({ scss: 'postcss-scss'}),
 import plumber  from 'gulp-plumber'
 import sharpResponsive from "gulp-sharp-responsive"; 
@@ -50,12 +48,9 @@ function browsersync() {
     })
 }
 
-function cleanFolders() {
-    return del([publicPath + '/parts' ], { force: true })
-}
-
+ 
 function pugFiles() {
-    return  src([sourse + '/pug/pages/**/*.pug'])
+    return  src([sourse + '/pug/pages/*.pug'])
     .pipe(data(function(file) {
         return JSON.parse(fs.readFileSync(sourse + '/pug/content.json'))
     }))
@@ -257,4 +252,4 @@ export let sprite = series(svg, svgCopy)
 
 
 
-export default series(common, libs, styles,cleanFolders, imgAll, sprite, pugFiles, parallel(browsersync, startwatch))
+export default series(common, libs, styles, imgAll, sprite, pugFiles, parallel(browsersync, startwatch))

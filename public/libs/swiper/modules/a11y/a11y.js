@@ -193,6 +193,13 @@ export default function A11y(_ref) {
     const isActive = swiper.slides.indexOf(slideEl) === swiper.activeIndex;
     const isVisible = swiper.params.watchSlidesProgress && swiper.visibleSlides && swiper.visibleSlides.includes(slideEl);
     if (isActive || isVisible) return;
+
+    if (swiper.isHorizontal()) {
+      swiper.el.scrollLeft = 0;
+    } else {
+      swiper.el.scrollTop = 0;
+    }
+
     swiper.slideTo(swiper.slides.indexOf(slideEl), 0);
   };
 
@@ -203,7 +210,10 @@ export default function A11y(_ref) {
       addElRoleDescription($(swiper.slides), params.itemRoleDescriptionMessage);
     }
 
-    addElRole($(swiper.slides), params.slideRole);
+    if (params.slideRole) {
+      addElRole($(swiper.slides), params.slideRole);
+    }
+
     const slidesLength = swiper.params.loop ? swiper.slides.filter(el => !el.classList.contains(swiper.params.slideDuplicateClass)).length : swiper.slides.length;
 
     if (params.slideLabelMessage) {

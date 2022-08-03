@@ -90,7 +90,32 @@ export default function Thumb(_ref) {
   function update(initial) {
     const thumbsSwiper = swiper.thumbs.swiper;
     if (!thumbsSwiper || thumbsSwiper.destroyed) return;
-    const slidesPerView = thumbsSwiper.params.slidesPerView === 'auto' ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView;
+    const slidesPerView = thumbsSwiper.params.slidesPerView === 'auto' ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView; // Activate thumbs
+
+    let thumbsToActivate = 1;
+    const thumbActiveClass = swiper.params.thumbs.slideThumbActiveClass;
+
+    if (swiper.params.slidesPerView > 1 && !swiper.params.centeredSlides) {
+      thumbsToActivate = swiper.params.slidesPerView;
+    }
+
+    if (!swiper.params.thumbs.multipleActiveThumbs) {
+      thumbsToActivate = 1;
+    }
+
+    thumbsToActivate = Math.floor(thumbsToActivate);
+    thumbsSwiper.slides.removeClass(thumbActiveClass);
+
+    if (thumbsSwiper.params.loop || thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled) {
+      for (let i = 0; i < thumbsToActivate; i += 1) {
+        thumbsSwiper.$wrapperEl.children(`[data-swiper-slide-index="${swiper.realIndex + i}"]`).addClass(thumbActiveClass);
+      }
+    } else {
+      for (let i = 0; i < thumbsToActivate; i += 1) {
+        thumbsSwiper.slides.eq(swiper.realIndex + i).addClass(thumbActiveClass);
+      }
+    }
+
     const autoScrollOffset = swiper.params.thumbs.autoScrollOffset;
     const useOffset = autoScrollOffset && !thumbsSwiper.params.loop;
 
@@ -144,31 +169,6 @@ export default function Thumb(_ref) {
         }
 
         thumbsSwiper.slideTo(newThumbsIndex, initial ? 0 : undefined);
-      }
-    } // Activate thumbs
-
-
-    let thumbsToActivate = 1;
-    const thumbActiveClass = swiper.params.thumbs.slideThumbActiveClass;
-
-    if (swiper.params.slidesPerView > 1 && !swiper.params.centeredSlides) {
-      thumbsToActivate = swiper.params.slidesPerView;
-    }
-
-    if (!swiper.params.thumbs.multipleActiveThumbs) {
-      thumbsToActivate = 1;
-    }
-
-    thumbsToActivate = Math.floor(thumbsToActivate);
-    thumbsSwiper.slides.removeClass(thumbActiveClass);
-
-    if (thumbsSwiper.params.loop || thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled) {
-      for (let i = 0; i < thumbsToActivate; i += 1) {
-        thumbsSwiper.$wrapperEl.children(`[data-swiper-slide-index="${swiper.realIndex + i}"]`).addClass(thumbActiveClass);
-      }
-    } else {
-      for (let i = 0; i < thumbsToActivate; i += 1) {
-        thumbsSwiper.slides.eq(swiper.realIndex + i).addClass(thumbActiveClass);
       }
     }
   }

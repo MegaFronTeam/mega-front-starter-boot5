@@ -1,4 +1,8 @@
-import React from 'react';
+import { template as _$template } from "solid-js/web";
+import { effect as _$effect } from "solid-js/web";
+
+const _tmpl$ = /*#__PURE__*/_$template(`<div></div>`, 2);
+
 import Swiper from 'swiper';
 
 function calcLoopedSlides(slides, swiperParams) {
@@ -25,17 +29,17 @@ function calcLoopedSlides(slides, swiperParams) {
 
 function renderLoop(swiper, slides, swiperParams) {
   const modifiedSlides = slides.map((child, index) => {
-    return /*#__PURE__*/React.cloneElement(child, {
-      swiper,
-      'data-swiper-slide-index': index
-    });
+    const node = child.cloneNode(true);
+    node.swiper = swiper;
+    node['data-swiper-slide-index'] = index;
+    return node;
   });
 
   function duplicateSlide(child, index, position) {
-    return /*#__PURE__*/React.cloneElement(child, {
-      key: `${child.key}-duplicate-${index}-${position}`,
-      className: `${child.props.className || ''} ${swiperParams.slideDuplicateClass}`
-    });
+    const node = child.cloneNode(true);
+    node.key = `${child.key}-duplicate-${index}-${position}`;
+    node.className = `${child.className || ''} ${swiperParams.slideDuplicateClass}`;
+    return node;
   }
 
   if (swiperParams.loopFillGroupWithBlank) {
@@ -43,9 +47,15 @@ function renderLoop(swiper, slides, swiperParams) {
 
     if (blankSlidesNum !== swiperParams.slidesPerGroup) {
       for (let i = 0; i < blankSlidesNum; i += 1) {
-        const blankSlide = /*#__PURE__*/React.createElement("div", {
-          className: `${swiperParams.slideClass} ${swiperParams.slideBlankClass}`
-        });
+        const blankSlide = // eslint-disable-next-line react/react-in-jsx-scope
+        (() => {
+          const _el$ = _tmpl$.cloneNode(true);
+
+          _$effect(() => _el$.className = `${swiperParams.slideClass} ${swiperParams.slideBlankClass}`);
+
+          return _el$;
+        })();
+
         modifiedSlides.push(blankSlide);
       }
     }

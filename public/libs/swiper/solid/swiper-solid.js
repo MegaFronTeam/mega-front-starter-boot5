@@ -1,5 +1,5 @@
 /**
- * Swiper Vue 8.3.2
+ * Swiper SolidJS 8.3.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -10,7 +10,6 @@
  * Released on: July 26, 2022
  */
 
-import { Swiper } from './swiper.js';
-import { SwiperSlide } from './swiper-slide.js';
+export { Swiper } from './swiper.js';
+export { SwiperSlide } from './swiper-slide.js';
 export { useSwiperSlide, useSwiper } from './context.js';
-export { Swiper, SwiperSlide };

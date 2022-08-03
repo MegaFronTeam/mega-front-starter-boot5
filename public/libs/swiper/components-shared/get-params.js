@@ -2,14 +2,19 @@ import Swiper from 'swiper';
 import { isObject, extend } from './utils.js';
 import { paramsList } from './params-list.js';
 
-function getParams(obj) {
+function getParams(obj, splitEvents) {
   if (obj === void 0) {
     obj = {};
+  }
+
+  if (splitEvents === void 0) {
+    splitEvents = true;
   }
 
   const params = {
     on: {}
   };
+  const events = {};
   const passedParams = {};
   extend(params, Swiper.defaults);
   extend(params, Swiper.extendedDefaults);
@@ -17,7 +22,10 @@ function getParams(obj) {
   params.init = false;
   const rest = {};
   const allowedParams = paramsList.map(key => key.replace(/_/, ''));
-  Object.keys(obj).forEach(key => {
+  const plainObj = Object.assign({}, obj);
+  Object.keys(plainObj).forEach(key => {
+    if (typeof obj[key] === 'undefined') return;
+
     if (allowedParams.indexOf(key) >= 0) {
       if (isObject(obj[key])) {
         params[key] = {};
@@ -29,7 +37,11 @@ function getParams(obj) {
         passedParams[key] = obj[key];
       }
     } else if (key.search(/on[A-Z]/) === 0 && typeof obj[key] === 'function') {
-      params.on[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];
+      if (splitEvents) {
+        events[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];
+      } else {
+        params.on[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];
+      }
     } else {
       rest[key] = obj[key];
     }
@@ -41,7 +53,8 @@ function getParams(obj) {
   return {
     params,
     passedParams,
-    rest
+    rest,
+    events
   };
 }
 

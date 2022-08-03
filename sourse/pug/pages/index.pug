@@ -10,6 +10,7 @@ include ../blocks/sContent/_sContent.pug
 include ../blocks/sContact/_sContact.pug
 include ../blocks/sForm/_sForm.pug
 include ../blocks/sForm/_sForm.pug
+include ../blocks/sCatalog/_sCatalog.pug
 include ../blocks/footer/_footer.pug
 
 block variables
@@ -26,25 +27,10 @@ block pagecontent
 	+header()
 	+top-nav()
 	+topLine
-	.container
-		+in-c('radio', 'sdasdasdasd')
-		+in-c('radio', 'sdasdasdasd')
-	form
-		+input('fsdfs','tel')(required)
-		button  btn
-	+headerBlock
-
-	+soc()
+	+headerBlock 
+	+sCatalog
 	+sForm()
-	//- +sForm()
-	//- - let list = items[0].title
-	//- p= list
-	.container
-		each item in items
-			li 
-				h2= item.title
-				p= item.text
-	//- +sContact()
+	+sContact()
 	
 	+footer()
       

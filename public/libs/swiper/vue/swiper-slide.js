@@ -1,5 +1,5 @@
 import { h, ref, onMounted, onUpdated, onBeforeUpdate, computed, onBeforeUnmount, provide } from 'vue';
-import { uniqueClasses } from './utils.js';
+import { uniqueClasses } from '../components-shared/utils.js';
 const SwiperSlide = {
   name: 'SwiperSlide',
   props: {

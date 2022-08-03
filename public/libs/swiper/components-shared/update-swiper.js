@@ -8,8 +8,8 @@ function updateSwiper(_ref) {
     changedParams,
     nextEl,
     prevEl,
-    paginationEl,
-    scrollbarEl
+    scrollbarEl,
+    paginationEl
   } = _ref;
   const updateParams = changedParams.filter(key => key !== 'children' && key !== 'direction');
   const {
@@ -77,7 +77,11 @@ function updateSwiper(_ref) {
     }
   });
 
-  if (changedParams.includes('children') && virtual && currentParams.virtual.enabled) {
+  if (updateParams.includes('controller') && !needControllerInit && swiper.controller && swiper.controller.control && currentParams.controller && currentParams.controller.control) {
+    swiper.controller.control = currentParams.controller.control;
+  }
+
+  if (changedParams.includes('children') && slides && virtual && currentParams.virtual.enabled) {
     virtual.slides = slides;
     virtual.update(true);
   } else if (changedParams.includes('children') && swiper.lazy && swiper.params.lazy.enabled) {
