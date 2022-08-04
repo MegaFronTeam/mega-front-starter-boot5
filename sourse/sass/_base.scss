@@ -501,3 +501,8 @@ iframe {
 .form-select{
 	box-shadow: none !important;
 }
+
+
+.fancybox__content :focus:not(.carousel__button.is-close){
+	outline: none !important;
+}
