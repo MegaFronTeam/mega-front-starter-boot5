@@ -18,22 +18,24 @@ mixin sCatalog(data)
 			+b.section-title.text-center
 				h2 sCatalog
 				p Выкупаем проблемные автомобили в день обращения
+
 			+e.row.row
-				+e.col.col-3
+				- const wrapClass="col-3"
+				+e.col(class= wrapClass)
 					+product-item(`1`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`2`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`3`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`4`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`5`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`6`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`7`,``,``,``) 
-				+e.col.col-3
+				+e.col(class= wrapClass)
 					+product-item(`8`,``,``,``) 
 
 	// end sCatalog

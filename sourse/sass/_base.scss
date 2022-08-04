@@ -487,3 +487,17 @@ iframe {
 	
 	// @include row-sw(10px, sm, 100px);
 }
+
+
+
+
+// .btn-outline-light,
+// .btn-outline-primary{
+// 	--bs-btn-color: #{$body-color};
+// }
+
+.btn,
+.form-control,
+.form-select{
+	box-shadow: none !important;
+}
