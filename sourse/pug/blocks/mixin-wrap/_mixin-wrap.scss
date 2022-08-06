@@ -77,3 +77,32 @@
 		}
 	}
 }
+
+
+.search-block{
+	position: relative;
+	input{
+		font-size: 14px;
+		width: 100%;
+		border: none !important;
+		outline: none !important;
+		padding-left: rem(30);
+		padding-top: rem(14);
+		padding-bottom: rem(14);
+	}
+	.icon{
+		font-size: rem(20);
+		border: none !important;
+	}
+	button{
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: none !important;
+		border: none !important;
+	}
+}
