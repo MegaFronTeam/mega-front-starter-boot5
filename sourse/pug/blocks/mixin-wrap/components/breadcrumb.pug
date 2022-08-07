@@ -1,9 +1,9 @@
 //- breadcrumb
 mixin breadcrumb(...items)
-	nav(aria-label="breadcrumb" )
-		ol.breadcrumb(itemscope itemtype="http://schema.org/BreadcrumbList")
+	nav(aria-label="breadcrumb" ).swiper.breadcrumb-slider--js
+		ol.breadcrumb(itemscope itemtype="http://schema.org/BreadcrumbList").swiper-wrapper
 			-for (var i = 0; i < items.length; i++)
-				li.breadcrumb-item( class=(i == items.length - 1 ? "active" : '')   itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem")
+				li.breadcrumb-item( class=(i == items.length - 1 ? "active" : '')   itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem").swiper-slide
 					a(href=(i == 0 ? "/" : '#') itemprop="item" )
 						span( itemprop="name")= items[i]
 						meta(itemprop="position" content= (i + 1) )

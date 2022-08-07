@@ -351,7 +351,13 @@ function eventHandler() {
 			// }
 		},
 	}
-
+	
+	const swiperbreadcrumb = new Swiper('.breadcrumb-slider--js', {
+		slidesPerView: 'auto',
+		freeMode: true,
+		watchOverflow: true
+	});
+	
 	const swiper4 = new Swiper('.sBanners__slider--js', {
 		// slidesPerView: 5,
 		...defaultSl,

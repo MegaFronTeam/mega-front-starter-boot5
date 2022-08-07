@@ -37,3 +37,11 @@ mixin search()
 			input(type="text" placeholder="Поиск по номеру или названию запчасти")
 			button 
 				+icon("search")
+
+mixin page-head(t,...items)
+	+b.page-head
+		- let l = items.length
+		.container
+			+breadcrumb('Главная',...items)
+
+			h1= t
