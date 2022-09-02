@@ -24,7 +24,7 @@ const fileSources = {
 			+b.section-title.text-center
 				h2 {blockName}
 				
-			.row
+			+e.row.row
 	// end {blockName}`,
 	scss: `// start .{blockName}
 .{blockName} \{
