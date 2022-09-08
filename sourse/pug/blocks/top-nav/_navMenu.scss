@@ -83,7 +83,8 @@
 		position: fixed !important;
 		z-index: 999;
 		max-width: 85%;
-		height: calc(var(--vh, 1vh) * 100);
+		// height: calc(var(--vh, 1vh) * 100);
+		height: 100vh;
 		width: 280px;
 		top: 0;
 		// left: 0;
@@ -114,7 +115,7 @@
 			}
 		}
 		&__inner {
-			padding: rem(20) 0;
+			padding: rem(20) 0 env(safe-area-inset-bottom, 50px);
 			overflow-x: hidden;
 			overflow-y: auto;
 			-webkit-overflow-scrolling: touch;
