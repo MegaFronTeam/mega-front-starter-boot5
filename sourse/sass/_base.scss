@@ -506,3 +506,9 @@ iframe {
 .fancybox__content :focus:not(.carousel__button.is-close){
 	outline: none !important;
 }
+
+.form-switch ,
+.form-check-input,
+.form-check{
+	cursor: pointer;
+}
