@@ -115,7 +115,7 @@
 			}
 		}
 		&__inner {
-			padding: rem(20) 0 env(safe-area-inset-bottom, 50px);
+			padding: calc(env(safe-area-inset-top, 0px) + #{rem(20)} 0 calc(env(safe-area-inset-bottom, 0px) + #{rem(20)});
 			overflow-x: hidden;
 			overflow-y: auto;
 			-webkit-overflow-scrolling: touch;

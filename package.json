@@ -11,7 +11,7 @@
   "author": "Khalunin Pavel",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.9",
     "bootstrap": "^5.2.1",
     "browser-sync": "^2.27.10",
     "browserslist": "^4.21.3",
