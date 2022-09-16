@@ -84,6 +84,12 @@ body {
 		top: 0;
 		z-index: 999;
 
+		touch-action: none;
+    -webkit-overflow-scrolling: none;
+    overflow: hidden;
+    /* Other browsers */
+    overscroll-behavior: none;
+
 		&::before {
 			z-index: 999;
 			opacity: 0.76;
