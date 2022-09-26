@@ -1,13 +1,14 @@
 
 mixin mnu()
-	ul.menu(itemscope itemtype="http://schema.org/SiteNavigationElement")
-		each link in nav
-			li.menu-item(itemprop="item" ): a(href= link.url itemprop="url")= link.name
-			if link.subnav
-				li.menu-item.menu-item-has-children
-					a(href="#" itemprop="url") О нас
-					ul.sub-menu
-						each sublink in link.subnav
-							li.menu-item(itemprop="item" ): a(href= sublink.url itemprop="url")= sublink.name
+	nav
+		ul.menu(itemscope itemtype="http://schema.org/SiteNavigationElement")
+			each link in nav
+				li.menu-item(itemprop="item" ): a(href= link.url itemprop="url")= link.name
+				if link.subnav
+					li.menu-item.menu-item-has-children
+						a(href="#" itemprop="url") О нас
+						ul.sub-menu
+							each sublink in link.subnav
+								li.menu-item(itemprop="item" ): a(href= sublink.url itemprop="url")= sublink.name
 
 //- menu

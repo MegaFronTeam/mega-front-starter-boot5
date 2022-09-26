@@ -14,12 +14,12 @@ block title
 	title= title
 block pagecontent
 	//- +topLine()
-	
-	.section.container
-		h1 Страница для  демонстрации модальных окон
-		.row
-			mixin btn(id, name)
-				.col-auto.mb-2
-					a.btn.btn-primary(href=`#` data-src=id data-fancybox="modal")= name
-			+btn("modal-call", "modal-call")
+	main
+		.section.container
+			h1 Страница для  демонстрации модальных окон
+			.row
+				mixin btn(id, name)
+					.col-auto.mb-2
+						a.btn.btn-primary(href=`#` data-src=id data-fancybox="modal")= name
+				+btn("modal-call", "modal-call")
 

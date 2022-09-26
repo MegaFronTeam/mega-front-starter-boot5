@@ -1,17 +1,28 @@
 // start .headerBlock
 .headerBlock {
-	margin-bottom: 1px;
+	// --sPT: #{rem()};
+	// --sPB: #{rem()};
+	// --sTPB: #{rem()}; 
 	min-height: 100vh;
 	min-height: calc(var(--vh, 1vh) * 100);
-	// background-image: url(../img);
-	// background-color: #000000;
+	
+	
+	&__row{
+		// --bs-gutter-x: #{rem()};
+		--bs-gutter-y: var(--bs-gutter-x);
 
-	h1 {
-		margin-bottom: 1px;
 	}
+	.section-title{
+		
+	}
+	&__col{
 
-	h2 {
-		margin-bottom: 1px;
+	}
+	&__item{
+
+	}
+	&__slide{
+		height: auto;
 	}
 
 	@include media-breakpoint-up(xl) {}

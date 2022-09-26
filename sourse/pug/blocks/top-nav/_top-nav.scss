@@ -1,17 +1,23 @@
 .top-nav {
-	// background: svg-load('../svg/check.svg',  stroke=$primary); 
-	// 
-	@include media-breakpoint-up(xl) {
-		background-color: #000;
-		border: 1px solid #000;
-	}
-
-	@include media-breakpoint-up(lg) {
-		background-color: red;
+	// --sPT: #{rem()};
+	// --sPB: #{rem()};
+	// --sTPB: #{rem()};
+	&__row{
+		// --bs-gutter-x: #{rem()};
+		--bs-gutter-y: var(--bs-gutter-x);
 
 	}
-	p{
-		@include ell();
+	.section-title{
+		
+	}
+	&__col{
+
+	}
+	&__item{
+
+	}
+	&__slide{
+		height: auto;
 	}
 
 	@include media-breakpoint-up(md) {}
