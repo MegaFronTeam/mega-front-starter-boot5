@@ -35,7 +35,7 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-tabify": "0.0.2",
     "gulp-vinyl-flow": "^1.1.0",
-    "postcss": "^8.4.14",
+    "postcss": "^8.4.17",
     "postcss-nested": "^5.0.6",
     "postcss-scss": "^4.0.4",
     "postcss-sort-media-queries": "^4.3.0",
