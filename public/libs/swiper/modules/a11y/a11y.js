@@ -190,7 +190,11 @@ export default function A11y({
   };
 
   const handlePointerUp = () => {
-    swiper.a11y.clicked = false;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        swiper.a11y.clicked = false;
+      });
+    });
   };
 
   const handleFocus = e => {

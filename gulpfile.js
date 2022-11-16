@@ -6,7 +6,7 @@ let  publicPath = 'public',
 import pkg from 'gulp'
 const { gulp, src, dest, parallel, series, watch } = pkg
 
-import del  from 'del' 
+import {deleteAsync} from 'del';
 import pug  from 'gulp-pug'
 import notify  from 'gulp-notify' 
 import svgmin  from 'gulp-svgmin'
@@ -48,7 +48,6 @@ function browsersync() {
     })
 }
 
- 
 function pugFiles() {
     return  src([sourse + '/pug/pages/*.pug'])
     .pipe(data(function(file) {
@@ -66,7 +65,7 @@ function pugFiles() {
 }
 
 function cleanlibs() {
-    return del([publicPath + '/libs'], { force: true })
+    return deleteAsync([publicPath + '/libs'])
 }
 
 function copyLibs() {
@@ -208,7 +207,7 @@ function svgCopy() {
 
 function cleanimg() {
     const path = publicPath + '/img';
-    return del([path + '/@*'], { force: true })
+    return deleteAsync([path + '/@*'])
 }
 
 const path2 = `${publicPath}/img/@2x/`;
