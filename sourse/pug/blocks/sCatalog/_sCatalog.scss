@@ -30,16 +30,7 @@
 	@include media-breakpoint-down(xl) {}
 } // end.sCatalog
 
-.img-wrap-center {
-	@include a-cent;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	img{
-		max-width: 100%;
-		height: auto;
-	}
-}
+
 
 .product-item{
 	display: flex;

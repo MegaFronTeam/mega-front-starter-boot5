@@ -152,12 +152,6 @@ const JSCCommon = {
 		Inputmask({"mask":"+9(999)999-99-99", showMaskOnHover: false}).mask(InputTel);
 	},
 	// /inputMask
-	ifie() {
-		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-		if (isIE11) {
-			document.body.insertAdjacentHTML("beforeend", '<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>');
-		}
-	},
 	sendForm() {
 		var gets = (function () {
 			var a = window.location.search;
@@ -305,8 +299,7 @@ const JSCCommon = {
 };
 const $ = jQuery;
 
-function eventHandler() {
-	// JSCCommon.ifie();
+function eventHandler() { 
 	JSCCommon.modalCall();
 	// JSCCommon.tabscostume('tabs');
 	JSCCommon.mobileMenu();
