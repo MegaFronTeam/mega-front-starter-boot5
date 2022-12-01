@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "^5.2.3",
     "browser-sync": "^2.27.10",
     "browserslist": "^4.21.4",
     "colors": "^1.4.0",
