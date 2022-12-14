@@ -40,7 +40,7 @@
     "postcss-scss": "^4.0.6",
     "postcss-sort-media-queries": "^4.3.0",
     "postcss-syntax": "^0.36.2",
-    "sass": "^1.56.1"
+    "sass": "^1.56.2"
   },
   "dependencies": {
     "@fancyapps/ui": "^4.0.31",
