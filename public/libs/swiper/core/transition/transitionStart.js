@@ -5,11 +5,9 @@ export default function transitionStart(runCallbacks = true, direction) {
     params
   } = swiper;
   if (params.cssMode) return;
-
   if (params.autoHeight) {
     swiper.updateAutoHeight();
   }
-
   transitionEmit({
     swiper,
     runCallbacks,
