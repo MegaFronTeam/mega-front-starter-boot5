@@ -23,7 +23,7 @@ html{
 }
 
 body {
-	&.fixed,
+	&[class*="fixed"],
 	&.fancybox-active{
 		.header{ 
 			padding-right: var(--spacing-end);
@@ -75,15 +75,12 @@ body {
 		overflow: hidden;
 
 	}
-
-	&.fixed {
-		overflow: hidden;
+	&[class*="fixed"] { 
 		position: absolute;
 		width: 100%;
 		left: 0;
 		top: 0;
-		z-index: 999;
-
+		z-index: 999; 
 		touch-action: none;
     -webkit-overflow-scrolling: none;
     overflow: hidden;
