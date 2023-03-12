@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+
 export default {
   on(events, handler, priority) {
     const self = this;
@@ -11,52 +12,40 @@ export default {
     });
     return self;
   },
-
   once(events, handler, priority) {
     const self = this;
     if (!self.eventsListeners || self.destroyed) return self;
     if (typeof handler !== 'function') return self;
-
     function onceHandler(...args) {
       self.off(events, onceHandler);
-
       if (onceHandler.__emitterProxy) {
         delete onceHandler.__emitterProxy;
       }
-
       handler.apply(self, args);
     }
-
     onceHandler.__emitterProxy = handler;
     return self.on(events, onceHandler, priority);
   },
-
   onAny(handler, priority) {
     const self = this;
     if (!self.eventsListeners || self.destroyed) return self;
     if (typeof handler !== 'function') return self;
     const method = priority ? 'unshift' : 'push';
-
     if (self.eventsAnyListeners.indexOf(handler) < 0) {
       self.eventsAnyListeners[method](handler);
     }
-
     return self;
   },
-
   offAny(handler) {
     const self = this;
     if (!self.eventsListeners || self.destroyed) return self;
     if (!self.eventsAnyListeners) return self;
     const index = self.eventsAnyListeners.indexOf(handler);
-
     if (index >= 0) {
       self.eventsAnyListeners.splice(index, 1);
     }
-
     return self;
   },
-
   off(events, handler) {
     const self = this;
     if (!self.eventsListeners || self.destroyed) return self;
@@ -74,7 +63,6 @@ export default {
     });
     return self;
   },
-
   emit(...args) {
     const self = this;
     if (!self.eventsListeners || self.destroyed) return self;
@@ -82,7 +70,6 @@ export default {
     let events;
     let data;
     let context;
-
     if (typeof args[0] === 'string' || Array.isArray(args[0])) {
       events = args[0];
       data = args.slice(1, args.length);
@@ -92,7 +79,6 @@ export default {
       data = args[0].data;
       context = args[0].context || self;
     }
-
     data.unshift(context);
     const eventsArray = Array.isArray(events) ? events : events.split(' ');
     eventsArray.forEach(event => {
@@ -101,7 +87,6 @@ export default {
           eventHandler.apply(context, [event, ...data]);
         });
       }
-
       if (self.eventsListeners && self.eventsListeners[event]) {
         self.eventsListeners[event].forEach(eventHandler => {
           eventHandler.apply(context, data);
@@ -110,5 +95,4 @@ export default {
     });
     return self;
   }
-
 };

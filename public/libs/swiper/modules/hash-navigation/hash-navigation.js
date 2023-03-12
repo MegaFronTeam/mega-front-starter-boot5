@@ -1,5 +1,5 @@
 import { getWindow, getDocument } from 'ssr-window';
-import $ from '../../shared/dom.js';
+import { elementChildren, elementIndex } from '../../shared/utils.js';
 export default function HashNavigation({
   swiper,
   extendParams,
@@ -16,63 +16,52 @@ export default function HashNavigation({
       watchState: false
     }
   });
-
   const onHashChange = () => {
     emit('hashChange');
     const newHash = document.location.hash.replace('#', '');
-    const activeSlideHash = swiper.slides.eq(swiper.activeIndex).attr('data-hash');
-
+    const activeSlideHash = swiper.slides[swiper.activeIndex].getAttribute('data-hash');
     if (newHash !== activeSlideHash) {
-      const newIndex = swiper.$wrapperEl.children(`.${swiper.params.slideClass}[data-hash="${newHash}"]`).index();
+      const newIndex = elementIndex(elementChildren(swiper.slidesEl, `.${swiper.params.slideClass}[data-hash="${newHash}"], swiper-slide[data-hash="${newHash}"]`)[0]);
       if (typeof newIndex === 'undefined') return;
       swiper.slideTo(newIndex);
     }
   };
-
   const setHash = () => {
     if (!initialized || !swiper.params.hashNavigation.enabled) return;
-
     if (swiper.params.hashNavigation.replaceState && window.history && window.history.replaceState) {
-      window.history.replaceState(null, null, `#${swiper.slides.eq(swiper.activeIndex).attr('data-hash')}` || '');
+      window.history.replaceState(null, null, `#${swiper.slides[swiper.activeIndex].getAttribute('data-hash')}` || '');
       emit('hashSet');
     } else {
-      const slide = swiper.slides.eq(swiper.activeIndex);
-      const hash = slide.attr('data-hash') || slide.attr('data-history');
+      const slide = swiper.slides[swiper.activeIndex];
+      const hash = slide.getAttribute('data-hash') || slide.getAttribute('data-history');
       document.location.hash = hash || '';
       emit('hashSet');
     }
   };
-
   const init = () => {
     if (!swiper.params.hashNavigation.enabled || swiper.params.history && swiper.params.history.enabled) return;
     initialized = true;
     const hash = document.location.hash.replace('#', '');
-
     if (hash) {
       const speed = 0;
-
       for (let i = 0, length = swiper.slides.length; i < length; i += 1) {
-        const slide = swiper.slides.eq(i);
-        const slideHash = slide.attr('data-hash') || slide.attr('data-history');
-
-        if (slideHash === hash && !slide.hasClass(swiper.params.slideDuplicateClass)) {
-          const index = slide.index();
+        const slide = swiper.slides[i];
+        const slideHash = slide.getAttribute('data-hash') || slide.getAttribute('data-history');
+        if (slideHash === hash) {
+          const index = elementIndex(slide);
           swiper.slideTo(index, speed, swiper.params.runCallbacksOnInit, true);
         }
       }
     }
-
     if (swiper.params.hashNavigation.watchState) {
-      $(window).on('hashchange', onHashChange);
+      window.addEventListener('hashchange', onHashChange);
     }
   };
-
   const destroy = () => {
     if (swiper.params.hashNavigation.watchState) {
-      $(window).off('hashchange', onHashChange);
+      window.removeEventListener('hashchange', onHashChange);
     }
   };
-
   on('init', () => {
     if (swiper.params.hashNavigation.enabled) {
       init();
