@@ -1,5 +1,4 @@
 import { getWindow } from 'ssr-window';
-import { elementIndex } from '../../shared/utils.js';
 export default function History({
   swiper,
   extendParams,
@@ -77,7 +76,7 @@ export default function History({
         const slide = swiper.slides[i];
         const slideHistory = slugify(slide.getAttribute('data-history'));
         if (slideHistory === value) {
-          const index = elementIndex(slide);
+          const index = swiper.getSlideIndex(slide);
           swiper.slideTo(index, speed, runCallbacks);
         }
       }

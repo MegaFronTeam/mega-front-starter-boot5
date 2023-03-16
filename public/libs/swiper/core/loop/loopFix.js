@@ -1,4 +1,3 @@
-import { elementIndex } from '../../shared/utils.js';
 export default function loopFix({
   slideRealIndex,
   slideTo = true,
@@ -45,7 +44,7 @@ export default function loopFix({
   const appendSlidesIndexes = [];
   let activeIndex = swiper.activeIndex;
   if (typeof activeSlideIndex === 'undefined') {
-    activeSlideIndex = elementIndex(swiper.slides.filter(el => el.classList.contains('swiper-slide-active'))[0]);
+    activeSlideIndex = swiper.getSlideIndex(swiper.slides.filter(el => el.classList.contains('swiper-slide-active'))[0]);
   } else {
     activeIndex = activeSlideIndex;
   }
@@ -55,13 +54,13 @@ export default function loopFix({
   let slidesAppended = 0;
   // prepend last slides before start
   if (activeSlideIndex < loopedSlides) {
-    slidesPrepended = loopedSlides - activeSlideIndex;
+    slidesPrepended = Math.max(loopedSlides - activeSlideIndex, params.slidesPerGroup);
     for (let i = 0; i < loopedSlides - activeSlideIndex; i += 1) {
       const index = i - Math.floor(i / slides.length) * slides.length;
       prependSlidesIndexes.push(slides.length - index - 1);
     }
   } else if (activeSlideIndex /* + slidesPerView */ > swiper.slides.length - loopedSlides * 2) {
-    slidesAppended = activeSlideIndex - (swiper.slides.length - loopedSlides * 2);
+    slidesAppended = Math.max(activeSlideIndex - (swiper.slides.length - loopedSlides * 2), params.slidesPerGroup);
     for (let i = 0; i < slidesAppended; i += 1) {
       const index = i - Math.floor(i / slides.length) * slides.length;
       appendSlidesIndexes.push(index);

@@ -44,6 +44,18 @@
 					</div>
 				</div>
 				<!-- end top-nav-->
+				<script>
+					fetch('/00-modal.html').then(
+					response => {
+					return response.text();
+					}
+					).then(
+					text => {
+					document.querySelector("#div").innerHTML = text;
+					}
+					);
+				</script>
+				<div id="div"></div>
 				<!-- start topLine-->
 				<div class="topLine section" id="topLine">
 					<div class="container">

@@ -1,4 +1,4 @@
-import { elementChildren, elementIndex, nextTick } from '../../shared/utils.js';
+import { elementChildren, nextTick } from '../../shared/utils.js';
 export default function slideToClickedSlide() {
   const swiper = this;
   const {
@@ -15,7 +15,7 @@ export default function slideToClickedSlide() {
     if (params.centeredSlides) {
       if (slideToIndex < swiper.loopedSlides - slidesPerView / 2 || slideToIndex > swiper.slides.length - swiper.loopedSlides + slidesPerView / 2) {
         swiper.loopFix();
-        slideToIndex = elementIndex(elementChildren(slidesEl, `${slideSelector}[data-swiper-slide-index="${realIndex}"]`)[0]);
+        slideToIndex = swiper.getSlideIndex(elementChildren(slidesEl, `${slideSelector}[data-swiper-slide-index="${realIndex}"]`)[0]);
         nextTick(() => {
           swiper.slideTo(slideToIndex);
         });
@@ -24,7 +24,7 @@ export default function slideToClickedSlide() {
       }
     } else if (slideToIndex > swiper.slides.length - slidesPerView) {
       swiper.loopFix();
-      slideToIndex = elementIndex(elementChildren(slidesEl, `${slideSelector}[data-swiper-slide-index="${realIndex}"]`)[0]);
+      slideToIndex = swiper.getSlideIndex(elementChildren(slidesEl, `${slideSelector}[data-swiper-slide-index="${realIndex}"]`)[0]);
       nextTick(() => {
         swiper.slideTo(slideToIndex);
       });

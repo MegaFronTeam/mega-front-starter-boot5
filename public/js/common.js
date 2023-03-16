@@ -18,9 +18,17 @@ const JSCCommon = {
 			// showClass: "fancybox-throwOutUp",
 			// hideClass: "fancybox-throwOutDown",
 			l10n: {
+				CLOSE: "Закрыть",
 				Escape: "Закрыть",
 				NEXT: "Вперед",
 				PREV: "Назад",
+				MODAL: "Вы можете закрыть это модальное окно с помощью клавиши ESC.",
+				ERROR: "Что-то пошло не так. Пожалуйста, повторите попытку позже",
+				IMAGE_ERROR: "Изображение не найдено",
+				ELEMENT_NOT_FOUND: "HTML-элемент не найден",
+				AJAX_NOT_FOUND: "Ошибка при загрузке AJAX: не найдено",
+				AJAX_FORBIDDEN: "Ошибка при загрузке AJAX: запрещено",
+				IFRAME_ERROR: "Ошибка загрузки iframe",
 			},
 		});
 		document.querySelectorAll(".modal-close-js").forEach(el=>{

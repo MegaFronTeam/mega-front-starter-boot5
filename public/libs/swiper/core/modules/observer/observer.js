@@ -14,6 +14,7 @@ export default function Observer({
       // The observerUpdate event should only be triggered
       // once despite the number of mutations.  Additional
       // triggers are redundant and are very costly
+      if (swiper.__preventObserver__) return;
       if (mutations.length === 1) {
         emit('observerUpdate', mutations[0]);
         return;

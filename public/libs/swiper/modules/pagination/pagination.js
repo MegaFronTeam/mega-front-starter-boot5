@@ -75,6 +75,14 @@ export default function Pagination({
     e.preventDefault();
     const index = elementIndex(bulletEl) * swiper.params.slidesPerGroup;
     if (swiper.params.loop) {
+      if (swiper.realIndex === index) return;
+      if (index < swiper.loopedSlides || index > swiper.slides.length - swiper.loopedSlides) {
+        swiper.loopFix({
+          direction: index < swiper.loopedSlides ? 'prev' : 'next',
+          activeSlideIndex: index,
+          slideTo: false
+        });
+      }
       swiper.slideToLoop(index);
     } else {
       swiper.slideTo(index);
@@ -151,7 +159,9 @@ export default function Pagination({
           const firstDisplayedBullet = bullets[firstIndex];
           const lastDisplayedBullet = bullets[lastIndex];
           for (let i = firstIndex; i <= lastIndex; i += 1) {
-            bullets[i].classList.add(`${params.bulletActiveClass}-main`);
+            if (bullets[i]) {
+              bullets[i].classList.add(`${params.bulletActiveClass}-main`);
+            }
           }
           setSideBullets(firstDisplayedBullet, 'prev');
           setSideBullets(lastDisplayedBullet, 'next');

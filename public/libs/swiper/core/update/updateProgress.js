@@ -1,4 +1,3 @@
-import { elementIndex } from '../../shared/utils.js';
 export default function updateProgress(translate) {
   const swiper = this;
   if (typeof translate === 'undefined') {
@@ -30,8 +29,8 @@ export default function updateProgress(translate) {
     if (isEndRounded) progress = 1;
   }
   if (params.loop) {
-    const firstSlideIndex = elementIndex(swiper.slides.filter(el => el.getAttribute('data-swiper-slide-index') === '0')[0]);
-    const lastSlideIndex = elementIndex(swiper.slides.filter(el => el.getAttribute('data-swiper-slide-index') * 1 === swiper.slides.length - 1)[0]);
+    const firstSlideIndex = swiper.getSlideIndex(swiper.slides.filter(el => el.getAttribute('data-swiper-slide-index') === '0')[0]);
+    const lastSlideIndex = swiper.getSlideIndex(swiper.slides.filter(el => el.getAttribute('data-swiper-slide-index') * 1 === swiper.slides.length - 1)[0]);
     const firstSlideTranslate = swiper.slidesGrid[firstSlideIndex];
     const lastSlideTranslate = swiper.slidesGrid[lastSlideIndex];
     const translateMax = swiper.slidesGrid[swiper.slidesGrid.length - 1];

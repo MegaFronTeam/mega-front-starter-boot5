@@ -1,5 +1,5 @@
 import { getWindow, getDocument } from 'ssr-window';
-import { elementChildren, elementIndex } from '../../shared/utils.js';
+import { elementChildren } from '../../shared/utils.js';
 export default function HashNavigation({
   swiper,
   extendParams,
@@ -21,7 +21,7 @@ export default function HashNavigation({
     const newHash = document.location.hash.replace('#', '');
     const activeSlideHash = swiper.slides[swiper.activeIndex].getAttribute('data-hash');
     if (newHash !== activeSlideHash) {
-      const newIndex = elementIndex(elementChildren(swiper.slidesEl, `.${swiper.params.slideClass}[data-hash="${newHash}"], swiper-slide[data-hash="${newHash}"]`)[0]);
+      const newIndex = swiper.getSlideIndex(elementChildren(swiper.slidesEl, `.${swiper.params.slideClass}[data-hash="${newHash}"], swiper-slide[data-hash="${newHash}"]`)[0]);
       if (typeof newIndex === 'undefined') return;
       swiper.slideTo(newIndex);
     }
@@ -48,7 +48,7 @@ export default function HashNavigation({
         const slide = swiper.slides[i];
         const slideHash = slide.getAttribute('data-hash') || slide.getAttribute('data-history');
         if (slideHash === hash) {
-          const index = elementIndex(slide);
+          const index = swiper.getSlideIndex(slide);
           swiper.slideTo(index, speed, swiper.params.runCallbacksOnInit, true);
         }
       }
