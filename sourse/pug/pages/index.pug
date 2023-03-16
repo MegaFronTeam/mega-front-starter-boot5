@@ -28,6 +28,18 @@ block pagecontent
 		+top-nav()
 		+topLine
 	main
+
+		script.
+			fetch('00-modal.html').then(
+			response => {
+			return response.text();
+			}
+			).then(
+			text => {
+			document.querySelector("#div").innerHTML = text;
+			}
+			);
+		#div
 		+headerBlock 
 		+sCatalog
 		+sForm()
