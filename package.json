@@ -12,8 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "bootstrap": "^5.3.0-alpha1",
-    "browser-sync": "^2.27.11",
+    "bootstrap": "^5.3.0-alpha3",
+    "browser-sync": "^2.29.1",
     "browserslist": "^4.21.4",
     "colors": "^1.4.0",
     "cssnano": "^5.1.14",
@@ -31,7 +31,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sass-glob": "^1.1.0",
     "gulp-sharp-responsive": "^0.4.0",
-    "gulp-svg-sprite": "^2.0.1",
+    "gulp-svg-sprite": "^2.0.3",
     "gulp-svgmin": "^4.1.0",
     "gulp-tabify": "0.0.2",
     "gulp-vinyl-flow": "^1.1.0",
@@ -40,12 +40,12 @@
     "postcss-scss": "^4.0.6",
     "postcss-sort-media-queries": "^4.3.0",
     "postcss-syntax": "^0.36.2",
-    "sass": "^1.57.1"
+    "sass": "^1.60.0"
   },
   "dependencies": {
     "@fancyapps/ui": "^4.0.31",
-    "inputmask": "^5.0.7",
+    "inputmask": "^5.0.8",
     "jquery": "^3.6.3",
-    "swiper": "^9.0.5"
+    "swiper": "^9.2.0"
   }
 }
