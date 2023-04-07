@@ -1,5 +1,5 @@
 /**
- * Swiper Custom Element 9.1.0
+ * Swiper Custom Element 9.2.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: February 28, 2023
+ * Released on: March 31, 2023
  */
 
 /* eslint-disable spaced-comment */
@@ -132,7 +132,10 @@ class SwiperContainer extends ClassToExtend {
       touchEventsTarget: 'container',
       ...(swiperParams.virtual ? {} : { observer: true }),
       onAny: (name, ...args) => {
-        const event = new CustomEvent(name.toLowerCase(), {
+        const eventName = swiperParams.eventsPrefix
+          ? `${swiperParams.eventsPrefix}${name.toLowerCase()}`
+          : name.toLowerCase();
+        const event = new CustomEvent(eventName, {
           detail: args,
           bubbles: true,
           cancelable: true,
@@ -154,6 +157,7 @@ class SwiperContainer extends ClassToExtend {
     if (this.swiper && this.swiper.destroy) {
       this.swiper.destroy();
     }
+    this.initialized = false;
   }
 
   updateSwiperOnPropChange(propName) {

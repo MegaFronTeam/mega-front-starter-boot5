@@ -130,17 +130,18 @@ export default function Pagination({
         midIndex = (lastIndex + firstIndex) / 2;
       }
       bullets.forEach(bulletEl => {
-        bulletEl.classList.remove(...['', '-next', '-next-next', '-prev', '-prev-prev', '-main'].map(suffix => `${params.bulletActiveClass}${suffix}`));
+        const classesToRemove = [...['', '-next', '-next-next', '-prev', '-prev-prev', '-main'].map(suffix => `${params.bulletActiveClass}${suffix}`)].map(s => typeof s === 'string' && s.includes(' ') ? s.split(' ') : s).flat();
+        bulletEl.classList.remove(...classesToRemove);
       });
       if (el.length > 1) {
         bullets.forEach(bullet => {
           const bulletIndex = elementIndex(bullet);
           if (bulletIndex === current) {
-            bullet.classList.add(params.bulletActiveClass);
+            bullet.classList.add(...params.bulletActiveClass.split(' '));
           }
           if (params.dynamicBullets) {
             if (bulletIndex >= firstIndex && bulletIndex <= lastIndex) {
-              bullet.classList.add(`${params.bulletActiveClass}-main`);
+              bullet.classList.add(...`${params.bulletActiveClass}-main`.split(' '));
             }
             if (bulletIndex === firstIndex) {
               setSideBullets(bullet, 'prev');
@@ -153,14 +154,14 @@ export default function Pagination({
       } else {
         const bullet = bullets[current];
         if (bullet) {
-          bullet.classList.add(params.bulletActiveClass);
+          bullet.classList.add(...params.bulletActiveClass.split(' '));
         }
         if (params.dynamicBullets) {
           const firstDisplayedBullet = bullets[firstIndex];
           const lastDisplayedBullet = bullets[lastIndex];
           for (let i = firstIndex; i <= lastIndex; i += 1) {
             if (bullets[i]) {
-              bullets[i].classList.add(`${params.bulletActiveClass}-main`);
+              bullets[i].classList.add(...`${params.bulletActiveClass}-main`.split(' '));
             }
           }
           setSideBullets(firstDisplayedBullet, 'prev');
@@ -252,12 +253,13 @@ export default function Pagination({
         paginationHTML = `<span class="${params.progressbarFillClass}"></span>`;
       }
     }
+    swiper.pagination.bullets = [];
     el.forEach(subEl => {
       if (params.type !== 'custom') {
         subEl.innerHTML = paginationHTML || '';
       }
       if (params.type === 'bullets') {
-        swiper.pagination.bullets = [...subEl.querySelectorAll(classesToSelector(params.bulletClass))];
+        swiper.pagination.bullets.push(...subEl.querySelectorAll(classesToSelector(params.bulletClass)));
       }
     });
     if (params.type !== 'custom') {
@@ -335,7 +337,7 @@ export default function Pagination({
         }
       });
     }
-    if (swiper.pagination.bullets) swiper.pagination.bullets.forEach(subEl => subEl.classList.remove(params.bulletActiveClass));
+    if (swiper.pagination.bullets) swiper.pagination.bullets.forEach(subEl => subEl.classList.remove(...params.bulletActiveClass.split(' ')));
   }
   on('init', () => {
     if (swiper.params.pagination.enabled === false) {

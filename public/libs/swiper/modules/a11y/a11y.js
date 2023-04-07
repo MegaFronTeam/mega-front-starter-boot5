@@ -173,7 +173,7 @@ export default function A11y({
           addElLabel(bulletEl, params.paginationBulletMessage.replace(/\{\{index\}\}/, elementIndex(bulletEl) + 1));
         }
       }
-      if (bulletEl.matches(`.${swiper.params.pagination.bulletActiveClass}`)) {
+      if (bulletEl.matches(classesToSelector(swiper.params.pagination.bulletActiveClass))) {
         bulletEl.setAttribute('aria-current', 'true');
       } else {
         bulletEl.removeAttribute('aria-current');

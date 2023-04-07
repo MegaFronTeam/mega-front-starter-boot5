@@ -163,11 +163,17 @@
 }
 
 // масштвбирование блока пропорционально
+@mixin ratio($w: 1, $h: 1) {
+  display: block;
+  position: relative;
+  --ratio: #{$h}/#{$w}; 
+  aspect-ratio: var(--ratio);
+}
+// масштвбирование блока пропорционально
 @mixin block($w: 1, $h: 1) {
   display: block;
   position: relative;
   --ratio: #{$h}/#{$w};
-
   &::before {
     content: '';
     position: relative;
@@ -176,6 +182,7 @@
     padding-bottom: calc(var(--ratio) * 100%);
   }
 }
+
 
 @mixin round($w) {
   --size: #{$w};
@@ -186,7 +193,7 @@
   justify-content: center;
   border-radius: 50%;
   width: var(--size);
-  height: var(--size);
+  --ratio: 1;
 }
 
 // для анимации

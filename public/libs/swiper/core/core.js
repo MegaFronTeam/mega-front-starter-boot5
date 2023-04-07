@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: "off" */
 import { getDocument } from 'ssr-window';
-import { extend, now, deleteProps, createElement, elementChildren, elementStyle, elementIndex } from '../shared/utils.js';
+import { extend, deleteProps, createElement, elementChildren, elementStyle, elementIndex } from '../shared/utils.js';
 import { getSupport } from '../shared/get-support.js';
 import { getDevice } from '../shared/get-device.js';
 import { getBrowser } from '../shared/get-browser.js';
@@ -19,7 +19,7 @@ import classes from './classes/index.js';
 import checkOverflow from './check-overflow/index.js';
 import defaults from './defaults.js';
 import moduleExtendParams from './moduleExtendParams.js';
-import { processLazyPreloader } from '../shared/process-lazy-preloader.js';
+import { processLazyPreloader, preload } from '../shared/process-lazy-preloader.js';
 const prototypes = {
   eventsEmitter,
   update,
@@ -150,7 +150,7 @@ class Swiper {
         // Form elements to match
         focusableElements: swiper.params.focusableElements,
         // Last click time
-        lastClickTime: now(),
+        lastClickTime: 0,
         clickTimeout: undefined,
         // Velocities
         velocities: [],
@@ -192,6 +192,9 @@ class Swiper {
     const slides = elementChildren(slidesEl, `.${params.slideClass}, swiper-slide`);
     const firstSlideIndex = elementIndex(slides[0]);
     return elementIndex(slideEl) - firstSlideIndex;
+  }
+  getSlideIndexByData(index) {
+    return this.getSlideIndex(this.slides.filter(slideEl => slideEl.getAttribute('data-swiper-slide-index') * 1 === index)[0]);
   }
   recalcSlides() {
     const swiper = this;
@@ -494,9 +497,11 @@ class Swiper {
         });
       }
     });
+    preload(swiper);
 
     // Init Flag
     swiper.initialized = true;
+    preload(swiper);
 
     // Emit
     swiper.emit('init');
