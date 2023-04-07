@@ -49,7 +49,7 @@ function browsersync() {
 }
 
 function pugFiles() {
-    return  src([sourse + '/pug/pages/*.pug'])
+    return  src([sourse + '/pug/pages/**/*.pug'])
     .pipe(data(function(file) {
         return JSON.parse(fs.readFileSync(sourse + '/pug/content.json'))
     }))

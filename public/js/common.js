@@ -253,33 +253,42 @@ const JSCCommon = {
 		}, { passive: true });
 	},
 	makeDDGroup() {
-		let parents = document.querySelectorAll('.dd-group-js');
-		for (let parent of parents) {
-			if (parent) {
-				// childHeads, kind of funny))
-				let ChildHeads = parent.querySelectorAll('.dd-head-js:not(.disabled)');
-				$(ChildHeads).click(function () {
-					let clickedHead = this;
+		$('.dd-head-js').on('click', function () {
+      let clickedHead = this;
+      $(this).parent().toggleClass('active');
+      $(this)
+        .next()
+        .slideToggle(function () {
+          $(this).toggleClass('active');
+        });
+    });
+		// let parents = document.querySelectorAll('.dd-group-js');
+		// for (let parent of parents) {
+		// 	if (parent) {
+		// 		// childHeads, kind of funny))
+		// 		let ChildHeads = parent.querySelectorAll('.dd-head-js:not(.disabled)');
+		// 		$(ChildHeads).click(function () {
+		// 			let clickedHead = this;
 
-					$(ChildHeads).each(function () {
-						if (this === clickedHead) {
-							//parent element gain toggle class, style head change via parent
-							$(this.parentElement).toggleClass('active');
-							$(this.parentElement).find('.dd-content-js').slideToggle(function () {
-								$(this).toggleClass('active');
-							});
-						}
-						else {
-							$(this.parentElement).removeClass('active');
-							$(this.parentElement).find('.dd-content-js').slideUp(function () {
-								$(this).removeClass('active');
-							});
-						}
-					});
+		// 			$(ChildHeads).each(function () {
+		// 				if (this === clickedHead) {
+		// 					//parent element gain toggle class, style head change via parent
+		// 					$(this.parentElement).toggleClass('active');
+		// 					$(this.parentElement).find('.dd-content-js').slideToggle(function () {
+		// 						$(this).toggleClass('active');
+		// 					});
+		// 				}
+		// 				else {
+		// 					$(this.parentElement).removeClass('active');
+		// 					$(this.parentElement).find('.dd-content-js').slideUp(function () {
+		// 						$(this).removeClass('active');
+		// 					});
+		// 				}
+		// 			});
 
-				});
-			}
-		}
+		// 		});
+		// 	}
+		// }
 	},
 	imgToSVG() {
     const convertImages = (query, callback) => {

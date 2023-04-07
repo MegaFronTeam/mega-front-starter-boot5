@@ -1,6 +1,5 @@
 include include.pug
 include js-css.pug
-include ../blocks/modal/_modal.pug
 doctype html
 html(lang="ru")
 	head
@@ -32,6 +31,17 @@ html(lang="ru")
 		link(type="image/ico", href='img/favicon.ico', rel='shortcut icon') 
 		<meta name="format-detection" content="telephone=no"> 
 		+allcss()
+		script.
+			function addBlock(elem) {
+				fetch(`parts/${elem}.html`)
+					.then(response => response.text())
+					.then( text => {
+						const wrap = document.querySelector(`#${elem}Wrap`);
+						wrap.insertAdjacentHTML('afterend', text);
+							wrap.remove();
+						}
+					);
+			}
 	block variables
 	//- style.
 	//- 	.loaded_hiding {  opacity: 0; pointer-events: none;  } .loaded_hiding::before { display: none; }
@@ -41,7 +51,6 @@ html(lang="ru")
 			block pagecontent
 				h3 content
 		
-		+modal()
 
 		+allcjs()
 		block scripts

@@ -1,8 +1,5 @@
 extends ../layout/main.pug
 
-include ../blocks/header/_header.pug
-include ../blocks/topLine/_topLine.pug
-include ../blocks/top-nav/_top-nav.pug 
 include ../blocks/headerBlock/_headerBlock.pug
 include ../blocks/sForm/_sForm.pug
 include ../blocks/sContent/_sContent.pug
@@ -11,7 +8,6 @@ include ../blocks/sContact/_sContact.pug
 include ../blocks/sForm/_sForm.pug
 include ../blocks/sForm/_sForm.pug
 include ../blocks/sCatalog/_sCatalog.pug
-include ../blocks/footer/_footer.pug
 
 block variables
 	- let  mainPage= 'main-page' 
@@ -24,29 +20,15 @@ block pagecontent
 	//- +mob-mnu()
 	
 	
-	+header()
-		+top-nav()
-		+topLine
+	+parts('header')
 	main
-
-		script.
-			fetch('00-modal.html').then(
-			response => {
-			return response.text();
-			}
-			).then(
-			text => {
-			document.querySelector("#div").innerHTML = text;
-			}
-			);
-		#div
 		.ratiod
 		+headerBlock 
 		+sCatalog
 		+sForm()
 		+sContact()
 		
-	+footer()
+	+parts('footer')
       
 
 

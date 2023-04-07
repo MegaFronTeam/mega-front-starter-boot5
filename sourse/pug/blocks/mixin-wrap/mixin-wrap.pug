@@ -45,3 +45,8 @@ mixin page-head(t,...items)
 			+breadcrumb('Главная',...items)
 
 			h1= t
+
+mixin parts(elem)
+	script.
+		addBlock(`#{elem}`)
+	div(id=`${elem}Wrap`)
