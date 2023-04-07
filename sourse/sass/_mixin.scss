@@ -31,11 +31,8 @@
   position: absolute;
 
   @if $xy==xy {
-    top: 0;
-    bottom: 0;
     margin: auto;
-    left: 0;
-    right: 0;
+    inset:0;
   }
 
   @else if $xy==x {
