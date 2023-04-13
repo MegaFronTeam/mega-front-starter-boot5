@@ -540,7 +540,7 @@ iframe {
 }
 
 .ratiod{
-	@include ratio(2,3);
+	@include block(2,3);
 	background-color: $primary;
 	max-width: 340px;
 	margin-left: auto;

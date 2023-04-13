@@ -168,17 +168,20 @@
 }
 // масштвбирование блока пропорционально
 @mixin block($w: 1, $h: 1) {
-  display: block;
-  position: relative;
-  --ratio: #{$h}/#{$w};
-  &::before {
-    content: '';
-    position: relative;
-    height: 0;
-    display: block;
-    padding-bottom: calc(var(--ratio) * 100%);
-  }
+  @include ratio($w, $h)
 }
+// @mixin block($w: 1, $h: 1) {
+//   display: block;
+//   position: relative;
+//   --ratio: #{$h}/#{$w};
+//   &::before {
+//     content: '';
+//     position: relative;
+//     height: 0;
+//     display: block;
+//     padding-bottom: calc(var(--ratio) * 100%);
+//   }
+// }
 
 
 @mixin round($w) {
