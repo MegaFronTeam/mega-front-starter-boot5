@@ -76,13 +76,15 @@
 }
 
 
-@mixin roww($a, $m:p) {
+@mixin roww($a:$grid-gutter-width, $m:p, $b:0) {
   --bs-gutter-x: #{$a};
-
+  --bs-gutter-y: $b;
+  margin-top: calc(-1 * var(--bs-gutter-y));
   margin-left: calc(-1 * var(--bs-gutter-x)/ 2);
   margin-right: calc(-1 * var(--bs-gutter-x)/ 2);
 
   >* {
+    margin-top: calc(var(--bs-gutter-y));
     @if $m==m {
       margin-left: calc(var(--bs-gutter-x)/2);
       margin-right: calc(var(--bs-gutter-x)/2);
@@ -95,6 +97,7 @@
     }
   }
 }
+
 
 @mixin center($w) {
   margin-left: auto;
