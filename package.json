@@ -40,12 +40,12 @@
     "postcss-scss": "^4.0.6",
     "postcss-sort-media-queries": "^4.3.0",
     "postcss-syntax": "^0.36.2",
-    "sass": "^1.60.0"
+    "sass": "^1.62.0"
   },
   "dependencies": {
     "@fancyapps/ui": "^4.0.31",
     "inputmask": "^5.0.8",
     "jquery": "^3.6.3",
-    "swiper": "^9.2.0"
+    "swiper": "^9.2.2"
   }
 }
