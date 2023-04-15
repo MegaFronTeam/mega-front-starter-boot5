@@ -426,6 +426,16 @@ function eventHandler() {
 
 	// modal window
 
+	$(".form-wrap__policy ").on("change", 'input', function(){
+    let btn = $(this).parents(".form-wrap").find(".form-wrap__btn");
+    if(this.checked){
+      btn.removeAttr('disabled');
+    }
+    else{ 
+      btn.attr('disabled', 'disabled');
+    } 
+  })
+
 };
 if (document.readyState !== 'loading') {
 	eventHandler();
