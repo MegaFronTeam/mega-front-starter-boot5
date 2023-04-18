@@ -1,5 +1,5 @@
 /**
- * Swiper Custom Element 9.2.0
+ * Swiper Custom Element 9.2.3
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: March 31, 2023
+ * Released on: April 17, 2023
  */
 
 /* eslint-disable spaced-comment */
@@ -210,6 +210,7 @@ paramsList.forEach((paramName) => {
   if (paramName === 'init') return;
   paramName = paramName.replace('_', '');
   Object.defineProperty(SwiperContainer.prototype, paramName, {
+    configurable: true,
     get() {
       return (this.passedParams || {})[paramName];
     },

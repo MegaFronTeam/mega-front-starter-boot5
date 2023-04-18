@@ -76,10 +76,12 @@ export default function Pagination({
     const index = elementIndex(bulletEl) * swiper.params.slidesPerGroup;
     if (swiper.params.loop) {
       if (swiper.realIndex === index) return;
-      if (index < swiper.loopedSlides || index > swiper.slides.length - swiper.loopedSlides) {
+      const newSlideIndex = swiper.getSlideIndexByData(index);
+      const currentSlideIndex = swiper.getSlideIndexByData(swiper.realIndex);
+      if (newSlideIndex > swiper.slides.length - swiper.loopedSlides) {
         swiper.loopFix({
-          direction: index < swiper.loopedSlides ? 'prev' : 'next',
-          activeSlideIndex: index,
+          direction: newSlideIndex > currentSlideIndex ? 'next' : 'prev',
+          activeSlideIndex: newSlideIndex,
           slideTo: false
         });
       }
@@ -97,13 +99,17 @@ export default function Pagination({
     el = makeElementsArray(el);
     // Current/Total
     let current;
+    let previousIndex;
     const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.slides.length;
     const total = swiper.params.loop ? Math.ceil(slidesLength / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
     if (swiper.params.loop) {
+      previousIndex = swiper.previousRealIndex || 0;
       current = swiper.params.slidesPerGroup > 1 ? Math.floor(swiper.realIndex / swiper.params.slidesPerGroup) : swiper.realIndex;
     } else if (typeof swiper.snapIndex !== 'undefined') {
       current = swiper.snapIndex;
+      previousIndex = swiper.previousSnapIndex;
     } else {
+      previousIndex = swiper.previousIndex || 0;
       current = swiper.activeIndex || 0;
     }
     // Types
@@ -117,8 +123,8 @@ export default function Pagination({
         el.forEach(subEl => {
           subEl.style[swiper.isHorizontal() ? 'width' : 'height'] = `${bulletSize * (params.dynamicMainBullets + 4)}px`;
         });
-        if (params.dynamicMainBullets > 1 && swiper.previousIndex !== undefined) {
-          dynamicBulletIndex += current - (swiper.previousIndex || 0);
+        if (params.dynamicMainBullets > 1 && previousIndex !== undefined) {
+          dynamicBulletIndex += current - (previousIndex || 0);
           if (dynamicBulletIndex > params.dynamicMainBullets - 1) {
             dynamicBulletIndex = params.dynamicMainBullets - 1;
           } else if (dynamicBulletIndex < 0) {
@@ -339,6 +345,18 @@ export default function Pagination({
     }
     if (swiper.pagination.bullets) swiper.pagination.bullets.forEach(subEl => subEl.classList.remove(...params.bulletActiveClass.split(' ')));
   }
+  on('changeDirection', () => {
+    if (!swiper.pagination || !swiper.pagination.el) return;
+    const params = swiper.params.pagination;
+    let {
+      el
+    } = swiper.pagination;
+    el = makeElementsArray(el);
+    el.forEach(subEl => {
+      subEl.classList.remove(params.horizontalClass, params.verticalClass);
+      subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+    });
+  });
   on('init', () => {
     if (swiper.params.pagination.enabled === false) {
       // eslint-disable-next-line

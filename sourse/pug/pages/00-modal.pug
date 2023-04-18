@@ -21,5 +21,6 @@ block pagecontent
 				mixin btn(id, name)
 					.col-auto.mb-2
 						a.btn.btn-primary(href=`#` data-src=id data-fancybox="modal")= name
-				+btn("modal-call", "modal-call")
+				+btn("#modal-call", "modal-call")
 
+	+parts('footer')
