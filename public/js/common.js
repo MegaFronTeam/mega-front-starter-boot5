@@ -339,6 +339,17 @@ const JSCCommon = {
 	
 		convertImages('.img-svg-js');
   },
+	disabledBtn(input = '.form-wrap__policy input', btn = ".form-wrap__btn", parent = ".form-wrap") {
+		$(document).on("change", input, function () {
+			let btnDisabled = $(this).parents(parent).find(btn)
+			if (this.checked) {
+				btnDisabled.removeAttr('disabled');
+			}
+			else {
+				btnDisabled.attr('disabled', 'disabled');
+			}
+		})
+	}
 };
 const $ = jQuery;
 
@@ -350,6 +361,7 @@ function eventHandler() {
 	// JSCCommon.sendForm();
 	JSCCommon.heightwindow();
 	JSCCommon.makeDDGroup();
+	JSCCommon.disabledBtn();
 	// JSCCommon.toggleShow(".catalog-block__toggle--desctop", '.catalog-block__dropdown');
 	// JSCCommon.animateScroll();
 	
@@ -426,15 +438,9 @@ function eventHandler() {
 
 	// modal window
 
-	$(".form-wrap__policy ").on("change", 'input', function(){
-    let btn = $(this).parents(".form-wrap").find(".form-wrap__btn");
-    if(this.checked){
-      btn.removeAttr('disabled');
-    }
-    else{ 
-      btn.attr('disabled', 'disabled');
-    } 
-  })
+	
+    
+ 
 
 };
 if (document.readyState !== 'loading') {
