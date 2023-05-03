@@ -41,7 +41,7 @@ const JSCCommon = {
 		document.addEventListener('click', (event) => {
 			let element = event.target.closest(link)
 			if(!element) return;
-			let modal = document.querySelector("#" + element.dataset.src);
+			let modal = document.querySelector(element.dataset.src);
 			const data = element.dataset;
 
 			function setValue(val, elem) {
