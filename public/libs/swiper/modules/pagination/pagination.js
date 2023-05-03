@@ -339,6 +339,18 @@ export default function Pagination({
     }
     if (swiper.pagination.bullets) swiper.pagination.bullets.forEach(subEl => subEl.classList.remove(...params.bulletActiveClass.split(' ')));
   }
+  on('changeDirection', () => {
+    if (!swiper.pagination || !swiper.pagination.el) return;
+    const params = swiper.params.pagination;
+    let {
+      el
+    } = swiper.pagination;
+    el = makeElementsArray(el);
+    el.forEach(subEl => {
+      subEl.classList.remove(params.horizontalClass, params.verticalClass);
+      subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+    });
+  });
   on('init', () => {
     if (swiper.params.pagination.enabled === false) {
       // eslint-disable-next-line

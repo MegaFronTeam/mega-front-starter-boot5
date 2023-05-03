@@ -1,22 +1,21 @@
 "use strict";
 const JSCCommon = { 
 	modalCall() {
-		const link = '[data-fancybox="modal"], .link-modal-js';
-
+		const link = '.btn-modal-js';
 		Fancybox.bind(link, {
 			arrows: false,
-			// infobar: false,
+			// // infobar: false,
 			touch: false,
 			trapFocus: false,
 			placeFocusBack: false,
 			infinite: false,
+			type: 'html',
 			dragToClose: false,
-			type: 'inline',
 			autoFocus: false,
 			groupAll: false,
 			groupAttr: false,
-			// showClass: "fancybox-throwOutUp",
-			// hideClass: "fancybox-throwOutDown",
+			showClass: "fancybox-throwOutUp",
+			hideClass: "fancybox-throwOutDown",
 			l10n: {
 				CLOSE: "Закрыть",
 				Escape: "Закрыть",

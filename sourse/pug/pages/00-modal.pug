@@ -20,6 +20,6 @@ block pagecontent
 			.row
 				mixin btn(id, name)
 					.col-auto.mb-2
-						a.btn.btn-primary(href=`#` data-src=id data-fancybox="modal")= name
+						button.btn.btn-primary(data-src=id data-fancybox).btn-modal-js= name
 				+btn("modal-call", "modal-call")
 
