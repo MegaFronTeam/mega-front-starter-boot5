@@ -9,7 +9,8 @@
 
 {{#shapes}}
 .icon-{{base}} {
-	font-size:math.div({{height.inner}},10)*1rem;
-	width: math.div({{width.inner}},{{height.inner}})*1em;
+	--h: {{height.inner}};
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc({{width.inner}} / var(--h) *1em );
 }
 {{/shapes}}

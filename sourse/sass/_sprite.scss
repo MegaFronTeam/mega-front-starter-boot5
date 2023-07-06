@@ -8,34 +8,42 @@
 }
 
 .icon-basket {
-	font-size:math.div(24,10)*1rem;
-	width: math.div(22,24)*1em;
+	--h: 24;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(22 / var(--h) *1em );
 }
 .icon-check {
-	font-size:math.div(27,10)*1rem;
-	width: math.div(27,27)*1em;
+	--h: 27;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(27 / var(--h) *1em );
 }
 .icon-fb {
-	font-size:math.div(24,10)*1rem;
-	width: math.div(24,24)*1em;
+	--h: 24;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(24 / var(--h) *1em );
 }
 .icon-instagram {
-	font-size:math.div(24,10)*1rem;
-	width: math.div(24,24)*1em;
+	--h: 24;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(24 / var(--h) *1em );
 }
 .icon-telegram {
-	font-size:math.div(16,10)*1rem;
-	width: math.div(16,16)*1em;
+	--h: 16;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(16 / var(--h) *1em );
 }
 .icon-viber {
-	font-size:math.div(16,10)*1rem;
-	width: math.div(16,16)*1em;
+	--h: 16;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(16 / var(--h) *1em );
 }
 .icon-vk {
-	font-size:math.div(24,10)*1rem;
-	width: math.div(24,24)*1em;
+	--h: 24;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(24 / var(--h) *1em );
 }
 .icon-whatsapp {
-	font-size:math.div(16,10)*1rem;
-	width: math.div(16,16)*1em;
+	--h: 16;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(16 / var(--h) *1em );
 }
