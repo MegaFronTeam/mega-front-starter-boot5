@@ -46,6 +46,6 @@
     "@fancyapps/ui": "^5.0.16",
     "inputmask": "^5.0.8",
     "jquery": "^3.7.0",
-    "swiper": "^10.0.3"
+    "swiper": "^10.0.4"
   }
 }

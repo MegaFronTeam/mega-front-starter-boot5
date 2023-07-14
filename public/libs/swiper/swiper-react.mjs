@@ -1,5 +1,5 @@
 /**
- * Swiper React 10.0.3
+ * Swiper React 10.0.4
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: July 3, 2023
+ * Released on: July 8, 2023
  */
 
 import React, { useEffect, useLayoutEffect, useContext, createContext, forwardRef, useState, useRef } from 'react';
