@@ -146,7 +146,7 @@ class gs {
     static common() {
         return src(
             [
-                sourse + '/js/common.js',
+                sourse + '/js/**/*.js',
                 // sourse + '/pug/**/*.js',
             ])
             // .pipe(babel())
@@ -241,7 +241,7 @@ class gs {
         // watch([sourse + '/js/libs.js'], { usePolling: true }, gs.scripts);
         watch(sourse + '/sass/*.svg', { usePolling: true }, gs.svgCopy);
 
-        watch([sourse + '/js/common.js'], { usePolling: true }, gs.common);
+        watch([sourse + '/js/*.js'], { usePolling: true }, gs.common);
         // watch(sourse + '/img', { usePolling: true }, gs.img);
     }
 }
