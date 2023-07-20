@@ -1,0 +1,14 @@
+@use "sass:math";
+
+.iconC {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.iconC-telegram {
+	--h: 16;
+	font-size:calc( var(--h) / 10 * 1rem);
+	width: calc(16 / var(--h) *1em );
+}

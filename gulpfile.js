@@ -1,7 +1,8 @@
 'use strict';
 let  publicPath = 'public',
     sourse = 'sourse',
-    destSprite = '../_sprite.scss'
+    destSprite = '../_sprite.scss',
+    destSpriteC = '../_spriteC.scss'
 
 import pkg from 'gulp'
 const { gulp, src, dest, parallel, series, watch } = pkg
@@ -205,6 +206,57 @@ class gs {
         
     }
 
+    static svgC() {
+        return src('./' + sourse + '/svgC/*.svg')
+            .pipe(svgmin({
+                js2svg: {
+                    pretty: true
+                }
+            }))
+            // .pipe(cheerio({
+            //     run: function ($) {
+            //         $('[fill]').removeAttr('fill');
+            //         $('[stroke]').removeAttr('stroke');
+            //         $('[style]').removeAttr('style');
+            //         $('[opacity]').removeAttr('opacity');
+            //     },
+            //     parserOptions: { xmlMode: true }
+            // }))
+            .pipe(replace('&gt;', '>'))
+            .pipe(svgSprite({
+                shape: {
+                    // dimension: {         // Set maximum dimensions
+                    //     maxWidth: 500,
+                    //     maxHeight: 500
+                    // },
+                    spacing: {         // Add padding
+                        padding: 0
+                    }
+                },
+                mode: {
+                    symbol: {
+                        sprite: "../spriteC.svg",
+                        render: {
+                            scss: {
+                                template: './' + sourse + '/sass/templates/_sprite_template-colored.scss',
+                                dest: destSpriteC,
+                            }
+                        }
+                    }
+                }
+
+            }))
+
+            .pipe(dest(`${sourse}/sass/`)); 
+    }
+
+    static svgCopyC() {
+        return src(`${sourse}/sass/spriteC.svg`)
+            .pipe(plumber())
+            .pipe(dest(`${publicPath}/img/svg/`))
+
+    }
+
     static cleanimg() {
         const path = publicPath + '/img';
         return deleteAsync([path + '/@*'])
@@ -241,6 +293,9 @@ class gs {
         // watch([sourse + '/js/libs.js'], { usePolling: true }, gs.scripts);
         watch(sourse + '/sass/*.svg', { usePolling: true }, gs.svgCopy);
 
+        watch(sourse + '/svgC/*.svg', { usePolling: true }, gs.svgC);
+        watch(sourse + '/sass/*.svg', { usePolling: true }, gs.svgCopyC);
+
         watch([sourse + '/js/*.js'], { usePolling: true }, gs.common);
         // watch(sourse + '/img', { usePolling: true }, gs.img);
     }
@@ -248,9 +303,10 @@ class gs {
 export let imgAll = series(gs.cleanimg, gs.img) 
 export let libs = series(gs.cleanlibs, gs.copyLibs)
 export let sprite = series(gs.svg, gs.svgCopy)
+export let sprite2 = series(gs.svgC, gs.svgCopyC)
 
 
 
 export default series(gs.common, libs, gs.styles, 
     // imgAll,
-    sprite, gs.pugFiles, parallel(gs.browsersync, gs.startwatch))
+    sprite, sprite2, gs.pugFiles, parallel(gs.browsersync, gs.startwatch))
