@@ -76,9 +76,16 @@
 }
 
 
-@mixin roww($a:$grid-gutter-width,$b:0, $m:p) {
+@mixin gut($a:$grid-gutter-width,$b:0) {
   --bs-gutter-x: #{$a};
-  --bs-gutter-y: $b;
+  --bs-gutter-y: #{$b};
+}
+
+
+
+@mixin roww($a:$grid-gutter-width,$b:0, $m:p) {
+  @include gut($a,$b);
+  
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-left: calc(-1 * var(--bs-gutter-x)/ 2);
   margin-right: calc(-1 * var(--bs-gutter-x)/ 2);
