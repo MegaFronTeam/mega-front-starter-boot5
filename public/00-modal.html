@@ -5,7 +5,7 @@
 		<title>Модальные окна</title>
 		<meta name="description" content="о чем страница">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no, viewport-fit=cover">
 		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> 
 		<link href="libs/swiper/swiper-bundle.min.css" rel="stylesheet"/>
 		<link href="libs/@fancyapps/ui/fancybox/fancybox.css" rel="stylesheet"/>
@@ -17,9 +17,9 @@
 					.then( text => {
 						const wrap = document.querySelector(`#${elem}Wrap`);
 						wrap.insertAdjacentHTML('afterend', text);
-							wrap.remove();
-						}
-					);
+						wrap.previousElementSibling.remove()
+						wrap.remove();
+					});
 			}
 		</script>
 	</head>
@@ -30,7 +30,7 @@
 					<h1>Страница для  демонстрации модальных окон</h1>
 					<div class="row">
 												<div class="col-auto mb-2">
-													<button class="btn btn-primary btn-modal-js" data-src="#modal-call" data-fancybox>modal-call</button>
+													<button class="btn btn-primary link-modal-js" data-src="#modal-call" data-fancybox>modal-call</button>
 												</div>
 					</div>
 				</div>

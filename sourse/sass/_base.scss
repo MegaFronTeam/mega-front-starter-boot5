@@ -311,8 +311,7 @@ ul {
 	background-color: var(--swiperBgDef);
 	border: 2px solid var(--swiperBorderColorDef);
 	color: var(--swiperColorDef);
-	@include bgs;
-	z-index: 300;
+	@include bgs; 
 	outline: none !important;
 	// margin-bottom: 0;
 	background-image: none;

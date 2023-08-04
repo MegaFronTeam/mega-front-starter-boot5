@@ -38,9 +38,9 @@ html(lang="ru")
 					.then( text => {
 						const wrap = document.querySelector(`#${elem}Wrap`);
 						wrap.insertAdjacentHTML('afterend', text);
-							wrap.remove();
-						}
-					);
+						wrap.previousElementSibling.remove()
+						wrap.remove();
+					});
 			}
 	block variables
 	//- style.

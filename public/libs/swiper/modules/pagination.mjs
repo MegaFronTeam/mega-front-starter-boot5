@@ -48,10 +48,7 @@ function Pagination(_ref) {
   };
   let bulletSize;
   let dynamicBulletIndex = 0;
-  const makeElementsArray = el => {
-    if (!Array.isArray(el)) el = [el].filter(e => !!e);
-    return el;
-  };
+  const makeElementsArray = el => (Array.isArray(el) ? el : [el]).filter(e => !!e);
   function isPaginationDisabled() {
     return !swiper.params.pagination.el || !swiper.pagination.el || Array.isArray(swiper.pagination.el) && swiper.pagination.el.length === 0;
   }

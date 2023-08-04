@@ -1,7 +1,15 @@
 'use strict';
 class JSCCommon {
 	static modalCall() {
-		const link = '.btn-modal-js';
+		const link = '[data-fancybox="modal"], .link-modal-js';
+		Fancybox.defaults = {
+			autoFocus: false,
+			placeFocusBack: false,
+		};
+		Fancybox.bind('[data-fancybox]', {
+			autoFocus: false,
+			placeFocusBack: false,
+		});
 		Fancybox.bind(link, {
 			arrows: false,
 			// // infobar: false,
@@ -9,7 +17,7 @@ class JSCCommon {
 			trapFocus: false,
 			placeFocusBack: false,
 			infinite: false,
-			type: 'html',
+			// type: 'html',
 			dragToClose: false,
 			autoFocus: false,
 			groupAll: false,
@@ -35,9 +43,7 @@ class JSCCommon {
 				Fancybox.close();
 			})
 		})
-		Fancybox.bind('[data-fancybox]', {
-			placeFocusBack: false,
-		});
+		
 		document.addEventListener('click', (event) => {
 			let element = event.target.closest(link)
 			if (!element) return;
