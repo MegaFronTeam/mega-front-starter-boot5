@@ -152,7 +152,7 @@
   transition: all var(--s) ease-in-out;
 }
 
-// михин многоточия
+//  
 @mixin ellips {
   white-space: nowrap;
   overflow: hidden;
@@ -169,14 +169,14 @@
   }
 }
 
-// масштвбирование блока пропорционально
+//  
 @mixin ratio($w: 1, $h: 1) {
   display: block;
   position: relative;
   --ratio: #{$h}/#{$w}; 
   aspect-ratio: var(--ratio);
 }
-// масштвбирование блока пропорционально
+// 
 @mixin block($w: 1, $h: 1) {
   @include ratio($w, $h)
 }
