@@ -8,7 +8,7 @@
 }
 
 .iconC-telegram {
-	--h: 16;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(16 / var(--h) *1em );
+	$h: 16;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(16 / #{$h} *1em );
 }

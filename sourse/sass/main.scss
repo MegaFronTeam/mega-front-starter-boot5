@@ -2,6 +2,7 @@ $output-bourbon-deprecation-warnings: false;
   // @use "sass:list";
   // @use "sass:map";
   @use "sass:math";
+  
   // @use "sass:meta";
 
 // @import "mq";
@@ -12,8 +13,6 @@ $output-bourbon-deprecation-warnings: false;
 
 @import "mixin";
 @import "fonts";
-@import "_sprite";
-@import "_spriteC";
 // @import "bootstrap-theme/bootstrap";
 
 // Option B: Include parts of Bootstrap
@@ -25,6 +24,8 @@ $output-bourbon-deprecation-warnings: false;
 
 @import "./node_modules/bootstrap/scss/functions";
 @import "vars"; 
+@import "_sprite";
+@import "_spriteC";
 @import "./node_modules/bootstrap/scss/variables";
 @import "var-dark";
 @import "./node_modules/bootstrap/scss/variables-dark";

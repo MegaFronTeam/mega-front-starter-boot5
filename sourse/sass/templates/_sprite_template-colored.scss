@@ -9,8 +9,8 @@
 
 {{#shapes}}
 .iconC-{{base}} {
-	--h: {{height.inner}};
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc({{width.inner}} / var(--h) *1em );
+	$h: {{height.inner}};
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc({{width.inner}} / #{$h} *1em );
 }
 {{/shapes}}

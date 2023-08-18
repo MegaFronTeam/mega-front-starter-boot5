@@ -8,42 +8,42 @@
 }
 
 .icon-basket {
-	--h: 24;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(22 / var(--h) *1em );
+	$h: 24;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(22 / #{$h} *1em );
 }
 .icon-check {
-	--h: 27;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(27 / var(--h) *1em );
+	$h: 27;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(27 / #{$h} *1em );
 }
 .icon-fb {
-	--h: 24;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(24 / var(--h) *1em );
+	$h: 24;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(24 / #{$h} *1em );
 }
 .icon-instagram {
-	--h: 24;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(24 / var(--h) *1em );
+	$h: 24;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(24 / #{$h} *1em );
 }
 .icon-telegram {
-	--h: 16;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(16 / var(--h) *1em );
+	$h: 16;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(16 / #{$h} *1em );
 }
 .icon-viber {
-	--h: 16;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(16 / var(--h) *1em );
+	$h: 16;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(16 / #{$h} *1em );
 }
 .icon-vk {
-	--h: 24;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(24 / var(--h) *1em );
+	$h: 24;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(24 / #{$h} *1em );
 }
 .icon-whatsapp {
-	--h: 16;
-	font-size:calc( var(--h) / 10 * 1rem);
-	width: calc(16 / var(--h) *1em );
+	$h: 16;
+	font-size:calc( #{$h} / #{$rfs-rem-value} * 1rem);
+	width: calc(16 / #{$h} *1em );
 }
