@@ -1,5 +1,5 @@
 'use strict';
-let  publicPath = 'public',
+let publicPath = 'public',
     sourse = 'sourse',
     destSprite = '../_sprite.scss',
     destSpriteC = '../_spriteC.scss'
@@ -7,32 +7,32 @@ let  publicPath = 'public',
 import pkg from 'gulp'
 const { gulp, src, dest, parallel, series, watch } = pkg
 
-import {deleteAsync} from 'del';
-import pug  from 'gulp-pug'
-import notify  from 'gulp-notify' 
-import svgmin  from 'gulp-svgmin'
-import cheerio  from 'gulp-cheerio'
-import replace  from 'gulp-replace'
-import svgSprite  from 'gulp-svg-sprite' 
-import npmDist  from 'gulp-npm-dist'
-import rename  from 'gulp-rename'  
-import gulpSass      from 'gulp-sass'
-import sassGlob  from 'gulp-sass-glob'
+import { deleteAsync } from 'del';
+import pug from 'gulp-pug'
+import notify from 'gulp-notify'
+import svgmin from 'gulp-svgmin'
+import cheerio from 'gulp-cheerio'
+import replace from 'gulp-replace'
+import svgSprite from 'gulp-svg-sprite'
+import npmDist from 'gulp-npm-dist'
+import rename from 'gulp-rename'
+import gulpSass from 'gulp-sass'
+import sassGlob from 'gulp-sass-glob'
 import * as dartSass from 'sass';
-const  sass          = gulpSass(dartSass)
-import tabify  from 'gulp-tabify' 
-import gcmq  from 'postcss-sort-media-queries'  
-import browserSync  from 'browser-sync'
-import postcss  from 'gulp-postcss'
-import autoprefixer  from 'autoprefixer'
-import cssnano  from 'cssnano' 
-import nested  from 'postcss-nested'
-import pscss  from 'postcss-scss'
+const sass = gulpSass(dartSass)
+import tabify from 'gulp-tabify'
+import gcmq from 'postcss-sort-media-queries'
+import browserSync from 'browser-sync'
+import postcss from 'gulp-postcss'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
+import nested from 'postcss-nested'
+import pscss from 'postcss-scss'
 // )({ scss: 'postcss-scss'}),
-import plumber  from 'gulp-plumber'
-import sharpResponsive from "gulp-sharp-responsive"; 
-import data from "gulp-data"; 
-import  fs from 'fs';
+import plumber from 'gulp-plumber'
+import sharpResponsive from "gulp-sharp-responsive";
+import data from "gulp-data";
+import fs from 'fs';
 
 const dataFromFile = JSON.parse(fs.readFileSync(sourse + '/pug/content.json'))
 class gs {
@@ -50,26 +50,26 @@ class gs {
     }
 
     static pugFiles() {
-        return  src([sourse + '/pug/pages/**/*.pug'])
-        .pipe(data(function(file) {
-            return JSON.parse(fs.readFileSync(sourse + '/pug/content.json'))
-        }))
-        .pipe(pug({ 
-            pretty: true,
-            cache: true, 
-            // locals: dataFromFile || {}
-        }).on("error", notify.onError())) 
-        .pipe(tabify(2, true))
-        // .pipe( urlBuilder() )
-        .pipe(dest(publicPath))
-        .on('end', browserSync.reload); 
+        return src([sourse + '/pug/pages/**/*.pug'])
+            .pipe(data(function (file) {
+                return JSON.parse(fs.readFileSync(sourse + '/pug/content.json'))
+            }))
+            .pipe(pug({
+                pretty: true,
+                cache: true,
+                // locals: dataFromFile || {}
+            }).on("error", notify.onError()))
+            .pipe(tabify(2, true))
+            // .pipe( urlBuilder() )
+            .pipe(dest(publicPath))
+            .on('end', browserSync.reload);
     }
 
-    static  cleanlibs() {
+    static cleanlibs() {
         return deleteAsync([publicPath + '/libs'])
     }
 
-    static  copyLibs() {
+    static copyLibs() {
         return src(npmDist({
             // copyUnminified: true, 
             excludes: [
@@ -147,7 +147,7 @@ class gs {
             .pipe(dest(publicPath + '/css'))
             .pipe(browserSync.stream());
     }
-    static styles() { 
+    static styles() {
         const processors = [
             autoprefixer(),
             nested(),
@@ -160,12 +160,12 @@ class gs {
                 sass.sync()
                     .on('error', sass.logError)
             )
-            .pipe(postcss(processors, { syntax: pscss })) 
+            .pipe(postcss(processors, { syntax: pscss }))
             .pipe(rename({ suffix: '.min', prefix: '' }))
             .pipe(dest(publicPath + '/css'))
             .pipe(browserSync.stream());
     }
-    
+
     static bootstrapstyles() {
         const processors = [
             autoprefixer(),
@@ -177,11 +177,11 @@ class gs {
             .pipe(
                 sass.sync()
                     .on('error', sass.logError)
-            ) 
-            .pipe(postcss(processors, { syntax: pscss })) 
+            )
+            .pipe(postcss(processors, { syntax: pscss }))
             .pipe(rename({ suffix: '.min', prefix: '' }))
             .pipe(dest(publicPath + '/css'))
-            .pipe(browserSync.stream()); 
+            .pipe(browserSync.stream());
     }
 
 
@@ -197,54 +197,54 @@ class gs {
             .pipe(browserSync.stream());
     }
     static svg() {
-            return src('./' + sourse + '/svg/*.svg')
-                .pipe(svgmin({
-                    js2svg: {
-                        pretty: true
+        return src('./' + sourse + '/svg/*.svg')
+            .pipe(svgmin({
+                js2svg: {
+                    pretty: true
+                }
+            }))
+            .pipe(cheerio({
+                run: function ($) {
+                    $('[fill]').removeAttr('fill');
+                    $('[stroke]').removeAttr('stroke');
+                    $('[style]').removeAttr('style');
+                    $('[opacity]').removeAttr('opacity');
+                },
+                parserOptions: { xmlMode: true }
+            }))
+            .pipe(replace('&gt;', '>'))
+            .pipe(svgSprite({
+                shape: {
+                    dimension: {         // Set maximum dimensions
+                        maxWidth: 500,
+                        maxHeight: 500
+                    },
+                    spacing: {         // Add padding
+                        padding: 0
                     }
-                }))
-                .pipe(cheerio({
-                    run: function ($) {
-                        $('[fill]').removeAttr('fill');
-                        $('[stroke]').removeAttr('stroke');
-                        $('[style]').removeAttr('style');
-                        $('[opacity]').removeAttr('opacity');
-                    },
-                    parserOptions: { xmlMode: true }
-                }))
-                .pipe(replace('&gt;', '>'))
-                .pipe(svgSprite({
-                    shape: {
-                        dimension: {         // Set maximum dimensions
-                            maxWidth: 500,
-                            maxHeight: 500
-                        },
-                        spacing: {         // Add padding
-                            padding: 0
-                        }
-                    },
-                    mode: {
-                        symbol: {
-                            sprite: "../sprite.svg",
-                            render: {
-                                scss: {
-                                    template: './' + sourse + '/sass/templates/_sprite_template.scss',
-                                    dest: destSprite,
-                                }
+                },
+                mode: {
+                    symbol: {
+                        sprite: "../sprite.svg",
+                        render: {
+                            scss: {
+                                template: './' + sourse + '/sass/templates/_sprite_template.scss',
+                                dest: destSprite,
                             }
                         }
                     }
+                }
 
-                }))
+            }))
 
-                .pipe(dest(`${sourse}/sass/`)); 
+            .pipe(dest(`${sourse}/sass/`));
     }
 
     static svgCopy() {
         return src(`${sourse}/sass/sprite.svg`)
             .pipe(plumber())
             .pipe(dest(`${publicPath}/img/svg/`))
-        
+
     }
 
     static svgC() {
@@ -288,7 +288,7 @@ class gs {
 
             }))
 
-            .pipe(dest(`${sourse}/sass/`)); 
+            .pipe(dest(`${sourse}/sass/`));
     }
 
     static svgCopyC() {
@@ -322,14 +322,14 @@ class gs {
                     // { width: w50, jpegOptions: { quality: 80, progressive: true }, rename: { dirname: path1 } },
                     // {width: w50, webpOptions: { quality: 100, progressive: true }, format: "webp", rename: { dirname: `${path1}webp/` } },
                     // { width: w50, avifOptions: { quality: 100, progressive: true }, format: "avif", rename: { dirname: `${path1}avif/` } },
-                    
+
                 ]
             }))
-            .pipe(dest(publicPath + '/img')) 
+            .pipe(dest(publicPath + '/img'))
     }
     static startwatch() {
-        watch([ sourse + '/sass/**/*.css', sourse + '/pug/blocks/**/*.scss', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.styles);
-        watch([ sourse + '/sass/**/*.css', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.bootstrapstyles);
+        watch([sourse + '/sass/**/*.css', sourse + '/pug/blocks/**/*.scss', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.styles);
+        watch([sourse + '/sass/**/*.css', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.bootstrapstyles);
         watch([sourse + '/pug/**/*.pug', sourse + '/pug/content.json'], { usePolling: true }, gs.pugFiles);
         watch(sourse + '/svg/*.svg', { usePolling: true }, gs.svg);
         // watch([sourse + '/js/libs.js'], { usePolling: true }, gs.scripts);
@@ -342,7 +342,7 @@ class gs {
         // watch(sourse + '/img', { usePolling: true }, gs.img);
     }
 }
-export let imgAll = series(gs.cleanimg, gs.img) 
+export let imgAll = series(gs.cleanimg, gs.img)
 export let libs = series(gs.cleanlibs, gs.copyLibs)
 export let sprite = series(gs.svg, gs.svgCopy)
 export let sprite2 = series(gs.svgC, gs.svgCopyC)
@@ -350,6 +350,6 @@ export let styles = parallel(gs.bootstrapstyles, gs.styles)
 
 
 
-export default series(gs.common, libs, styles, 
+export default series(gs.common, libs, styles,
     // imgAll,
-    sprite, sprite2, gs.pugFiles, parallel(gs.browsersync, gs.startwatch))
+    parallel(sprite, sprite2), gs.pugFiles, parallel(gs.browsersync, gs.startwatch))
