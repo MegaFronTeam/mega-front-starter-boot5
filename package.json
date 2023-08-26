@@ -11,10 +11,10 @@
   "author": "Khalunin Pavel",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.15",
     "bootstrap": "^5.3.1",
     "browser-sync": "^2.29.3",
-    "browserslist": "^4.21.8",
+    "browserslist": "^4.21.10",
     "colors": "^1.4.0",
     "cssnano": "^6.0.1",
     "del": "^7.0.0",
@@ -35,17 +35,17 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-tabify": "0.0.2",
     "gulp-vinyl-flow": "^1.1.0",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.28",
     "postcss-nested": "^6.0.1",
-    "postcss-scss": "^4.0.6",
+    "postcss-scss": "^4.0.7",
     "postcss-sort-media-queries": "^5.2.0",
     "postcss-syntax": "^0.36.2",
-    "sass": "^1.63.3"
+    "sass": "^1.66.1"
   },
   "dependencies": {
-    "@fancyapps/ui": "^5.0.16",
+    "@fancyapps/ui": "^5.0.22",
     "inputmask": "^5.0.8",
     "jquery": "^3.7.0",
-    "swiper": "^10.0.4"
+    "swiper": "^10.2.0"
   }
 }
