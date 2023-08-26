@@ -123,14 +123,14 @@ class gs {
             .pipe(dest(publicPath + '/libs'));
     }
 
-    static styles() {
+    static watchStyle(file) {
         const processors = [
             autoprefixer(),
             nested(),
             cssnano(),
             gcmq(),
         ];
-        return src(sourse + '/sass/main.scss')
+        return src(sourse + `/sass/${file}.scss`)
             .pipe(sassGlob())
             .pipe(
                 sass.sync()
@@ -142,8 +142,45 @@ class gs {
             .pipe(rename({ suffix: '.min', prefix: '' }))
             .pipe(dest(publicPath + '/css'))
             .pipe(browserSync.stream());
-
     }
+    static styles() { 
+        const processors = [
+            autoprefixer(),
+            nested(),
+            cssnano(),
+            gcmq(),
+        ];
+        return src(sourse + `/sass/main.scss`)
+            .pipe(sassGlob())
+            .pipe(
+                sass.sync()
+                    .on('error', sass.logError)
+            )
+            .pipe(postcss(processors, { syntax: pscss })) 
+            .pipe(rename({ suffix: '.min', prefix: '' }))
+            .pipe(dest(publicPath + '/css'))
+            .pipe(browserSync.stream());
+    }
+    
+    static bootstrapstyles() {
+        const processors = [
+            autoprefixer(),
+            nested(),
+            cssnano(),
+            gcmq(),
+        ];
+        return src(sourse + `/sass/custom-bootstrap.scss`)
+            .pipe(
+                sass.sync()
+                    .on('error', sass.logError)
+            ) 
+            .pipe(postcss(processors, { syntax: pscss })) 
+            .pipe(rename({ suffix: '.min', prefix: '' }))
+            .pipe(dest(publicPath + '/css'))
+            .pipe(browserSync.stream()); 
+    }
+
+
     static common() {
         return src(
             [
@@ -287,7 +324,8 @@ class gs {
             .pipe(dest(publicPath + '/img')) 
     }
     static startwatch() {
-        watch([sourse + '/sass/**/*.css', sourse + '/pug/blocks/**/*.scss', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.styles);
+        watch([ sourse + '/sass/**/*.css', sourse + '/pug/blocks/**/*.scss', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.styles);
+        watch([ sourse + '/sass/**/*.css', sourse + '/sass/**/*.scss', sourse + '/sass/**/*.sass'], { usePolling: true }, gs.bootstrapstyles);
         watch([sourse + '/pug/**/*.pug', sourse + '/pug/content.json'], { usePolling: true }, gs.pugFiles);
         watch(sourse + '/svg/*.svg', { usePolling: true }, gs.svg);
         // watch([sourse + '/js/libs.js'], { usePolling: true }, gs.scripts);
@@ -304,9 +342,10 @@ export let imgAll = series(gs.cleanimg, gs.img)
 export let libs = series(gs.cleanlibs, gs.copyLibs)
 export let sprite = series(gs.svg, gs.svgCopy)
 export let sprite2 = series(gs.svgC, gs.svgCopyC)
+export let styles = parallel(gs.bootstrapstyles, gs.styles)
 
 
 
-export default series(gs.common, libs, gs.styles, 
+export default series(gs.common, libs, styles, 
     // imgAll,
     sprite, sprite2, gs.pugFiles, parallel(gs.browsersync, gs.startwatch))

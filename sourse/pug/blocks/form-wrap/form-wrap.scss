@@ -18,70 +18,16 @@
 	}
 }
 
-.parsley-error {
-	border-image: none;
-	border: 2px solid red !important;
-	color: red;
-	outline: 0 !important;
-}
-.parsley-success {
-	border: 2px solid #00d600 !important;
-}
-.parsley-errors-list {
-	color: red;
-}
 
 //
-@include media-breakpoint-up(xl) {
-}
-
-@include media-breakpoint-up(lg) {
-}
-
-@include media-breakpoint-up(md) {
-}
-
-@include media-breakpoint-up(sm) {
-}
-
-@include media-breakpoint-up(xs) {
-}
-
-//
-@include media-breakpoint-between(md, xl) {
-}
-
-//
-@include media-breakpoint-only(xs) {
-}
-
-@include media-breakpoint-only(sm) {
-}
-
-@include media-breakpoint-only(md) {
-}
-
-@include media-breakpoint-only(lg) {
-}
-
-@include media-breakpoint-only(xl) {
-}
-
-//
-@include media-breakpoint-down(xl) {
-}
-
-@include media-breakpoint-down(lg) {
-}
-
-@include media-breakpoint-down(md) {
-}
-
-@include media-breakpoint-down(sm) {
-}
-
-@include media-breakpoint-down(xs) {
-}
+@include media-breakpoint-up(xl) {}
+@include media-breakpoint-up(lg) {}
+@include media-breakpoint-up(md) {}
+@include media-breakpoint-up(sm) {}
+@include media-breakpoint-up(xs) {}
+@include media-breakpoint-between(md, xl) {}
+@include media-breakpoint-only(xl) {}
+@include media-breakpoint-down(xs) {}
 
 .form-check {
 }
@@ -90,69 +36,6 @@
 .form-check-label {
 }
 
-// .custom-input{
-// 	display: block;
-// 	margin: auto;
-
-// 	margin-bottom: rem(20);
-// 	cursor: pointer;
-// 	position: relative;
-// 	padding-left: rem(35px);
-// 	display: inline-block;
-// 	&__input{
-// 		position: absolute;
-// 		// opacity: 0;
-// 		width: 1px;
-// 		height: 1px;
-// 		margin: -1px;
-// 		border: 0;
-// 		padding: 0;
-// 		clip: rect(0 0 0 0 );
-// 		overflow: hidden;
-// 	}
-
-// 	&__input[type="checkbox"] + &__lab{
-// 		&::after{
-// 			content:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='8' viewBox='0 0 448 512'%3E%3Cpath fill='%23fff' d='M413.505 91.951L133.49 371.966l-98.995-98.995c-4.686-4.686-12.284-4.686-16.971 0L6.211 284.284c-4.686 4.686-4.686 12.284 0 16.971l118.794 118.794c4.686 4.686 12.284 4.686 16.971 0l299.813-299.813c4.686-4.686 4.686-12.284 0-16.971l-11.314-11.314c-4.686-4.686-12.284-4.686-16.97 0z' class='st0'/%3E%3C/svg%3E");
-// 			position: absolute;
-// 			@include a-cent;
-// 			opacity: 0;
-// 		}
-// 	}
-
-// 	&__input[type="radio"] + &__lab{
-// 		border-radius: 50%;
-// 		&::after{
-// 			border-radius: 50%;
-// 		}
-// 	}
-
-// 	&__input:checked + &__lab{
-// 		background-color: $success;
-
-// 		&::after{
-
-// 			opacity: 1;
-// 		}
-// 	}
-
-// }
-
-// select.form-control {
-// 	background-image: url(../img/svg/chevron-up.svg);
-// 	background-repeat: no-repeat;
-// 	background-position: calc(100%  - 20px) 50%; // background-size: rem(18) ;
-// 	padding-right: rem(43px);
-// 	appearance: none !important;
-
-// 	&:not([size]):not([multiple]) {
-// 		height: $input-height;
-// 	}
-
-// 	&:focus::-ms-value {
-
-// 	}
-// }
 
 input[type='number'] {
 	-moz-appearance: textfield;
@@ -169,67 +52,6 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 	/* <-- Apparently some margin are still there even though it's hidden */
 }
-
-// .jq-selectbox{
-// 	max-width: 100%;
-// 	margin: auto;
-// 	display: block !important;
-//  // height: auto;
-// 	&__select{
-// 		// background-color: transparent;
-
-// 		box-shadow: none !important;
-// 		background-image: none !important;
-// 		text-shadow: none;
-// 		font-family: $default-font;
-// 		font-size: rem(14);
-// 		text-align: left;
-// 		border: 1px solid #dadada;
-// 		background-color: #fff;
-// 		padding-top: rem(12);
-// 		padding-bottom: rem(12);
-// 		height: auto;
-// 		border-radius: rem(6);
-// 		@include mt;
-// 		&:hover{
-
-// 		}
-// 		&-text{
-// 			// width: 100% !important;
-// 			line-height: 1;
-// 		}
-// 	}
-// 	&__select:hover &__trigger{
-
-// 	}
-// 	&__trigger{
-// 		border: none;
-// 		background-color: #dadada;
-// 		height: 100%;
-// 		width: 40px;
-// 		border-radius: rem(6);
-// 		text-align: center;
-// 		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAYCAYAAAAVibZIAAAA40lEQVRIS9XVXRXCMAwF4HsVgARQABLAATgAZeAAHIAEJIADUFBOdtqdwdKk7OeBPa7pl61JW8J5QghLAKcYtiV58+bQCojgBcA0xj0BrD04iypgyu/CKmqARXALLQBd+AP9ATThGg0h7AAcvMoq4601rtAeYDPHnuRRXnAgMOEVLKg086LDb2tTHiRnZvN3TfRH6MBreic5H6f6o/RpqnCPfn0B2JC8Jkvb+zI4KWwnAVff52vulCqBVbDaptoXxdPKgrNgFo3Fk7tJg03QRDOwC7poAz7HZZIq97tNCzugFfYGUK5wGWWE5JYAAAAASUVORK5CYII=);
-// 		background-position: center;
-// 		background-repeat: no-repeat;
-// 		@include mt;
-// 		&:hover{
-
-// 		}
-// 	}
-// 	&__trigger-arrow {
-// 		border: none;
-
-// }
-// li{
-// 	font-size: rem(16);
-// 	padding: em(10px) 10px em(10px);
-// 	&:hover {
-
-//     color: #fff;
-// }
-// }
-// }
 
 .select2-container--default .select2-selection--single {
 	@extend .form-select;
