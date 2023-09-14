@@ -1,0 +1,54 @@
+$default-font: "roboto";
+$addr: '../fonts/';
+$file-format: woff2;
+$rfs-rem-value: 16 !default;
+$em-base: $rfs-rem-value * 1px;
+$small: rem(14);
+$url: '../img/';
+$path2: '@2x/';
+$path1: '@1x/';
+$rfs-breakpoint: 1200px !default;
+
+// $themeColor: $primary !default;
+// $colors: (
+//   'white': #ffffff,
+//   'black': $body-color,
+// ) !default;
+
+$font-family-sans-serif: $default-font, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ; 
+
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace ;
+
+$link-decoration: inherit;
+
+$spacers: ( 0: 0, ) ;
+$position-values: ( 100: 100% ) ;
+$border-widths: ( 1: 1px,  ) ;
+$aspect-ratios: ( ) ;
+
+$display-font-sizes: ( 1: 5rem) !default;
+ 
+$zindex-levels: (
+  n1: -1, 
+) ;
+
+
+$enable-caret:                true ;
+$enable-rounded:              true ;
+$enable-shadows:              false ;
+$enable-gradients:            false ;
+$enable-transitions:          true ;
+$enable-reduced-motion:       true ;
+$enable-smooth-scroll:        true ;
+$enable-grid-classes:         true ;
+$enable-container-classes:    true ;
+$enable-cssgrid:              false ;
+$enable-button-pointers:      true ;
+$enable-rfs:                  true ;
+$enable-validation-icons:     false ;
+$enable-negative-margins:     false ;
+$enable-deprecation-messages: true ;
+$enable-important-utilities:  true ;
+
+$enable-dark-mode:            false ;
+$color-mode-type:             data ; // `data` or `media-query`

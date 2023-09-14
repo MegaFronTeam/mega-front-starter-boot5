@@ -23,6 +23,7 @@ $output-bourbon-deprecation-warnings: false;
 // Layout & components
 
 @import "./node_modules/bootstrap/scss/functions";
+@import "vars_base";   
 @import "vars";   
 @import "./node_modules/bootstrap/scss/mixins";
 

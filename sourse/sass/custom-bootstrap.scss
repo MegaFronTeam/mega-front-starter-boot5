@@ -15,6 +15,7 @@ $output-bourbon-deprecation-warnings: false;
 // Layout & components
 
 @import "./node_modules/bootstrap/scss/functions";
+@import "vars_base";   
 @import "vars"; 
 @import "_sprite";
 @import "_spriteC";
@@ -24,12 +25,12 @@ $output-bourbon-deprecation-warnings: false;
 @import "./node_modules/bootstrap/scss/maps";
 @import "./node_modules/bootstrap/scss/mixins";
 
-@mixin row-cols($count) {
-  > * {
-    flex: 0 0 auto;
-    width: calc(100% / $count);
-  }
-}
+// @mixin row-cols($count) {
+//   > * {
+//     flex: 0 0 auto;
+//     width: calc(100% / $count);
+//   }
+// }
 
 @import "./node_modules/bootstrap/scss/utilities";
 
