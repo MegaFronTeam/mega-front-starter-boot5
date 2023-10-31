@@ -11,10 +11,10 @@
   "author": "Khalunin Pavel",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.15",
+    "autoprefixer": "^10.4.16",
     "bootstrap": "^5.3.2",
     "browser-sync": "^2.29.3",
-    "browserslist": "^4.21.10",
+    "browserslist": "^4.22.1",
     "colors": "^1.4.0",
     "cssnano": "^6.0.1",
     "del": "^7.0.0",
@@ -43,9 +43,9 @@
     "sass": "^1.66.1"
   },
   "dependencies": {
-    "@fancyapps/ui": "^5.0.22",
+    "@fancyapps/ui": "^5.0.24",
     "inputmask": "^5.0.8",
-    "jquery": "^3.7.0",
-    "swiper": "^10.2.0"
+    "jquery": "^3.7.1",
+    "swiper": "^11.0.3"
   }
 }

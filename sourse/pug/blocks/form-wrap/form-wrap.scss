@@ -52,21 +52,3 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 	/* <-- Apparently some margin are still there even though it's hidden */
 }
-
-.select2-container--default .select2-selection--single {
-	@extend .form-select;
-	height: auto !important;
-	padding-left: rem(10);
-}
-
-.select2-container--default
-	.select2-selection--single
-	.select2-selection__rendered {
-	padding: 0;
-}
-
-.select2-container--default
-	.select2-selection--single
-	.select2-selection__arrow {
-	display: none;
-}
