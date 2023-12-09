@@ -545,10 +545,3 @@ iframe {
 	margin-left: auto;
 	margin-right: auto;
 }
-
-.container{
-	&::before{
-		content: "Foo " + Bar;
-	}
-	font: 20px/24px fantasy {weight: bold;}
-}
