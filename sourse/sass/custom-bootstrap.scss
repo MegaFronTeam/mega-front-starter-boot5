@@ -75,50 +75,34 @@ $output-bourbon-deprecation-warnings: false;
 // scss-docs-end import-stack
 
 // .breadcrumb {
-// 	.active {
-// 		a {
-// 			// color: $breadcrumb-active-color;
-// 			pointer-events: none;
-// 		}
-// 	}
-// }
-// @import "./node_modules/bootstrap/scss/pagination";
-
-// .pagination-wrapper ul {
-// 	@extend .pagination;
-// }
-
-// .pagination-wrapper li .page-numbers {
-// 	@extend .page-link;
-// }
-
-// .pagination-wrapper li {
-// 	@extend .page-item;
-
-// 	.current {
-// 		z-index: 1;
-// 		// color: $pagination-active-color;
-// 		// background-color: $pagination-active-bg;
-// 		// border-color: $pagination-active-border-color;
-// 	}
-// }
-
-
-
-.select2-container--default .select2-selection--single {
-	@extend .form-select;
-	height: auto !important;
-	padding-left: rem(10);
-}
-
-.select2-container--default
-	.select2-selection--single
-	.select2-selection__rendered {
-	padding: 0;
-}
-
-.select2-container--default
-	.select2-selection--single
-	.select2-selection__arrow {
-	display: none;
-}
+	// 	.active {
+		// 		a {
+			// 			// color: $breadcrumb-active-color;
+			// 			pointer-events: none;
+			// 		}
+			// 	}
+			// }
+			// @import "./node_modules/bootstrap/scss/pagination";
+			
+			// .pagination-wrapper ul {
+				// 	@extend .pagination;
+				// }
+				
+				// .pagination-wrapper li .page-numbers {
+					// 	@extend .page-link;
+					// }
+					
+					// .pagination-wrapper li {
+						// 	@extend .page-item;
+						
+						// 	.current {
+							// 		z-index: 1;
+							// 		// color: $pagination-active-color;
+							// 		// background-color: $pagination-active-bg;
+							// 		// border-color: $pagination-active-border-color;
+							// 	}
+							// }
+							
+							
+@import "select2.scss";
+							

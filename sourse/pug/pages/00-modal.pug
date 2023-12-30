@@ -27,7 +27,26 @@ block pagecontent
 			mixin btn(a, t)
 				a(data-fancybox data-type="ajax" href= a).btn.btn-primary= t
 			+btn("modal/call.html", 'call')
-
+		.section.container
+			.col-8
+				+form-wrap
+					+input("input")
+					+e.input-wrap.custom-select-wrap.form-group
+						select.custom-select-js()
+							option option 1
+							option option 2
+							option option 3
+							option option 4
+							option option 5
+					+e.input-wrap.custom-select-wrap.form-group
+						select.custom-select-js(multiple data-placeholder="placeholder multiple")
+							option option 1
+							option option 2
+							option option 3
+							option option 4
+							option option 5
+					button.btn.btn-primary(type="submit") submit
+						
 	+parts('footer')
       
 

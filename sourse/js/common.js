@@ -62,6 +62,17 @@ function eventHandler() {
 
 	});
 
+
+	$.fn.select2.defaults.set('ru', 'libs/select2/i18n/');
+	$(".custom-select-wrap").each(function(){
+
+		$(this).find(".custom-select-js").select2({
+			allowClear: false,
+			// language: document.querySelector("html").getAttribute("lang")
+			// dropdownParent: $(".select-block-wrapper"),
+		});
+	})
+
 };
 if (document.readyState !== 'loading') {
 	eventHandler();

@@ -5,6 +5,7 @@
 	pointer-events: none;
 	z-index: 1000;
 	overflow: hidden;
+	background-repeat: no-repeat;
 	width: 100%;
 	height: 100%;
 	background-position: center 0;
@@ -99,11 +100,12 @@ body {
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	// display: flex;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	// flex-direction: row; 
 // /	overflow: scroll;
 	// width: 100%; 
-	// height: 100vh;
 	// height: calc(var(--vh, 1vh) * 100);
 	
 	
@@ -111,17 +113,6 @@ body {
 main{
 	flex-grow: 1;
 }
-// .main-wrapper__inner{
-// 	// overflow-x: hidden;
-// 	display: flex;
-// 	flex-direction: column;
-// 	min-width: 0;
-// 	min-height: 100vh;
-// 	flex-grow: 1;
-// }
-
-
-
 
 
 
@@ -191,40 +182,11 @@ main{
 
 
 
-.slick-slide img {
-	display: inline
-}
-
 .image-source-link {
 	color: #98C3D1;
 }
 
-.slick-slide {
-	outline: 0 !important;
-}
-
-.slick-arrow {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	z-index: 2; 
-	cursor: pointer; 
-	&.l {
-		left: 0; 
-		svg {
-			transform:  transform(rotateY(180deg));
-		}
-	} 
-	&.r {
-		right: 0; 
-	} 
-	svg {
-		width: 17px;
-		height: auto;
-	}
-}
-
-
+strong,
 .strong {
 	font-weight: bold;
 }
@@ -376,9 +338,6 @@ ul {
 	}
 }
 
-img{
-	// content-visibility: auto;
-}
 picture {
 	display: block;
 	img {
@@ -396,8 +355,7 @@ img.object-fit-js {
 
 img.img-bg,
 .object-fit-js img {
-	object-fit: cover;
-	object-position: top;
+	object-fit: cover; 
 }
 
 
@@ -461,11 +419,11 @@ iframe {
 .custom-scroll {
 	/* ===== Scrollbar CSS ===== */
   /* Firefox */
-	--bs-primary: #DEDEDE;
+	--scroll-color: #DEDEDE;
  
   & {
     scrollbar-width: auto;
-    scrollbar-color: var(--bs-primary) transparent;
+    scrollbar-color: var(--scroll-color) transparent;
   }
 
   /* Chrome, Edge, and Safari */
@@ -478,7 +436,7 @@ iframe {
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--bs-primary);
+    background-color: var(--scroll-color);
     border-radius: 16px;
     border: 0px solid transparent;
   }
@@ -536,12 +494,4 @@ iframe {
 		height: 100%;
 		object-fit: cover;
 	}
-}
-
-.ratiod{
-	@include block(2,3);
-	background-color: $primary;
-	max-width: 340px;
-	margin-left: auto;
-	margin-right: auto;
 }
