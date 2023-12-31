@@ -8,10 +8,10 @@ mixin input(placeholder,  t='text', label, inputmode= t, name= t)
 		if t== "textarea"
 			+e.TEXTAREA.input.form-control(name=name placeholder=placeholder)
 		else if t== "select"
-			+e.SELECT.input.form-select( name= name)&attributes(attributes)
+			+e.SELECT.input.form-select(name= name data-placeholder= placeholder).custom-select-js&attributes(attributes)
 				option(value= placeholder)= placeholder
 				- for (var x = 1; x < 5; x++)
-					option(value=` placeholder ${x}`)= `placeholder ${x}`
+					option(value=`${placeholder + x}`)=`${placeholder + x}`
 		else if t=='file'
 			+e.INPUT.input.form-control(inputmode= inputmode name=name type=t)&attributes(attributes)
 			
@@ -21,7 +21,7 @@ mixin input(placeholder,  t='text', label, inputmode= t, name= t)
 			+e.INPUT.input.form-control(inputmode= inputmode name=name type=t )&attributes(attributes)
 		else
 			+e.INPUT.input.form-control(inputmode= inputmode name=name type=t placeholder=placeholder)&attributes(attributes)
-	+e.input-wrap.form-group
+	+e.input-wrap.form-group(class= (t == 'select' ? 'custom-select-wrap' : ""))
 		if label
 			label
 				+e.SPAN.input-title= label
@@ -31,16 +31,6 @@ mixin input(placeholder,  t='text', label, inputmode= t, name= t)
 			+t(t,placeholder, name)&attributes(attributes)
 			block
 	// +e.input-wrap
-mixin select(label,pl,...items)
-	+e.input-wrap.form-group
-		label
-			+e.SPAN.title= label
-			+e.SELECT.input.form-control&attributes(attributes)
-
-					option()= pl
-					each item in items
-						option()= item
-
 //- wrapper for form
 mixin form-wrap(inp)
 	+b.form-wrap&attributes(attributes)

@@ -8,8 +8,10 @@ mixin modal()
 					+e.title.form-data.h3.ttu Обратный звонок
 					p.after-headline Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течение 15&nbsp;минут
 
-				+input("Ваше Имя")(required)  
-				+e.BUTTON.btn.btn(type="submit"  )  
+				+input("Ваше Имя")(required)
+				+input("Ваше телефон",'tel')(required)
+				+input("Ваше телефон",'tel')(required)
+				+e.BUTTON.btn.btn(type="submit"  ) submit
 				+policy()
 				+policy()
 	// #modal-call

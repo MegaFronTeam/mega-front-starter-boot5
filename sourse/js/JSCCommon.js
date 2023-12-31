@@ -24,6 +24,7 @@ class JSCCommon {
 			groupAttr: false,
 			showClass: "fancybox-throwOutUp",
 			hideClass: "fancybox-throwOutDown",
+			compact: false,
 			l10n: {
 				CLOSE: "Закрыть",
 				Escape: "Закрыть",
@@ -342,6 +343,7 @@ class JSCCommon {
 	static setScreen() {
 		var x = window.location.host;
 		let screenName;
+		if(document.body.dataset.bg)
 		screenName = 'screen/' + document.body.dataset.bg;
 		if (screenName && x.includes("localhost:30")) {
 			document.body.insertAdjacentHTML("beforeend", `<div class="pixel-perfect" style="background-image: url(${screenName});"></div>`);
