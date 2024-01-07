@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 class JSCCommon {
 	static modalCall() {
 		const link = '[data-fancybox="modal"], .link-modal-js';
@@ -6,7 +6,7 @@ class JSCCommon {
 			autoFocus: false,
 			placeFocusBack: false,
 		};
-		Fancybox.bind('[data-fancybox]', {
+		Fancybox.bind("[data-fancybox]", {
 			autoFocus: false,
 			placeFocusBack: false,
 		});
@@ -42,61 +42,67 @@ class JSCCommon {
 		document.querySelectorAll(".modal-close-js").forEach(el => {
 			el.addEventListener("click", () => {
 				Fancybox.close();
-			})
-		})
-		
-		document.addEventListener('click', (event) => {
-			let element = event.target.closest(link)
+			});
+		});
+
+		document.addEventListener("click", event => {
+			let element = event.target.closest(link);
 			if (!element) return;
 			let modal = document.querySelector(element.dataset.src);
 			const data = element.dataset;
 
 			function setValue(val, elem) {
 				if (elem && val) {
-					const el = modal.querySelector(elem)
-					el.tagName == "INPUT"
-						? el.value = val
-						: el.innerHTML = val;
+					const el = modal.querySelector(elem);
+					el.tagName == "INPUT" ? (el.value = val) : (el.innerHTML = val);
 					// console.log(modal.querySelector(elem).tagName)
 				}
 			}
-			setValue(data.title, '.ttu');
-			setValue(data.text, '.after-headline');
-			setValue(data.btn, '.btn');
-			setValue(data.order, '.order');
-		})
+			setValue(data.title, ".ttu");
+			setValue(data.text, ".after-headline");
+			setValue(data.btn, ".btn");
+			setValue(data.order, ".order");
+		});
 	}
 	// /modalCall
 	static toggleMenu() {
-		const toggle = document.querySelectorAll('.toggle-menu-mobile--js');
-		const menu = document.querySelector('.menu-mobile--js');
-		toggle.forEach((el) => el.classList.toggle('on'));
-		menu.classList.toggle('active');
-		[document.body, document.querySelector('html')].forEach((el) => el.classList.toggle('fixed'));
+		const toggle = document.querySelectorAll(".toggle-menu-mobile--js");
+		const menu = document.querySelector(".menu-mobile--js");
+		toggle.forEach(el => el.classList.toggle("on"));
+		menu.classList.toggle("active");
+		[document.body, document.querySelector("html")].forEach(el =>
+			el.classList.toggle("fixed")
+		);
 	}
 	static closeMenu() {
-		const toggle = document.querySelectorAll('.toggle-menu-mobile--js');
-		const menu = document.querySelector('.menu-mobile--js');
-		toggle.forEach((element) => element.classList.remove('on'));
+		const toggle = document.querySelectorAll(".toggle-menu-mobile--js");
+		const menu = document.querySelector(".menu-mobile--js");
+		toggle.forEach(element => element.classList.remove("on"));
 		if (menu) {
-			menu.classList.remove('active');
-			[document.body, document.querySelector('html')].forEach((el) => el.classList.remove('fixed'));
+			menu.classList.remove("active");
+			[document.body, document.querySelector("html")].forEach(el =>
+				el.classList.remove("fixed")
+			);
 		}
 	}
 	static mobileMenu() {
-		document.addEventListener('click', (event) => {
-			let container = event.target.closest('.menu-mobile--js'); // (1)
-			let toggle = event.target.closest('.toggle-menu-mobile--js'); // (1)
-			if (toggle) this.toggleMenu();
-			if (!container && !toggle) this.closeMenu();
-		},
-			{ passive: true },
+		document.addEventListener(
+			"click",
+			event => {
+				let container = event.target.closest(".menu-mobile--js"); // (1)
+				let toggle = event.target.closest(".toggle-menu-mobile--js"); // (1)
+				if (toggle) this.toggleMenu();
+				if (!container && !toggle) this.closeMenu();
+			},
+			{passive: true}
 		);
 
-		window.addEventListener('resize', () => {
-			if (window.matchMedia('(min-width: 992px)').matches) this.closeMenu();
-		},
-			{ passive: true },
+		window.addEventListener(
+			"resize",
+			() => {
+				if (window.matchMedia("(min-width: 992px)").matches) this.closeMenu();
+			},
+			{passive: true}
 		);
 	}
 
@@ -123,7 +129,6 @@ class JSCCommon {
 		// 		content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary  mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
 		// 	})
 
-
 		// 	tabs.addEventListener('click', function (element) {
 		// 		const btn = element.target.closest(`[data-tab-btn]:not(.active)`);
 		// 		if (!btn) return;
@@ -143,22 +148,40 @@ class JSCCommon {
 		// 	})
 		// })
 
-		$('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
-			$(this)
-				.addClass('active').siblings().removeClass('active')
-				.closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active')
-				.eq($(this).index()).fadeIn().addClass('active');
-
-		});
-
+		$("." + tab + "__caption").on(
+			"click",
+			"." + tab + "__btn:not(.active)",
+			function (e) {
+				$(this)
+					.addClass("active")
+					.siblings()
+					.removeClass("active")
+					.closest("." + tab)
+					.find("." + tab + "__content")
+					.hide()
+					.removeClass("active")
+					.eq($(this).index())
+					.fadeIn()
+					.addClass("active");
+			}
+		);
 	}
 	// /tabs
 
 	static inputMask() {
 		// mask for input
-		let InputTel = [].slice.call(document.querySelectorAll('input[type="tel"]'));
-		InputTel.forEach(element => element.setAttribute("pattern", "[+][0-9]{1}[(][0-9]{3}[)][0-9]{3}-[0-9]{2}-[0-9]{2}"));
-		Inputmask({ "mask": "+9(999)999-99-99", showMaskOnHover: false }).mask(InputTel);
+		let InputTel = [].slice.call(
+			document.querySelectorAll('input[type="tel"]')
+		);
+		InputTel.forEach(element =>
+			element.setAttribute(
+				"pattern",
+				"[+][0-9]{1}[(][0-9]{3}[)][0-9]{3}-[0-9]{2}-[0-9]{2}"
+			)
+		);
+		Inputmask({mask: "+9(999)999-99-99", showMaskOnHover: false}).mask(
+			InputTel
+		);
 	}
 	// /inputMask
 	static sendForm() {
@@ -174,34 +197,35 @@ class JSCCommon {
 			return b;
 		})();
 		// form
-		$(document).on('submit', "form", function (e) {
+		$(document).on("submit", "form", function (e) {
 			e.preventDefault();
 			const th = $(this);
 			var data = th.serialize();
-			th.find('.utm_source').val(decodeURIComponent(gets['utm_source'] || ''));
-			th.find('.utm_term').val(decodeURIComponent(gets['utm_term'] || ''));
-			th.find('.utm_medium').val(decodeURIComponent(gets['utm_medium'] || ''));
-			th.find('.utm_campaign').val(decodeURIComponent(gets['utm_campaign'] || ''));
+			th.find(".utm_source").val(decodeURIComponent(gets["utm_source"] || ""));
+			th.find(".utm_term").val(decodeURIComponent(gets["utm_term"] || ""));
+			th.find(".utm_medium").val(decodeURIComponent(gets["utm_medium"] || ""));
+			th.find(".utm_campaign").val(
+				decodeURIComponent(gets["utm_campaign"] || "")
+			);
 			$.ajax({
-				url: 'action.php',
-				type: 'POST',
+				url: "action.php",
+				type: "POST",
 				data: data,
-			}).done(function (data) {
-
-				Fancybox.close();
-				Fancybox.show([{ src: "#modal-thanks", type: "inline" }]);
-				// window.location.replace("/thanks.html");
-				setTimeout(function () {
-					// Done Functions
-					th.trigger("reset");
-					// $.magnificPopup.close();
-					// ym(53383120, 'reachGoal', 'zakaz');
-					// yaCounter55828534.reachGoal('zakaz');
-				}, 4000);
-			}).fail(function () { });
-
+			})
+				.done(function (data) {
+					Fancybox.close();
+					Fancybox.show([{src: "#modal-thanks", type: "inline"}]);
+					// window.location.replace("/thanks.html");
+					setTimeout(function () {
+						// Done Functions
+						th.trigger("reset");
+						// $.magnificPopup.close();
+						// ym(53383120, 'reachGoal', 'zakaz');
+						// yaCounter55828534.reachGoal('zakaz');
+					}, 4000);
+				})
+				.fail(function () {});
 		});
-
 
 		// async function submitForm(event) {
 		// 	event.preventDefault(); // отключаем перезагрузку/перенаправление страницы
@@ -237,24 +261,27 @@ class JSCCommon {
 		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 		let vh = window.innerHeight * 0.01;
 		// Then we set the value in the --vh custom property to the root of the document
-		document.documentElement.style.setProperty('--vh', `${vh}px`);
+		document.documentElement.style.setProperty("--vh", `${vh}px`);
 
 		// We listen to the resize event
-		window.addEventListener('resize', () => {
-			// We execute the same script as before
-			let vh = window.innerHeight * 0.01;
-			document.documentElement.style.setProperty('--vh', `${vh}px`);
-		}, { passive: true });
+		window.addEventListener(
+			"resize",
+			() => {
+				// We execute the same script as before
+				let vh = window.innerHeight * 0.01;
+				document.documentElement.style.setProperty("--vh", `${vh}px`);
+			},
+			{passive: true}
+		);
 	}
 	static animateScroll() {
-		$(document).on('click', " .menu li a, .scroll-link", function () {
+		$(document).on("click", " .menu li a, .scroll-link", function () {
 			const elementClick = $(this).attr("href");
 			if (!document.querySelector(elementClick)) {
-				$(this).attr("href", '/' + elementClick)
-			}
-			else {
+				$(this).attr("href", "/" + elementClick);
+			} else {
 				let destination = $(elementClick).offset().top;
-				$('html, body').animate({ scrollTop: destination - 80 }, 0);
+				$("html, body").animate({scrollTop: destination - 80}, 0);
 				return false;
 			}
 		});
@@ -266,13 +293,13 @@ class JSCCommon {
 	}
 
 	static makeDDGroup() {
-		$('.dd-head-js').on('click', function () {
+		$(".dd-head-js").on("click", function () {
 			let clickedHead = this;
-			$(this).parent().toggleClass('active');
+			$(this).parent().toggleClass("active");
 			$(this)
 				.next()
 				.slideToggle(function () {
-					$(this).toggleClass('active');
+					$(this).toggleClass("active");
 				});
 		});
 		// let parents = document.querySelectorAll('.dd-group-js');
@@ -313,7 +340,9 @@ class JSCCommon {
 					.then(res => res.text())
 					.then(data => {
 						const parser = new DOMParser();
-						const svg = parser.parseFromString(data, 'image/svg+xml').querySelector('svg');
+						const svg = parser
+							.parseFromString(data, "image/svg+xml")
+							.querySelector("svg");
 
 						if (image.id) svg.id = image.id;
 						if (image.className) svg.classList = image.classList;
@@ -321,42 +350,47 @@ class JSCCommon {
 						image.parentNode.replaceChild(svg, image);
 					})
 					.then(callback)
-					.catch(error => console.error(error))
+					.catch(error => console.error(error));
 			});
 		};
 
-		convertImages('.img-svg-js');
+		convertImages(".img-svg-js");
 	}
 
-	static disabledBtn(input = '.form-wrap__policy input', btn = ".form-wrap__btn", parent = ".form-wrap") {
+	static disabledBtn(
+		input = ".form-wrap__policy input",
+		btn = ".form-wrap__btn",
+		parent = ".form-wrap"
+	) {
 		$(document).on("change", input, function () {
-			let btnDisabled = $(this).parents(parent).find(btn)
+			let btnDisabled = $(this).parents(parent).find(btn);
 			if (this.checked) {
-				btnDisabled.removeAttr('disabled');
+				btnDisabled.removeAttr("disabled");
+			} else {
+				btnDisabled.attr("disabled", "disabled");
 			}
-			else {
-				btnDisabled.attr('disabled', 'disabled');
-			}
-		})
+		});
 	}
 
 	static setScreen() {
 		var x = window.location.host;
 		let screenName;
-		if(document.body.dataset.bg)
-		screenName = 'screen/' + document.body.dataset.bg;
+		if (document.body.dataset.bg)
+			screenName = "screen/" + document.body.dataset.bg;
 		if (screenName && x.includes("localhost:30")) {
-			document.body.insertAdjacentHTML("beforeend", `<div class="pixel-perfect" style="background-image: url(${screenName});"></div>`);
+			document.body.insertAdjacentHTML(
+				"beforeend",
+				`<div class="pixel-perfect" style="background-image: url(${screenName});"></div>`
+			);
 		}
-
 	}
 
 	static setFixedNav() {
-		let topNav = document.querySelector('.top-nav  ');
+		let topNav = document.querySelector(".top-nav  ");
 		if (!topNav) return;
 		window.scrollY > 0
-			? topNav.classList.add('fixed')
-			: topNav.classList.remove('fixed');
+			? topNav.classList.add("fixed")
+			: topNav.classList.remove("fixed");
 	}
 
 	static init() {
@@ -372,7 +406,6 @@ class JSCCommon {
 		// JSCCommon.toggleShow(".catalog-block__toggle--desctop", '.catalog-block__dropdown');
 		// JSCCommon.animateScroll();
 
-		// JSCCommon.CustomInputFile(); 
-
+		// JSCCommon.CustomInputFile();
 	}
-};
+}

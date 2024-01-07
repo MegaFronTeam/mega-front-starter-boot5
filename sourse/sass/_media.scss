@@ -1,52 +1,54 @@
-
 /*==========  Mobile First  ==========*/
-@include media-breakpoint-up(xl) {}
-@include media-breakpoint-up(lg) {}
-@include media-breakpoint-up(md) {}
-@include media-breakpoint-up(sm) {}
-@include media-breakpoint-up(xs) {}
-
+@include media-breakpoint-up(xl) {
+}
+@include media-breakpoint-up(lg) {
+}
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(sm) {
+}
+@include media-breakpoint-up(xs) {
+}
 
 /*==========  Desktop First  ==========*/
 
 /* Large Devices, Wide Screens */
-@include media-breakpoint-down(xl) {}
-
+@include media-breakpoint-down(xl) {
+}
 
 /* Medium Devices, Desktops */
-@include media-breakpoint-down(lg) {}
-
+@include media-breakpoint-down(lg) {
+}
 
 /* Small Devices, Tablets */
-@include media-breakpoint-down(md)
-	{
-				.animated{
-				/*CSS transitions*/
-				-o-transition-property: none !important;
-				-moz-transition-property: none !important;
-				-ms-transition-property: none !important;
-				-webkit-transition-property: none !important;
-				transition-property: none !important;
-				/*CSS transforms*/
-				-o-transform: none !important;
-				-moz-transform: none !important;
-				-ms-transform: none !important;
-				-webkit-transform: none !important;
-				transform: none !important;
-				/*CSS animations*/
-				-webkit-animation: none !important;
-				-moz-animation: none !important;
-				-o-animation: none !important;
-				-ms-animation: none !important;
-				animation: none !important;
-			}
+@include media-breakpoint-down(md) {
+	.animated {
+		/*CSS transitions*/
+		-o-transition-property: none !important;
+		-moz-transition-property: none !important;
+		-ms-transition-property: none !important;
+		-webkit-transition-property: none !important;
+		transition-property: none !important;
+		/*CSS transforms*/
+		-o-transform: none !important;
+		-moz-transform: none !important;
+		-ms-transform: none !important;
+		-webkit-transform: none !important;
+		transform: none !important;
+		/*CSS animations*/
+		-webkit-animation: none !important;
+		-moz-animation: none !important;
+		-o-animation: none !important;
+		-ms-animation: none !important;
+		animation: none !important;
 	}
-
+}
 
 /* Extra Small Devices, Phones */
-@include media-breakpoint-down(sm) {}
-
+@include media-breakpoint-down(sm) {
+}
 
 /* Custom, iPhone Retina */
-@media only screen and (max-width : 320px)
-	{/**/}
+@media only screen and (max-width: 320px) {
+	/**/
+}

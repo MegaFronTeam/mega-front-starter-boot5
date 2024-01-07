@@ -6,7 +6,23 @@
   "type": "module",
   "scripts": {
     "gulp": "gulp",
-    "img": "gulp img"
+    "img": "gulp img",
+    "lint": "npx eslint . --ext .js",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src test --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "lint-staged":{
+      "*.{js,json,css, md,html}": [
+        "prettier --single-quote --write",
+        "get add"
+      ]
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
+    }
   },
   "author": "Khalunin Pavel",
   "license": "ISC",
@@ -18,6 +34,8 @@
     "colors": "^1.4.0",
     "cssnano": "^6.0.2",
     "del": "^7.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "gulp": "^4.0.2",
     "gulp-cheerio": "^1.0.0",
     "gulp-data": "^1.3.1",
@@ -35,11 +53,14 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-tabify": "0.0.2",
     "gulp-vinyl-flow": "^1.1.0",
+    "husky": "^8.0.3",
     "postcss": "^8.4.32",
     "postcss-nested": "^6.0.1",
     "postcss-scss": "^4.0.9",
     "postcss-sort-media-queries": "^5.2.0",
     "postcss-syntax": "^0.36.2",
+    "prettier": "^3.1.1",
+    "prettier-eslint": "^16.2.0",
     "sass": "^1.69.6"
   },
   "dependencies": {

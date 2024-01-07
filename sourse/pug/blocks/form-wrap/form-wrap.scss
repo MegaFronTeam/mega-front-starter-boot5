@@ -18,16 +18,23 @@
 	}
 }
 
-
 //
-@include media-breakpoint-up(xl) {}
-@include media-breakpoint-up(lg) {}
-@include media-breakpoint-up(md) {}
-@include media-breakpoint-up(sm) {}
-@include media-breakpoint-up(xs) {}
-@include media-breakpoint-between(md, xl) {}
-@include media-breakpoint-only(xl) {}
-@include media-breakpoint-down(xs) {}
+@include media-breakpoint-up(xl) {
+}
+@include media-breakpoint-up(lg) {
+}
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(sm) {
+}
+@include media-breakpoint-up(xs) {
+}
+@include media-breakpoint-between(md, xl) {
+}
+@include media-breakpoint-only(xl) {
+}
+@include media-breakpoint-down(xs) {
+}
 
 .form-check {
 }
@@ -36,8 +43,7 @@
 .form-check-label {
 }
 
-
-input[type='number'] {
+input[type="number"] {
 	-moz-appearance: textfield;
 }
 
