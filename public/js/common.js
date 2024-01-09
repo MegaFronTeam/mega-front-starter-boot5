@@ -1,6 +1,6 @@
 "use strict";
 
-                                                              const $ = jQuery;
+const $ = jQuery;
 
 function eventHandler() {
 	JSCCommon.init();
@@ -48,7 +48,6 @@ function eventHandler() {
 	});
 
 	const swiper4 = new Swiper(".sBanners__slider--js", {
-		// если не используешь методы swiper  - можно обращаться без нее к Swiper
 		// slidesPerView: 5,
 		...defaultSl,
 		slidesPerView: "auto",
