@@ -205,3 +205,33 @@
     height: auto;
   }
 }
+
+
+
+
+@mixin custom-scroll() {
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  // --bs-primary: #DEDEDE;
+  @media (hover: hover) {
+    & {
+      scrollbar-width: auto;
+      scrollbar-color: var(--bs-primary) transparent;
+    }
+
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--bs-primary);
+      border-radius: 16px;
+      border: 0px solid transparent;
+    }
+  }
+}
