@@ -1,5 +1,11 @@
 "use strict";
-class JSCCommon {
+import '../libs/jquery/jquery.min.js'; 
+import '../libs/select2/js/select2.min.js'; 
+import '../libs/select2/js/i18n/ru.js'; 
+import { Fancybox } from '../libs/@fancyapps/ui/fancybox/fancybox.esm.js';
+import Inputmask from '../libs/inputmask/inputmask.es6.js';
+
+export default class JSCCommon {
 	static modalCall() {
 		const link = '[data-fancybox="modal"], .link-modal-js';
 		Fancybox.defaults = {
@@ -107,7 +113,7 @@ class JSCCommon {
 	}
 
 	// tabs  .
-	static tabscostume(tab) {
+	static tabsCostume(tab) {
 		// const tabs = document.querySelectorAll(tab);
 		// const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
 		// tabs.forEach(element => {
@@ -393,15 +399,26 @@ class JSCCommon {
 			: topNav.classList.remove("fixed");
 	}
 
+	static customSelect() {
+		$(".custom-select-wrap").each(function () {
+			const self = $(this);
+			self.find(".custom-select-js").select2({
+				allowClear: false,
+				dropdownParent: self,
+			});
+		});
+	}
+
 	static init() {
 		this.modalCall();
-		// this.tabscostume('tabs');
+		// this.tabsCostume('tabs');
 		this.mobileMenu();
 		this.inputMask();
 		// this.sendForm();
 		this.heightWindow();
 		this.makeDDGroup();
 		this.disabledBtn();
+		this.customSelect();
 		this.setScreen();
 		// JSCCommon.toggleShow(".catalog-block__toggle--desctop", '.catalog-block__dropdown');
 		// JSCCommon.animateScroll();
@@ -409,3 +426,4 @@ class JSCCommon {
 		// JSCCommon.CustomInputFile();
 	}
 }
+

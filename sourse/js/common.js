@@ -1,5 +1,8 @@
 "use strict";
 
+import Swiper from '../libs/swiper/swiper-bundle.min.mjs';
+import JSCCommon from "./JSCCommon.js";
+
 const $ = jQuery;
 
 function eventHandler() {
@@ -58,13 +61,7 @@ function eventHandler() {
 		freeModeMomentum: true,
 	});
 
-	$(".custom-select-wrap").each(function () {
-		const self = $(this);
-		self.find(".custom-select-js").select2({
-			allowClear: false,
-			dropdownParent: self,
-		});
-	});
+	
 }
 if (document.readyState !== "loading") {
 	eventHandler();

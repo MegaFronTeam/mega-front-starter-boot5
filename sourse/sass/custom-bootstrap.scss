@@ -8,8 +8,9 @@ $output-bourbon-deprecation-warnings: false;
 // @import "mq";
 @import "bourbon/app/assets/stylesheets/bourbon";
 // @import "../../node_modules/rfs/scss";
-// @import "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
-// @import "./node_modules/swiper/swiper.scss";
+@import "../libs/@fancyapps/ui/fancybox/fancybox.css";
+@import "./node_modules/select2/src/scss/core.scss";
+@import "./node_modules/swiper/swiper.scss";
 
 @import "mixin";
 // Layout & components

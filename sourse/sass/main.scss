@@ -1,12 +1,14 @@
 $output-bourbon-deprecation-warnings: false;
-  // @use "sass:list";
-  // @use "sass:map";
-  @use "sass:math";
-  
-  // @use "sass:meta";
+// @use "sass:list";
+// @use "sass:map";
+@use "sass:math";
+
+// @use "sass:meta";
 
 // @import "mq";
 @import "bourbon/app/assets/stylesheets/bourbon";
+@import 'custom-bootstrap.min.css';
+
 // @import "../../node_modules/rfs/scss";
 // @import "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
 // @import "./node_modules/swiper/swiper.scss";

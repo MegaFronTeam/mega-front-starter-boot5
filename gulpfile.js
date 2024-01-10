@@ -74,7 +74,7 @@ class gs {
 
     static  copyLibs() {
         return src(npmDist({
-            // copyUnminified: true, 
+            copyUnminified: true, 
             excludes: [
                 // '*.map',
                 'src/**/*',
@@ -92,7 +92,7 @@ class gs {
                 'swiper/cjs',
                 'swiper/bundle',
                 'swiper/vue',
-                '*.mjs',
+                // '*.mjs',
                 'swiper/modules',
                 'swiper/shared',
                 'swiper/types',

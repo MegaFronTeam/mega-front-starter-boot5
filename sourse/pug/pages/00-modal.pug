@@ -22,8 +22,8 @@ block pagecontent
 	
 	+parts('header')
 	main
-		.section.container
-			h1 Modals page 
+		+page-head(title,title, title, title , title,title, title, title, title,title, title, title)
+		.section.container 
 			mixin btn(a, t)
 				a( href= a).btn.btn-primary.link-modal-js= t
 			+btn("#modal-call", 'call')
