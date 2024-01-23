@@ -8,14 +8,9 @@ import Inputmask from '../libs/inputmask/inputmask.es6.js';
 export default class JSCCommon {
 	static modalCall() {
 		const link = '[data-fancybox="modal"], .link-modal-js';
-		Fancybox.defaults = {
-			autoFocus: false,
-			placeFocusBack: false,
-		};
-		Fancybox.bind("[data-fancybox]", {
-			autoFocus: false,
-			placeFocusBack: false,
-		});
+		Fancybox.defaults.autoFocus= false;
+		Fancybox.defaults.placeFocusBack =  false;
+		
 		Fancybox.bind(link, {
 			arrows: false,
 			// // infobar: false,
@@ -33,7 +28,7 @@ export default class JSCCommon {
 			compact: false,
 			l10n: {
 				CLOSE: "Закрыть",
-				Escape: "Закрыть",
+				Escape: "Закрыть"
 				NEXT: "Вперед",
 				PREV: "Назад",
 				MODAL: "Вы можете закрыть это модальное окно с помощью клавиши ESC.",
