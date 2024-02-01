@@ -1,21 +1,23 @@
 "use strict";
-import '../libs/jquery/jquery.min.js'; 
-import '../libs/select2/js/select2.min.js'; 
-import '../libs/select2/js/i18n/ru.js'; 
-import { Fancybox } from '../libs/@fancyapps/ui/fancybox/fancybox.esm.js';
-import Inputmask from '../libs/inputmask/inputmask.es6.js';
+import "../libs/jquery/jquery.min.js";
+import "../libs/select2/js/select2.min.js";
+import "../libs/select2/js/i18n/ru.js";
+import {Fancybox} from "../libs/@fancyapps/ui/fancybox/fancybox.esm.js";
+import Inputmask from "../libs/inputmask/inputmask.es6.js";
 
 export default class JSCCommon {
+	static toggleClass(elements, className) {
+		elements.forEach(el => el.classList.toggle(className));
+	}
+
+	static removeClass(elements, className) {
+		elements.forEach(el => el.classList.remove(className));
+	}
 	static modalCall() {
 		const link = '[data-fancybox="modal"], .link-modal-js';
-		Fancybox.defaults = {
-			autoFocus: false,
-			placeFocusBack: false,
-		};
-		Fancybox.bind("[data-fancybox]", {
-			autoFocus: false,
-			placeFocusBack: false,
-		});
+		Fancybox.defaults.autoFocus = false;
+		Fancybox.defaults.placeFocusBack = false;
+
 		Fancybox.bind(link, {
 			arrows: false,
 			// // infobar: false,
@@ -71,32 +73,33 @@ export default class JSCCommon {
 		});
 	}
 	// /modalCall
+
 	static toggleMenu() {
 		const toggle = document.querySelectorAll(".toggle-menu-mobile--js");
 		const menu = document.querySelector(".menu-mobile--js");
-		toggle.forEach(el => el.classList.toggle("on"));
+		this.toggleClass(toggle, "on");
 		menu.classList.toggle("active");
-		[document.body, document.querySelector("html")].forEach(el =>
-			el.classList.toggle("fixed")
-		);
+		this.toggleClass([document.body, document.querySelector("html")], "fixed");
 	}
 	static closeMenu() {
 		const toggle = document.querySelectorAll(".toggle-menu-mobile--js");
 		const menu = document.querySelector(".menu-mobile--js");
-		toggle.forEach(element => element.classList.remove("on"));
+		this.removeClass(toggle, "on");
 		if (menu) {
 			menu.classList.remove("active");
-			[document.body, document.querySelector("html")].forEach(el =>
-				el.classList.remove("fixed")
+			this.removeClass(
+				[document.body, document.querySelector("html")],
+				"fixed"
 			);
 		}
 	}
+
 	static mobileMenu() {
 		document.addEventListener(
 			"click",
 			event => {
-				let container = event.target.closest(".menu-mobile--js"); // (1)
-				let toggle = event.target.closest(".toggle-menu-mobile--js"); // (1)
+				let container = event.target.closest(".menu-mobile--js");
+				let toggle = event.target.closest(".toggle-menu-mobile--js");
 				if (toggle) this.toggleMenu();
 				if (!container && !toggle) this.closeMenu();
 			},
@@ -111,7 +114,6 @@ export default class JSCCommon {
 			{passive: true}
 		);
 	}
-
 	// tabs  .
 	static tabsCostume(tab) {
 		// const tabs = document.querySelectorAll(tab);
@@ -426,4 +428,3 @@ export default class JSCCommon {
 		// JSCCommon.CustomInputFile();
 	}
 }
-
