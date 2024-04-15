@@ -1,5 +1,5 @@
 import { g as getDocument } from '../shared/ssr-window.esm.mjs';
-import { h as classesToTokens, c as createElement, n as nextTick, b as elementOffset } from '../shared/utils.mjs';
+import { m as makeElementsArray, i as classesToTokens, c as createElement, n as nextTick, b as elementOffset } from '../shared/utils.mjs';
 import { c as createElementIfNotDefined } from '../shared/create-element-if-not-defined.mjs';
 import { c as classesToSelector } from '../shared/classes-to-selector.mjs';
 
@@ -179,7 +179,7 @@ function Scrollbar(_ref) {
       dragEl
     } = scrollbar;
     if (!isTouched) return;
-    if (e.preventDefault) e.preventDefault();else e.returnValue = false;
+    if (e.preventDefault && e.cancelable) e.preventDefault();else e.returnValue = false;
     setDragPosition(e);
     wrapperEl.style.transitionDuration = '0ms';
     el.style.transitionDuration = '0ms';
@@ -295,6 +295,18 @@ function Scrollbar(_ref) {
     }
     disableDraggable();
   }
+  on('changeDirection', () => {
+    if (!swiper.scrollbar || !swiper.scrollbar.el) return;
+    const params = swiper.params.scrollbar;
+    let {
+      el
+    } = swiper.scrollbar;
+    el = makeElementsArray(el);
+    el.forEach(subEl => {
+      subEl.classList.remove(params.horizontalClass, params.verticalClass);
+      subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+    });
+  });
   on('init', () => {
     if (swiper.params.scrollbar.enabled === false) {
       // eslint-disable-next-line
@@ -305,7 +317,7 @@ function Scrollbar(_ref) {
       setTranslate();
     }
   });
-  on('update resize observerUpdate lock unlock', () => {
+  on('update resize observerUpdate lock unlock changeDirection', () => {
     updateSize();
   });
   on('setTranslate', () => {

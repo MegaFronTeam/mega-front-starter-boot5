@@ -1,13 +1,13 @@
 /**
- * Swiper React 11.0.5
+ * Swiper React 11.1.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
- * Copyright 2014-2023 Vladimir Kharlampidi
+ * Copyright 2014-2024 Vladimir Kharlampidi
  *
  * Released under the MIT License
  *
- * Released on: November 22, 2023
+ * Released on: April 9, 2024
  */
 
 import React, { useEffect, useLayoutEffect, useContext, createContext, forwardRef, useState, useRef } from 'react';
@@ -107,7 +107,7 @@ function renderVirtual(swiper, slides, virtualData) {
     return /*#__PURE__*/React.cloneElement(child, {
       swiper,
       style,
-      key: `slide-${index}`
+      key: child.props.virtualIndex || child.key || `slide-${index}`
     });
   });
 }
@@ -239,7 +239,7 @@ const Swiper = /*#__PURE__*/forwardRef(function (_temp, externalElRef) {
       scrollbarEl: scrollbarElRef.current,
       swiper: swiperRef.current
     }, swiperParams);
-    if (onSwiper) onSwiper(swiperRef.current);
+    if (onSwiper && !swiperRef.current.destroyed) onSwiper(swiperRef.current);
     // eslint-disable-next-line
     return () => {
       if (swiperRef.current && !swiperRef.current.destroyed) {

@@ -1,13 +1,13 @@
 /**
- * Swiper Vue 11.0.5
+ * Swiper Vue 11.1.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
- * Copyright 2014-2023 Vladimir Kharlampidi
+ * Copyright 2014-2024 Vladimir Kharlampidi
  *
  * Released under the MIT License
  *
- * Released on: November 22, 2023
+ * Released on: April 9, 2024
  */
 
 import { h, ref, onUpdated, provide, watch, nextTick, onMounted, onBeforeUnmount, onBeforeUpdate, computed, inject } from 'vue';
@@ -121,6 +121,10 @@ const Swiper = {
     oneWayMovement: {
       type: Boolean,
       default: undefined
+    },
+    swiperElementNodeName: {
+      type: String,
+      default: 'SWIPER-CONTAINER'
     },
     touchEventsTarget: {
       type: String,

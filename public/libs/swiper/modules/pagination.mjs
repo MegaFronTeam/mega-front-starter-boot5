@@ -1,6 +1,6 @@
 import { c as classesToSelector } from '../shared/classes-to-selector.mjs';
 import { c as createElementIfNotDefined } from '../shared/create-element-if-not-defined.mjs';
-import { f as elementOuterSize, g as elementIndex, a as elementParents } from '../shared/utils.mjs';
+import { m as makeElementsArray, f as elementOuterSize, h as elementIndex, a as elementParents } from '../shared/utils.mjs';
 
 function Pagination(_ref) {
   let {
@@ -48,7 +48,6 @@ function Pagination(_ref) {
   };
   let bulletSize;
   let dynamicBulletIndex = 0;
-  const makeElementsArray = el => (Array.isArray(el) ? el : [el]).filter(e => !!e);
   function isPaginationDisabled() {
     return !swiper.params.pagination.el || !swiper.pagination.el || Array.isArray(swiper.pagination.el) && swiper.pagination.el.length === 0;
   }

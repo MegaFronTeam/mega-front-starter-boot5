@@ -2,7 +2,7 @@ import { c as createShadow } from '../shared/create-shadow.mjs';
 import { e as effectInit } from '../shared/effect-init.mjs';
 import { e as effectTarget } from '../shared/effect-target.mjs';
 import { e as effectVirtualTransitionEnd } from '../shared/effect-virtual-transition-end.mjs';
-import { l as getSlideTransformEl } from '../shared/utils.mjs';
+import { g as getSlideTransformEl } from '../shared/utils.mjs';
 
 function EffectCreative(_ref) {
   let {
@@ -85,7 +85,7 @@ function EffectCreative(_ref) {
       // set rotates
       r.forEach((value, index) => {
         let val = data.rotate[index] * Math.abs(progress * multiplier);
-        if (swiper.browser && swiper.browser.isSafari && Math.abs(val) / 90 % 2 === 1) {
+        if (swiper.browser && swiper.browser.need3dFix && Math.abs(val) / 90 % 2 === 1) {
           val += 0.001;
         }
         r[index] = val;

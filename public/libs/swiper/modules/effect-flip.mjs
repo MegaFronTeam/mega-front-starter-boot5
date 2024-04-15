@@ -2,7 +2,7 @@ import { c as createShadow } from '../shared/create-shadow.mjs';
 import { e as effectInit } from '../shared/effect-init.mjs';
 import { e as effectTarget } from '../shared/effect-target.mjs';
 import { e as effectVirtualTransitionEnd } from '../shared/effect-virtual-transition-end.mjs';
-import { l as getSlideTransformEl } from '../shared/utils.mjs';
+import { g as getSlideTransformEl } from '../shared/utils.mjs';
 
 function EffectFlip(_ref) {
   let {
@@ -65,7 +65,7 @@ function EffectFlip(_ref) {
       } else if (rtl) {
         rotateY = -rotateY;
       }
-      if (swiper.browser && swiper.browser.isSafari) {
+      if (swiper.browser && swiper.browser.need3dFix) {
         if (Math.abs(rotateY) / 90 % 2 === 1) {
           rotateY += 0.001;
         }
