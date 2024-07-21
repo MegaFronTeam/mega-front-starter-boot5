@@ -1,5 +1,5 @@
 /**
- * Swiper 11.1.1
+ * Swiper 11.1.5
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: April 9, 2024
+ * Released on: July 15, 2024
  */
 
 export { S as Swiper, S as default } from './shared/swiper-core.mjs';

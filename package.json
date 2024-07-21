@@ -60,14 +60,14 @@
 		"postcss-sort-media-queries": "^5.2.0",
 		"postcss-syntax": "^0.36.2",
 		"prettier": "^3.1.1",
-		"prettier-eslint": "^16.2.0",
-		"sass": "^1.69.6"
+		"prettier-eslint": "^16.3.0",
+		"sass": "^1.77.8"
 	},
 	"dependencies": {
-		"@fancyapps/ui": "^5.0.32",
-		"inputmask": "^5.0.8",
+		"@fancyapps/ui": "^5.0.36",
+		"inputmask": "^5.0.9",
 		"jquery": "^3.7.1",
 		"select2": "^4.1.0-rc.0",
-		"swiper": "^11.0.5"
+		"swiper": "^11.1.5"
 	}
 }

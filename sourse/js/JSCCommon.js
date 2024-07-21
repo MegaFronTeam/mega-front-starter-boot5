@@ -1,11 +1,11 @@
 "use strict";
-import "../libs/jquery/jquery.min.js";
-import "../libs/select2/js/select2.min.js";
-import "../libs/select2/js/i18n/ru.js";
-import {Fancybox} from "../libs/@fancyapps/ui/fancybox/fancybox.esm.js";
-import Inputmask from "../libs/inputmask/inputmask.es6.js";
+// import "../libs/jquery/jquery.min.js";
+// import "../libs/select2/js/select2.min.js";
+// import "../libs/select2/js/i18n/ru.js";
+// import {Fancybox} from "../libs/@fancyapps/ui/fancybox/fancybox.esm.js";
+// import Inputmask from "../libs/inputmask/inputmask.es6.js";
 
-export default class JSCCommon {
+class JSCCommon {
 	static toggleClass(elements, className) {
 		elements.forEach(el => el.classList.toggle(className));
 	}
