@@ -184,7 +184,22 @@ function elementChildren(element, selector) {
   if (selector === void 0) {
     selector = '';
   }
-  return [...element.children].filter(el => el.matches(selector));
+  const children = [...element.children];
+  if (element instanceof HTMLSlotElement) {
+    children.push(...element.assignedElements());
+  }
+  if (!selector) {
+    return children;
+  }
+  return children.filter(el => el.matches(selector));
+}
+function elementIsChildOf(el, parent) {
+  const isChild = parent.contains(el);
+  if (!isChild && parent instanceof HTMLSlotElement) {
+    const children = [...parent.assignedElements()];
+    return children.includes(el);
+  }
+  return isChild;
 }
 function showWarning(text) {
   try {
@@ -297,4 +312,4 @@ function getRotateFix(swiper) {
   };
 }
 
-export { elementParents as a, elementOffset as b, createElement as c, now as d, elementChildren as e, elementOuterSize as f, getSlideTransformEl as g, elementIndex as h, classesToTokens as i, getTranslate as j, elementTransitionEnd as k, isObject as l, makeElementsArray as m, nextTick as n, getRotateFix as o, elementStyle as p, elementNextAll as q, elementPrevAll as r, setCSSProperty as s, animateCSSModeScroll as t, showWarning as u, extend as v, deleteProps as w };
+export { elementParents as a, elementOffset as b, createElement as c, now as d, elementChildren as e, elementOuterSize as f, getSlideTransformEl as g, elementIndex as h, classesToTokens as i, getTranslate as j, elementTransitionEnd as k, isObject as l, makeElementsArray as m, nextTick as n, getRotateFix as o, elementStyle as p, elementNextAll as q, elementPrevAll as r, setCSSProperty as s, animateCSSModeScroll as t, showWarning as u, elementIsChildOf as v, extend as w, deleteProps as x };

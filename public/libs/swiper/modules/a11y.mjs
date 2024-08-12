@@ -22,7 +22,8 @@ function A11y(_ref) {
       containerRoleDescriptionMessage: null,
       itemRoleDescriptionMessage: null,
       slideRole: 'group',
-      id: null
+      id: null,
+      scrollOnFocus: true
     }
   });
   swiper.a11y = {
@@ -218,7 +219,7 @@ function A11y(_ref) {
     visibilityChangedTimestamp = new Date().getTime();
   };
   const handleFocus = e => {
-    if (swiper.a11y.clicked) return;
+    if (swiper.a11y.clicked || !swiper.params.a11y.scrollOnFocus) return;
     if (new Date().getTime() - visibilityChangedTimestamp < 100) return;
     const slideEl = e.target.closest(`.${swiper.params.slideClass}, swiper-slide`);
     if (!slideEl || !swiper.slides.includes(slideEl)) return;
