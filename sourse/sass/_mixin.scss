@@ -97,7 +97,8 @@
 }
 
 @mixin mt($s: 0.36s) {
-	transition: all var(--s, #{$s}) ease-in-out;
+	--s: #{$s};
+	transition: all var(--s) ease-in-out;
 }
 
 //

@@ -80,9 +80,9 @@
 	}
 }
 @include media-breakpoint-down(lg) {
-	@include mt(0.6s);
-	will-change: transform;
 	.menu-mobile {
+		@include mt(0.6s);
+		will-change: transform;
 		& {
 			position: fixed !important;
 			z-index: 999;
