@@ -7,7 +7,7 @@ $output-bourbon-deprecation-warnings: false;
 
 // @import "mq";
 @import "bourbon/app/assets/stylesheets/bourbon";
-@import 'custom-bootstrap.min.css';
+@import "custom-bootstrap.min.css";
 
 // @import "../../node_modules/rfs/scss";
 // @import "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
@@ -19,20 +19,19 @@ $output-bourbon-deprecation-warnings: false;
 
 // Option B: Include parts of Bootstrap
 
-
 // v5
 
 // Layout & components
 
 @import "./node_modules/bootstrap/scss/functions";
-@import "vars_base";   
-@import "vars";   
+@import "vars_base";
+@import "vars";
 @import "./node_modules/bootstrap/scss/mixins";
 
 @import "root";
 @import "base";
 
-@import '../pug/blocks/**/*.scss';
+@import "../pug/blocks/**/*.scss";
 // @import '../pug/blocks/form-wrap/form-wrap.scss';
 
 // @import '../pug/blocks/topLine/_topLine.scss';
@@ -47,10 +46,6 @@ $output-bourbon-deprecation-warnings: false;
 // @import '../pug/blocks/footer/_footer.scss';
 
 // @import "media"; // Всегда в конце
-
-
-
-
 
 /*
   коммент

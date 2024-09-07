@@ -32,9 +32,9 @@
 		"browser-sync": "^3.0.2",
 		"browserslist": "^4.23.3",
 		"colors": "^1.4.0",
-		"cssnano": "^6.1.2",
+		"cssnano": "^7.0.6",
 		"del": "^7.1.0",
-		"eslint": "^8.57.0",
+		"eslint": "^9.10.0",
 		"eslint-config-prettier": "^9.1.0",
 		"gulp": "^5.0.0",
 		"gulp-cheerio": "^1.0.0",
@@ -42,7 +42,7 @@
 		"gulp-notify": "^4.0.0",
 		"gulp-npm-dist": "^1.0.4",
 		"gulp-plumber": "^1.2.1",
-		"gulp-postcss": "^9.1.0",
+		"gulp-postcss": "^10.0.0",
 		"gulp-pug": "^5.0.0",
 		"gulp-rename": "^2.0.0",
 		"gulp-replace": "^1.1.4",
@@ -53,21 +53,21 @@
 		"gulp-svgmin": "^4.1.0",
 		"gulp-tabify": "0.0.2",
 		"gulp-vinyl-flow": "^1.1.0",
-		"husky": "^9.1.4",
-		"postcss": "^8.4.41",
+		"husky": "^9.1.5",
+		"postcss": "^8.4.45",
 		"postcss-nested": "^6.2.0",
 		"postcss-scss": "^4.0.9",
 		"postcss-sort-media-queries": "^5.2.0",
 		"postcss-syntax": "^0.36.2",
 		"prettier": "^3.3.3",
 		"prettier-eslint": "^16.3.0",
-		"sass": "^1.77.8"
+		"sass": "1.77.6"
 	},
 	"dependencies": {
 		"@fancyapps/ui": "^5.0.36",
 		"inputmask": "^5.0.9",
 		"jquery": "^3.7.1",
 		"select2": "^4.1.0-rc.0",
-		"swiper": "^11.1.9"
+		"swiper": "^11.1.12"
 	}
 }

@@ -20,6 +20,7 @@ function A11y(_ref) {
       slideLabelMessage: '{{index}} / {{slidesLength}}',
       containerMessage: null,
       containerRoleDescriptionMessage: null,
+      containerRole: null,
       itemRoleDescriptionMessage: null,
       slideRole: 'group',
       id: null,
@@ -271,6 +272,9 @@ function A11y(_ref) {
     }
     if (params.containerMessage) {
       addElLabel(containerEl, params.containerMessage);
+    }
+    if (params.containerRole) {
+      addElRole(containerEl, params.containerRole);
     }
 
     // Wrapper
