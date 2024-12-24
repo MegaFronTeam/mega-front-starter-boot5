@@ -1,5 +1,5 @@
 /**
- * Swiper Custom Element 11.1.12
+ * Swiper Custom Element 11.1.15
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: September 1, 2024
+ * Released on: November 18, 2024
  */
 
 (function () {
@@ -2716,7 +2716,7 @@
         data.isTouched = false;
       }
     }
-    if (document.activeElement && document.activeElement.matches(data.focusableElements) && document.activeElement !== targetEl) {
+    if (document.activeElement && document.activeElement.matches(data.focusableElements) && document.activeElement !== targetEl && (e.pointerType === 'mouse' || e.pointerType !== 'mouse' && !targetEl.matches(data.focusableElements))) {
       document.activeElement.blur();
     }
     const shouldPreventDefault = preventDefault && swiper.allowTouchMove && params.touchStartPreventDefault;
@@ -2794,6 +2794,9 @@
       } else if (pageX < touches.startX && swiper.translate <= swiper.maxTranslate() || pageX > touches.startX && swiper.translate >= swiper.minTranslate()) {
         return;
       }
+    }
+    if (document.activeElement && document.activeElement.matches(data.focusableElements) && document.activeElement !== e.target && e.pointerType !== 'mouse') {
+      document.activeElement.blur();
     }
     if (document.activeElement) {
       if (e.target === document.activeElement && e.target.matches(data.focusableElements)) {
@@ -5266,7 +5269,7 @@
     function getEl(el) {
       let res;
       if (el && typeof el === 'string' && swiper.isElement) {
-        res = swiper.el.querySelector(el);
+        res = swiper.el.querySelector(el) || swiper.hostEl.querySelector(el);
         if (res) return res;
       }
       if (el) {
@@ -6599,6 +6602,7 @@
       clearTimeout(allowTouchMoveTimeout);
       swiper.touchEventsData.preventTouchMoveFromPointerMove = true;
       allowTouchMoveTimeout = setTimeout(() => {
+        if (swiper.destroyed) return;
         allowTouchMove();
       });
     }
@@ -9671,7 +9675,7 @@
   }
 
   /**
-   * Swiper 11.1.12
+   * Swiper 11.1.15
    * Most modern mobile touch slider and framework with hardware accelerated transitions
    * https://swiperjs.com
    *
@@ -9679,7 +9683,7 @@
    *
    * Released under the MIT License
    *
-   * Released on: September 1, 2024
+   * Released on: November 18, 2024
    */
 
 
@@ -9758,7 +9762,7 @@
     let loopNeedDestroy;
     let loopNeedEnable;
     let loopNeedReloop;
-    if (changedParams.includes('thumbs') && passedParams.thumbs && passedParams.thumbs.swiper && currentParams.thumbs && !currentParams.thumbs.swiper) {
+    if (changedParams.includes('thumbs') && passedParams.thumbs && passedParams.thumbs.swiper && !passedParams.thumbs.swiper.destroyed && currentParams.thumbs && (!currentParams.thumbs.swiper || currentParams.thumbs.swiper.destroyed)) {
       needThumbsInit = true;
     }
     if (changedParams.includes('controller') && passedParams.controller && passedParams.controller.control && currentParams.controller && !currentParams.controller.control) {
@@ -10006,7 +10010,7 @@
   }
 
   /**
-   * Swiper Custom Element 11.1.12
+   * Swiper Custom Element 11.1.15
    * Most modern mobile touch slider and framework with hardware accelerated transitions
    * https://swiperjs.com
    *
@@ -10014,7 +10018,7 @@
    *
    * Released under the MIT License
    *
-   * Released on: September 1, 2024
+   * Released on: November 18, 2024
    */
 
 

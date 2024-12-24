@@ -219,6 +219,7 @@ function Zoom(_ref) {
     clearTimeout(allowTouchMoveTimeout);
     swiper.touchEventsData.preventTouchMoveFromPointerMove = true;
     allowTouchMoveTimeout = setTimeout(() => {
+      if (swiper.destroyed) return;
       allowTouchMove();
     });
   }

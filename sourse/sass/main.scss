@@ -10,8 +10,8 @@ $output-bourbon-deprecation-warnings: false;
 @import "custom-bootstrap.min.css";
 
 // @import "../../node_modules/rfs/scss";
-// @import "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
-// @import "./node_modules/swiper/swiper.scss";
+// @import "../../node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
+// @import "../../node_modules/swiper/swiper.scss";
 
 @import "mixin";
 @import "fonts";
@@ -23,10 +23,10 @@ $output-bourbon-deprecation-warnings: false;
 
 // Layout & components
 
-@import "./node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/functions";
 @import "vars_base";
 @import "vars";
-@import "./node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/mixins";
 
 @import "root";
 @import "base";
