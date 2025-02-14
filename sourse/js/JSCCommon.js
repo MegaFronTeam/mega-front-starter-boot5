@@ -384,11 +384,11 @@ class JSCCommon {
 		var x = window.location.host;
 		let screenName;
 		if (document.body.dataset.bg)
-			screenName = "screen/" + document.body.dataset.bg;
+			screenName = "../screen/" + document.body.dataset.bg;
 		if (screenName && x.includes("localhost:30")) {
 			document.body.insertAdjacentHTML(
 				"beforeend",
-				`<div class="pixel-perfect" style="background-image: url(${screenName});"></div>`
+				`<div class="pixel-perfect" style="--screen: url('${screenName}');"></div>`
 			);
 		}
 	}
