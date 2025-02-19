@@ -48,8 +48,12 @@ class JSCCommon {
 			},
 		});
 		document.querySelectorAll(".modal-close-js").forEach(el => {
-			el.addEventListener("click", () => {
-				Fancybox.close();
+			el.addEventListener("click", event => {
+				event.preventDefault();
+				const instance = Fancybox.getInstance();
+				if (instance) {
+					instance.close();
+				}
 			});
 		});
 
