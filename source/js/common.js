@@ -6,18 +6,22 @@
 function eventHandler() {
 	// const $ = jQuery;
 	window.JSCCommon.init();
+	let navScrollTicking = false;
 
 	function whenResize() {
 		window.JSCCommon.setFixedNav();
 	}
 
-	window.addEventListener(
-		"scroll",
-		() => {
+	function onScroll() {
+		if (navScrollTicking) return;
+		navScrollTicking = true;
+		window.requestAnimationFrame(() => {
 			window.JSCCommon.setFixedNav();
-		},
-		{passive: true}
-	);
+			navScrollTicking = false;
+		});
+	}
+
+	window.addEventListener("scroll", onScroll, {passive: true});
 	window.addEventListener("resize", whenResize, {passive: true});
 
 	whenResize();

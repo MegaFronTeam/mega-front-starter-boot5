@@ -10,9 +10,8 @@
 	@include a-cent1(x);
 	text-align: center;
 
-	opacity: 0;
 	opacity: 0.7;
-	content: var(--screen);
+	// content: var(--screen);
 }
 
 body,
@@ -159,9 +158,6 @@ main {
 
 .fw-900 {
 	font-weight: 900;
-}
-.fw-500 {
-	font-weight: 500;
 }
 .fw-600 {
 	font-weight: 600;

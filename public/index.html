@@ -7,24 +7,42 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,  shrink-to-fit=no, viewport-fit=cover">
 		<link type="image/ico" href="img/favicon.ico" rel="shortcut icon"><meta name="format-detection" content="telephone=no"> 
+		<link href="css/custom-bootstrap.min.css" rel="stylesheet"/>
 		<link href="css/main.min.css" rel="stylesheet"/>
 		<script>
-			function addBlock(elem) {
-				fetch(`parts/${elem}.html`)
-					.then(response => response.text())
-					.then( text => {
-						const wrap = document.querySelector(`#${elem}Wrap`);
-						wrap.insertAdjacentHTML('afterend', text);
-						wrap.previousElementSibling.remove()
-						wrap.remove();
-					});
+			// Shared part loader for demo mode.
+			// Keeps duplicated blocks visible in templates and avoids repeated fetches.
+			const sharedPartCache = new Map();
+			
+			function addBlock(partName) {
+				const wrap = document.querySelector(`#${partName}Wrap`);
+				if (!wrap) return;
+			
+				const partRequest =
+					sharedPartCache.get(partName) ||
+					fetch(`parts/${partName}.html`)
+						.then(response => (response.ok ? response.text() : ""))
+						.catch(() => "");
+			
+				sharedPartCache.set(partName, partRequest);
+			
+				partRequest.then(text => {
+					if (!text) return;
+					const markerScript = wrap.previousElementSibling;
+					wrap.insertAdjacentHTML("afterend", text);
+					if (markerScript && markerScript.tagName === "SCRIPT") {
+						markerScript.remove();
+					}
+					wrap.remove();
+				});
 			}
 		</script>
 	</head>
 	<body class="main-page" data-bg="main.jpg">
 		<div class="main-wrapper">
+			<!-- Shared part placeholder: the real block is loaded by addBlock(elem).-->
 			<script>addBlock(`header`)</script>
-			<div id="headerWrap"></div>
+			<div id="headerWrap" data-shared-part="header"></div>
 			<main>
 				<svg class="icon icon-truck ">
 					<use xlink:href="img/svg/sprite.svg#truck"></use>
@@ -254,8 +272,9 @@
 				</section>
 				<!-- end sContact-->
 			</main>
+			<!-- Shared part placeholder: the real block is loaded by addBlock(elem).-->
 			<script>addBlock(`footer`)</script>
-			<div id="footerWrap"></div>
+			<div id="footerWrap" data-shared-part="footer"></div>
 		</div>
 		<!--  start modals-->
 		<div id="modal-call" style="display: none">

@@ -396,12 +396,17 @@ class JSCCommon {
 		}
 	}
 
+	static getTopNav() {
+		if (this.topNavElement === undefined) {
+			this.topNavElement = document.querySelector(".top-nav");
+		}
+		return this.topNavElement;
+	}
+
 	static setFixedNav() {
-		let topNav = document.querySelector(".top-nav  ");
+		let topNav = this.getTopNav();
 		if (!topNav) return;
-		window.scrollY > 0
-			? topNav.classList.add("fixed")
-			: topNav.classList.remove("fixed");
+		topNav.classList.toggle("fixed", window.scrollY > 0);
 	}
 
 	static customSelect() {

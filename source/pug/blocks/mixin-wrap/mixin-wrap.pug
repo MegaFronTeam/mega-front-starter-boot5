@@ -41,6 +41,7 @@ mixin page-head(t,...items)
 			h1= t
 
 mixin parts(elem)
+	// Shared part placeholder: the real block is loaded by addBlock(elem).
 	script.
 		addBlock(`#{elem}`)
-	div(id=`${elem}Wrap`)
+	div(id=`${elem}Wrap` data-shared-part=elem)
