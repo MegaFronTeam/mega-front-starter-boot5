@@ -6,7 +6,7 @@ module.exports = () => {
 			$.cssnano(),
 			$.gcmq(),
 		];
-		return $.gulp.src($.sourse + '/sass/main.scss')
+		return $.gulp.src($.source + '/sass/main.scss')
 			.pipe($.sassGlob())
 			.pipe($.sass({ outputStyle: 'compressed', indentedSyntax: false, errLogToConsole: true }))
 			.pipe($.postcss(processors, { syntax: $.syntax }))

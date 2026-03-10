@@ -1,11 +1,36 @@
 "use strict";
-let publicPath = "public",
-	source = "sourse",
-	destSprite = "../_sprite.scss",
-	destSpriteC = "../_spriteC.scss";
+
+const paths = {
+	publicDir: "public",
+	sourceDir: "source",
+	libsDir: "public/libs",
+	cssDir: "public/css",
+	jsDir: "public/js",
+	spritePublicDir: "public/img/svg",
+	pugPages: "source/pug/pages/**/*.pug",
+	pugData: "source/pug/content.json",
+	sassMainEntry: "source/sass/main.scss",
+	sassBootstrapEntry: "source/sass/custom-bootstrap.scss",
+	sassWatch: [
+		"source/sass/**/*.css",
+		"source/sass/**/*.scss",
+		"source/sass/**/*.sass",
+		"source/pug/blocks/**/*.scss",
+	],
+	jsWatch: "source/js/**/*.js",
+	svgSource: "source/svg/*.svg",
+	spriteTemplate: "source/sass/templates/_sprite_template.scss",
+	spriteScssDest: "../_sprite.scss",
+	spriteSource: "source/sass/sprite.svg",
+};
+
+const shouldMinifyCss =
+	process.env.NODE_ENV === "production" ||
+	process.env.GULP_MINIFY_CSS === "true";
+const usePolling = process.env.GULP_USE_POLLING === "true";
 
 import pkg from "gulp";
-const {gulp, src, dest, parallel, series, watch} = pkg;
+const {src, dest, parallel, series, watch, lastRun} = pkg;
 
 import {deleteAsync} from "del";
 import pug from "gulp-pug";
@@ -27,19 +52,24 @@ import postcss from "gulp-postcss";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import nested from "postcss-nested";
-import pscss from "postcss-scss";
-// )({ scss: 'postcss-scss'}),
 import plumber from "gulp-plumber";
-import sharpResponsive from "gulp-sharp-responsive";
 import data from "gulp-data";
 import fs from "fs";
 
-const dataFromFile = JSON.parse(fs.readFileSync(source + "/pug/content.json"));
-class gs {
-	static browsersync() {
+const readPugData = () => JSON.parse(fs.readFileSync(paths.pugData, "utf8"));
+const createCssProcessors = () => {
+	const processors = [autoprefixer(), nested(), gcmq()];
+	if (shouldMinifyCss) {
+		processors.push(cssnano());
+	}
+	return processors;
+};
+
+class BuildTasks {
+	static serve() {
 		browserSync.init({
 			server: {
-				baseDir: "./" + publicPath,
+				baseDir: `./${paths.publicDir}`,
 				// middleware: bssi({ baseDir: './' + publicPath, ext: '.html' })б
 				serveStaticOptions: {
 					extensions: ["html"],
@@ -52,33 +82,34 @@ class gs {
 		});
 	}
 
-	static pugFiles() {
+	static compilePug() {
+		const pageData = readPugData();
 		return (
-			src([source + "/pug/pages/**/*.pug"])
+			src([paths.pugPages])
 				.pipe(
-					data(function (file) {
-						return JSON.parse(fs.readFileSync(source + "/pug/content.json"));
+					data(function () {
+						return pageData;
 					})
 				)
 				.pipe(
 					pug({
 						pretty: true,
 						cache: true,
-						// locals: dataFromFile || {}
+						// locals: pageData || {}
 					}).on("error", notify.onError())
 				)
 				.pipe(tabify(2, true))
 				// .pipe( urlBuilder() )
-				.pipe(dest(publicPath))
+				.pipe(dest(paths.publicDir))
 				.on("end", browserSync.reload)
 		);
 	}
 
-	static cleanLibs() {
-		return deleteAsync([publicPath + "/libs"]);
+	static cleanVendorLibs() {
+		return deleteAsync([paths.libsDir]);
 	}
 
-	static copyLibs() {
+	static copyVendorLibs() {
 		return src(
 			npmDist({
 				copyUnminified: true,
@@ -139,58 +170,59 @@ class gs {
 						.replace(/\\dist/, "");
 				})
 			)
-			.pipe(dest(publicPath + "/libs"));
+			.pipe(dest(paths.libsDir));
 	}
 
-	static watchStyle(file) {
-		const processors = [autoprefixer(), nested(), cssnano(), gcmq()];
-		return (
-			src(source + `/sass/${file}.scss`)
-				.pipe(sassGlob())
-				.pipe(sass.sync().on("error", sass.logError))
-				// .pipe(postcss(processors, { syntax: syntax }))
-				.pipe(postcss(processors, {syntax: pscss}))
-				// .pipe(gcmq())
-				.pipe(rename({suffix: ".min", prefix: ""}))
-				.pipe(dest(publicPath + "/css"))
-				.pipe(browserSync.stream())
-		);
+	static ensureVendorLibs(done) {
+		const hasLibs =
+			fs.existsSync(paths.libsDir) && fs.readdirSync(paths.libsDir).length > 0;
+		if (hasLibs) {
+			done();
+			return;
+		}
+
+		return BuildTasks.copyVendorLibs();
 	}
-	static styles() {
-		const processors = [autoprefixer(), nested(), cssnano(), gcmq()];
-		return src(source + `/sass/main.scss`)
+
+	static compileMainStyles() {
+		const processors = createCssProcessors();
+		return src(paths.sassMainEntry)
 			.pipe(sassGlob())
 			.pipe(sass.sync().on("error", sass.logError))
-			.pipe(postcss(processors, {syntax: pscss}))
+			.pipe(postcss(processors))
 			.pipe(rename({suffix: ".min", prefix: ""}))
-			.pipe(dest(publicPath + "/css"))
+			.pipe(dest(paths.cssDir))
 			.pipe(browserSync.stream());
 	}
 
-	static bootstrapStyles() {
-		const processors = [autoprefixer(), nested(), cssnano(), gcmq()];
-		return src(source + `/sass/custom-bootstrap.scss`)
+	static compileBootstrapStyles() {
+		const processors = createCssProcessors();
+		return src(paths.sassBootstrapEntry)
 			.pipe(sass.sync().on("error", sass.logError))
-			.pipe(postcss(processors, {syntax: pscss}))
+			.pipe(postcss(processors))
 			.pipe(rename({suffix: ".min", prefix: ""}))
-			.pipe(dest(publicPath + "/css"))
+			.pipe(dest(paths.cssDir))
 			.pipe(browserSync.stream());
 	}
 
-	static commonJs() {
+	static copyScripts() {
 		return (
-			src([
-				source + "/js/**/*.js",
-				// sourse + '/pug/**/*.js',
-			])
+			src(
+				[
+					paths.jsWatch,
+					// source + '/pug/**/*.js',
+				],
+				{since: lastRun(BuildTasks.copyScripts)}
+			)
 				// .pipe(babel())
 				// .pipe(tabify(2, true))
-				.pipe(dest(publicPath + "/js"))
+				.pipe(dest(paths.jsDir))
 				.pipe(browserSync.stream())
 		);
 	}
-	static svg() {
-		return src("./" + source + "/svg/*.svg")
+
+	static buildSvgSprite() {
+		return src(paths.svgSource)
 			.pipe(
 				svgmin({
 					js2svg: {
@@ -228,9 +260,8 @@ class gs {
 							sprite: "../sprite.svg",
 							render: {
 								scss: {
-									template:
-										"./" + source + "/sass/templates/_sprite_template.scss",
-									dest: destSprite,
+									template: `./${paths.spriteTemplate}`,
+									dest: paths.spriteScssDest,
 								},
 							},
 						},
@@ -238,106 +269,65 @@ class gs {
 				})
 			)
 
-			.pipe(dest(`${source}/sass/`));
+			.pipe(dest(`${paths.sourceDir}/sass/`));
 	}
 
-	static svgCopy() {
-		return src(`${source}/sass/sprite.svg`)
+	static copySvgSprite() {
+		return src(paths.spriteSource)
 			.pipe(plumber())
-			.pipe(dest(`${publicPath}/img/svg/`));
+			.pipe(dest(paths.spritePublicDir));
 	}
 
-	static cleanImg() {
-		const path = publicPath + "/img";
-		return deleteAsync([path + "/@*"]);
-	}
+	static watchFiles() {
+		const watchOptions = {usePolling};
+		const stylesTask = parallel(
+			BuildTasks.compileMainStyles,
+			BuildTasks.compileBootstrapStyles
+		);
 
-	static img() {
-		const path1 = `${publicPath}/img/@1x/`;
-		const path2 = `${publicPath}/img/@2x/`;
-		const w50 = metadata => Math.ceil(metadata.width * 0.5);
-		return src(`${source}/img/*.{png,jpg,jpeg,webp,raw}`)
-			.pipe(
-				sharpResponsive({
-					formats: [
-						// 2x
-						{
-							pngOptions: {quality: 90, progressive: true},
-							rename: {dirname: path2},
-						},
-						{
-							jpegOptions: {quality: 90, progressive: true},
-							rename: {dirname: path2},
-						},
-						{
-							format: "webp",
-							webpOptions: {quality: 100, progressive: true},
-							rename: {dirname: `${path2}webp/`},
-						},
-						// { format: "avif", avifOptions: { quality: 100, progressive: true }, rename: { dirname: `${path2}avif/` } },
-
-						// 1x
-						// { width: w50, pngOptions: { quality: 80, progressive: true }, rename: { dirname: path1 } },
-						// { width: w50, jpegOptions: { quality: 80, progressive: true }, rename: { dirname: path1 } },
-						// {width: w50, webpOptions: { quality: 100, progressive: true }, format: "webp", rename: { dirname: `${path1}webp/` } },
-						// { width: w50, avifOptions: { quality: 100, progressive: true }, format: "avif", rename: { dirname: `${path1}avif/` } },
-					],
-				})
-			)
-			.pipe(dest(publicPath + "/img"));
-	}
-	static startwatch() {
+		watch(paths.sassWatch, watchOptions, stylesTask);
 		watch(
-			[
-				source + "/sass/**/*.css",
-				source + "/sass/**/*.scss",
-				`!${source}/sass/custom-bootstrap.scss`,
-				source + "/sass/**/*.sass",
-				`${source}/pug/blocks/**/*.scss`,
-			],
-			{usePolling: true},
-			gs.styles
+			[`${paths.sourceDir}/pug/**/*.pug`, paths.pugData],
+			watchOptions,
+			BuildTasks.compilePug
 		);
 		watch(
-			[
-				source + "/sass/**/*.css",
-				source + "/sass/**/*.scss",
-				`!${source}/sass/_base.scss`,
-				`!${source}/sass/_root.scss`,
-				`!${source}/sass/_fonts.scss`,
-				source + "/sass/**/*.sass",
-			],
-			{usePolling: true},
-			gs.bootstrapStyles
+			paths.svgSource,
+			watchOptions,
+			series(BuildTasks.buildSvgSprite, BuildTasks.copySvgSprite)
 		);
-		watch(
-			[source + "/pug/**/*.pug", source + "/pug/content.json"],
-			{usePolling: true},
-			gs.pugFiles
-		);
-		watch(source + "/svg/*.svg", {usePolling: true}, gs.svg);
-		// watch([sourse + '/js/libs.js'], { usePolling: true }, gs.scripts);
-		watch(source + "/sass/*.svg", {usePolling: true}, gs.svgCopy);
-
-		// watch(source + "/svgC/*.svg", {usePolling: true}, gs.svgC);
-		// watch(source + "/sass/*.svg", {usePolling: true}, gs.svgCopyC);
-
-		watch([source + "/js/*.js"], {usePolling: true}, gs.commonJs);
-		// watch(sourse + '/img', { usePolling: true }, gs.img);
+		watch(paths.jsWatch, watchOptions, BuildTasks.copyScripts);
 	}
 }
-export let imgAll = series(gs.cleanImg, gs.img);
-export let libs = series(gs.cleanLibs, gs.copyLibs);
-export let sprite = series(gs.svg, gs.svgCopy);
-// export let sprite2 = series(gs.svgC, gs.svgCopyC);
-export let styles = parallel(gs.bootstrapStyles, gs.styles);
 
-export default series(
-	gs.commonJs,
+export const libs = series(
+	BuildTasks.cleanVendorLibs,
+	BuildTasks.copyVendorLibs
+);
+export const sprite = series(
+	BuildTasks.buildSvgSprite,
+	BuildTasks.copySvgSprite
+);
+export const styles = parallel(
+	BuildTasks.compileBootstrapStyles,
+	BuildTasks.compileMainStyles
+);
+
+export const build = series(
+	BuildTasks.copyScripts,
 	libs,
 	styles,
-	// imgAll,
-	parallel(sprite),
-	gs.pugFiles,
-	parallel(gs.browsersync, gs.startwatch)
+	sprite,
+	BuildTasks.compilePug
 );
+
+export const dev = series(
+	BuildTasks.copyScripts,
+	BuildTasks.ensureVendorLibs,
+	styles,
+	sprite,
+	BuildTasks.compilePug,
+	parallel(BuildTasks.serve, BuildTasks.watchFiles)
+);
+
+export default dev;

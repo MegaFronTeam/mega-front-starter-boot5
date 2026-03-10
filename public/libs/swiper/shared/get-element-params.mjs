@@ -46,14 +46,21 @@ function getParams(element, propName, propValue) {
     });
   }
   attrsList.forEach(attr => {
-    const moduleParam = modulesParamsList.filter(mParam => attr.name.indexOf(`${mParam}-`) === 0)[0];
+    const moduleParam = modulesParamsList.find(mParam => attr.name.startsWith(`${mParam}-`));
     if (moduleParam) {
       const parentObjName = attrToProp(moduleParam);
       const subObjName = attrToProp(attr.name.split(`${moduleParam}-`)[1]);
-      if (typeof passedParams[parentObjName] === 'undefined') passedParams[parentObjName] = {};
+      if (typeof passedParams[parentObjName] === 'undefined') {
+        passedParams[parentObjName] = {};
+      }
       if (passedParams[parentObjName] === true) {
         passedParams[parentObjName] = {
           enabled: true
+        };
+      }
+      if (passedParams[parentObjName] === false) {
+        passedParams[parentObjName] = {
+          enabled: false
         };
       }
       passedParams[parentObjName][subObjName] = formatValue(attr.value);

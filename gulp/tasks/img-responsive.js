@@ -1,10 +1,10 @@
 
 // // module.exports = function () {
 
-// // 	const sourse2 = $.sourse + '/img';
+// // 	const source2 = $.source + '/img';
 // // 	const path = $.public + '/img';
-// // 	let src = sourse2 + "/*.{png,jpg,jpeg,webp,raw}";
-// // 	let src2 = sourse2 + "/*.{png,jpg}";
+// // 	let src = source2 + "/*.{png,jpg,jpeg,webp,raw}";
+// // 	let src2 = source2 + "/*.{png,jpg}";
 
 // // 	// Clean @*x IMG's
 // // 	$.gulp.task('cleanimg', function () {
@@ -45,10 +45,10 @@
 // const { src, dest } = require("gulp");
 // // const sharpResponsive = require("sharp-responsive");
 
-// const sourse2 = $.sourse + '/img';
+// const source2 = $.source + '/img';
 // const path = $.public + '/img';
-// let srci = sourse2 + "/*.{png,jpg,jpeg,webp,raw}";
-// let src2 = sourse2 + "/*.{png,jpg}";
+// let srci = source2 + "/*.{png,jpg,jpeg,webp,raw}";
+// let src2 = source2 + "/*.{png,jpg}";
 
 // let x2 = { dirname: '@2x/' }
 // let x1 = { dirname: '@1x/' }

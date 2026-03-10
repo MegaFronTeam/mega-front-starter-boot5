@@ -184,8 +184,9 @@ function elementChildren(element, selector) {
   if (selector === void 0) {
     selector = '';
   }
+  const window = getWindow();
   const children = [...element.children];
-  if (element instanceof HTMLSlotElement) {
+  if (window.HTMLSlotElement && element instanceof HTMLSlotElement) {
     children.push(...element.assignedElements());
   }
   if (!selector) {
@@ -193,11 +194,26 @@ function elementChildren(element, selector) {
   }
   return children.filter(el => el.matches(selector));
 }
+function elementIsChildOfSlot(el, slot) {
+  // Breadth-first search through all parent's children and assigned elements
+  const elementsQueue = [slot];
+  while (elementsQueue.length > 0) {
+    const elementToCheck = elementsQueue.shift();
+    if (el === elementToCheck) {
+      return true;
+    }
+    elementsQueue.push(...elementToCheck.children, ...(elementToCheck.shadowRoot ? elementToCheck.shadowRoot.children : []), ...(elementToCheck.assignedElements ? elementToCheck.assignedElements() : []));
+  }
+}
 function elementIsChildOf(el, parent) {
-  const isChild = parent.contains(el);
-  if (!isChild && parent instanceof HTMLSlotElement) {
+  const window = getWindow();
+  let isChild = parent.contains(el);
+  if (!isChild && window.HTMLSlotElement && parent instanceof HTMLSlotElement) {
     const children = [...parent.assignedElements()];
-    return children.includes(el);
+    isChild = children.includes(el);
+    if (!isChild) {
+      isChild = elementIsChildOfSlot(el, parent);
+    }
   }
   return isChild;
 }
@@ -311,5 +327,17 @@ function getRotateFix(swiper) {
     return v;
   };
 }
+function setInnerHTML(el, html) {
+  if (html === void 0) {
+    html = '';
+  }
+  if (typeof trustedTypes !== 'undefined') {
+    el.innerHTML = trustedTypes.createPolicy('html', {
+      createHTML: s => s
+    }).createHTML(html);
+  } else {
+    el.innerHTML = html;
+  }
+}
 
-export { elementParents as a, elementOffset as b, createElement as c, now as d, elementChildren as e, elementOuterSize as f, getSlideTransformEl as g, elementIndex as h, classesToTokens as i, getTranslate as j, elementTransitionEnd as k, isObject as l, makeElementsArray as m, nextTick as n, getRotateFix as o, elementStyle as p, elementNextAll as q, elementPrevAll as r, setCSSProperty as s, animateCSSModeScroll as t, showWarning as u, elementIsChildOf as v, extend as w, deleteProps as x };
+export { setCSSProperty as a, elementParents as b, createElement as c, elementOffset as d, elementChildren as e, now as f, getSlideTransformEl as g, elementOuterSize as h, elementIndex as i, classesToTokens as j, getTranslate as k, elementTransitionEnd as l, makeElementsArray as m, nextTick as n, isObject as o, getRotateFix as p, elementStyle as q, elementNextAll as r, setInnerHTML as s, elementPrevAll as t, animateCSSModeScroll as u, showWarning as v, elementIsChildOf as w, extend as x, deleteProps as y };

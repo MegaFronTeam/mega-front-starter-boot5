@@ -1,2 +1,5 @@
-sourse/sass/_vars.scss
-sourse/sass/_vars_base.scss
+source/sass/_vars.scss
+source/sass/_vars_base.scss
+gulp/tasks/**
+gulp/config/tasks.js
+public/**

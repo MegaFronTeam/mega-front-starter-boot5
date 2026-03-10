@@ -1,5 +1,10 @@
-//{
-//  "compilerOptions": {
-//    "esModuleInterop": true
-//  }
-//}
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": false,
+		"esModuleInterop": true,
+		"noEmit": true
+	},
+	"include": ["source/js/**/*.js", "gulpfile.js", "block.js"],
+	"exclude": ["node_modules", "public"]
+}

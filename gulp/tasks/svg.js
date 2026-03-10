@@ -1,7 +1,7 @@
 module.exports = function () {
     let dest = '../_sprite.scss'
     $.gulp.task('svg', () => {
-        return $.gulp.src('./' + $.sourse + '/svg/*.svg')
+        return $.gulp.src('./' + $.source + '/svg/*.svg')
             .pipe($.svgmin({
                 js2svg: {
                     pretty: true
@@ -32,7 +32,7 @@ module.exports = function () {
                         sprite: "../sprite.svg",
                         render: {
                             scss: {
-                                template: './' + $.sourse + '/sass/templates/_sprite_template.scss',
+                                template: './' + $.source + '/sass/templates/_sprite_template.scss',
                                 dest: dest,
                             }
                         }
@@ -41,10 +41,10 @@ module.exports = function () {
 
             }))
 
-            .pipe($.gulp.dest(`${$.sourse}/sass/`));
+            .pipe($.gulp.dest(`${$.source}/sass/`));
     });
     $.gulp.task('svgCopy', function () {
-        return  $.gulp.src(`${$.sourse}/sass/sprite.svg`) 
+        return  $.gulp.src(`${$.source}/sass/sprite.svg`) 
                 .pipe($.plumber())
                 .pipe($.gulp.dest(`${$.public}/img/svg/`))
           

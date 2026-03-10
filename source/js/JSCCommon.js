@@ -163,7 +163,7 @@ class JSCCommon {
 		$("." + tab + "__caption").on(
 			"click",
 			"." + tab + "__btn:not(.active)",
-			function (e) {
+			function () {
 				$(this)
 					.addClass("active")
 					.siblings()
@@ -224,7 +224,7 @@ class JSCCommon {
 				type: "POST",
 				data: data,
 			})
-				.done(function (data) {
+				.done(function () {
 					Fancybox.close();
 					Fancybox.show([{src: "#modal-thanks", type: "inline"}]);
 					// window.location.replace("/thanks.html");
@@ -306,7 +306,6 @@ class JSCCommon {
 
 	static makeDDGroup() {
 		$(".dd-head-js").on("click", function () {
-			let clickedHead = this;
 			$(this).parent().toggleClass("active");
 			$(this)
 				.next()
@@ -432,3 +431,5 @@ class JSCCommon {
 		// JSCCommon.CustomInputFile();
 	}
 }
+
+window.JSCCommon = JSCCommon;

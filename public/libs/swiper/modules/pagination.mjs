@@ -1,6 +1,6 @@
 import { c as classesToSelector } from '../shared/classes-to-selector.mjs';
 import { c as createElementIfNotDefined } from '../shared/create-element-if-not-defined.mjs';
-import { m as makeElementsArray, f as elementOuterSize, h as elementIndex, a as elementParents } from '../shared/utils.mjs';
+import { m as makeElementsArray, h as elementOuterSize, i as elementIndex, s as setInnerHTML, b as elementParents } from '../shared/utils.mjs';
 
 function Pagination(_ref) {
   let {
@@ -226,7 +226,7 @@ function Pagination(_ref) {
         });
       }
       if (params.type === 'custom' && params.renderCustom) {
-        subEl.innerHTML = params.renderCustom(swiper, current + 1, total);
+        setInnerHTML(subEl, params.renderCustom(swiper, current + 1, total));
         if (subElIndex === 0) emit('paginationRender', subEl);
       } else {
         if (subElIndex === 0) emit('paginationRender', subEl);
@@ -276,7 +276,7 @@ function Pagination(_ref) {
     swiper.pagination.bullets = [];
     el.forEach(subEl => {
       if (params.type !== 'custom') {
-        subEl.innerHTML = paginationHTML || '';
+        setInnerHTML(subEl, paginationHTML || '');
       }
       if (params.type === 'bullets') {
         swiper.pagination.bullets.push(...subEl.querySelectorAll(classesToSelector(params.bulletClass)));
@@ -307,10 +307,10 @@ function Pagination(_ref) {
       el = [...swiper.el.querySelectorAll(params.el)];
       // check if it belongs to another nested Swiper
       if (el.length > 1) {
-        el = el.filter(subEl => {
+        el = el.find(subEl => {
           if (elementParents(subEl, '.swiper')[0] !== swiper.el) return false;
           return true;
-        })[0];
+        });
       }
     }
     if (Array.isArray(el) && el.length === 1) el = el[0];

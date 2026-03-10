@@ -2,9 +2,9 @@ module.exports = function () {
 
 
 	$.gulp.task('scripts', function () {
-		// return $.gulp.src('sourse/js/common.js')
+		// return $.gulp.src('source/js/common.js')
 
-		return $.gulp.src($.sourse + '/js/libs.js')
+		return $.gulp.src($.source + '/js/libs.js')
 			// .pipe($.babel())
 			.pipe($.webpack({
 				mode: 'production',
@@ -28,12 +28,12 @@ module.exports = function () {
 	});
 
 	$.gulp.task('scripts:common', function () {
-		// return $.gulp.src('sourse/js/common.js')
+		// return $.gulp.src('source/js/common.js')
 
 		return $.gulp.src(
 			[
-				$.sourse + '/js/common.js',
-				// $.sourse + '/pug/**/*.js',
+				$.source + '/js/common.js',
+				// $.source + '/pug/**/*.js',
 			])
 			// .pipe($.babel())
 			// .pipe($.tabify(2, true))

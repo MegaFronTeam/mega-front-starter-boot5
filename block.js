@@ -11,7 +11,7 @@ import path  from 'path'
 const rl = readline.createInterface(process.stdin, process.stdout);
 
 // folder with all blocks
-const BLOCKS_DIR = path.join('sourse/pug/blocks');
+const BLOCKS_DIR = path.join('source/pug/blocks');
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -163,7 +163,7 @@ function initMakeBlock(blockName) {
 		.then(files => {
 			const line = '-'.repeat(48 + blockName.length);
 			console.log(line);
-			console.log(`The block has just been created in 'sourse/pug/blocks/${blockName}'`);
+			console.log(`The block has just been created in 'source/pug/blocks/${blockName}'`);
 			console.log(line);
 
 			// Displays a list of files created
